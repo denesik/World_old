@@ -22,6 +22,7 @@
 #include "Graphic/Render/OpenGLCall.h"
 #include <vector>
 #include "Graphic/GameRender/ModelBlockGenerator.h"
+#include "Graphic/Render/MultiModel.h"
 
 
 Game::Game()
@@ -160,16 +161,18 @@ void Game::Draw()
 
   //glColor3f(1.0f, 0.0f, 0.0f);
 
+  MultiModel model;
   {
     ModelBlockGenerator mg;
     mg.SetTexture(ModelBlockGenerator::ALL, "Textures/sand.png");
     mg.Enable(ModelBlockGenerator::ALL, true);
     mg.SetPosition({ 0.0f, 2.0f, 0.0f });
 
-    Model model = mg.Create();
-    model.GetMesh()->Compile();
-
-    REGISTRY_GRAPHIC.GetRender().Draw(model);
+    model.Push(mg.Create());
+//     Model model = mg.Create();
+//     model.GetMesh()->Compile();
+// 
+//     REGISTRY_GRAPHIC.GetRender().Draw(model);
   }
   {
     ModelBlockGenerator mg;
@@ -177,10 +180,12 @@ void Game::Draw()
     mg.Enable(ModelBlockGenerator::ALL, true);
     mg.SetPosition({ 1.0f, 2.0f, 0.0f });
 
-    Model model = mg.Create();
-    model.GetMesh()->Compile();
-
-    REGISTRY_GRAPHIC.GetRender().Draw(model);
+    model.Push(mg.Create());
+//     Model model = mg.Create();
+//     model.GetMesh()->Compile();
+// 
+//     REGISTRY_GRAPHIC.GetRender().Draw(model);
   }
-
+  model.GetMesh()->Compile();
+  REGISTRY_GRAPHIC.GetRender().Draw(model);
 }

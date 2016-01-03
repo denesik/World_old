@@ -72,6 +72,11 @@ void Render::Draw(const Model &model)
   model.GetMesh()->Draw();
 }
 
+void Render::Draw(const MultiModel &model)
+{
+  model.GetTexture()->Set(TEXTURE_SLOT_0);
+  model.GetMesh()->Draw();
+}
 
 
 

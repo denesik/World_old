@@ -29,6 +29,7 @@
     <ClCompile Include="Graphic\Render\Color.cpp" />
     <ClCompile Include="Graphic\Render\Mesh.cpp" />
     <ClCompile Include="Graphic\Render\Model.cpp" />
+    <ClCompile Include="Graphic\Render\MultiModel.cpp" />
     <ClCompile Include="Graphic\Render\Render.cpp" />
     <ClCompile Include="Graphic\Render\RenderMeshGL1.cpp" />
     <ClCompile Include="Graphic\Render\Shader.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="Graphic\Render\IRenderMesh.h" />
     <ClInclude Include="Graphic\Render\Mesh.h" />
     <ClInclude Include="Graphic\Render\Model.h" />
+    <ClInclude Include="Graphic\Render\MultiModel.h" />
     <ClInclude Include="Graphic\Render\OpenGLCall.h" />
     <ClInclude Include="Graphic\Render\Render.h" />
     <ClInclude Include="Graphic\Render\RenderMeshGL1.h" />

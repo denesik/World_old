@@ -31,7 +31,7 @@ const PMesh &Model::GetMesh() const noexcept
   return mMesh;
 }
 
-PMesh & Model::GetMesh() noexcept
+PMesh &Model::GetMesh() noexcept
 {
   return mMesh;
 }

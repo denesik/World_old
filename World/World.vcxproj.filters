@@ -64,8 +64,13 @@
     <ClCompile Include="Graphic\GameRender\ModelBlockGenerator.cpp">
       <Filter>Graphic\GameRender</Filter>
     </ClCompile>
-    <ClCompile Include="Graphic\Render\Mesh.cpp" />
     <ClCompile Include="Graphic\Render\RenderMeshGL1.cpp">
+      <Filter>Graphic\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic\Render\MultiModel.cpp">
+      <Filter>Graphic\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic\Render\Mesh.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
   </ItemGroup>
@@ -137,6 +142,9 @@
       <Filter>Graphic\Render</Filter>
     </ClInclude>
     <ClInclude Include="Graphic\Render\RenderMeshGL1.h">
+      <Filter>Graphic\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic\Render\MultiModel.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
   </ItemGroup>

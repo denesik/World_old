@@ -30,15 +30,27 @@ void Mesh::Set(const std::vector<float> &vertex, const std::vector<size_t> &inde
 
 void Mesh::Push(const std::vector<float> &vertex, const std::vector<size_t> &index)
 {
+  mIndex.reserve(index.size());
+  size_t size = mVertex.size() / (mVertexSize / sizeof(float));
+  for (const auto &i : index)
+  {
+    mIndex.push_back(size + i);
+  }
+
   mVertex.insert(mVertex.end(), vertex.begin(), vertex.end());
-  mIndex.insert(mIndex.end(), index.begin(), index.end());
 }
 
 void Mesh::Push(const Mesh &mesh)
 {
   assert(mVertexSize == mesh.mVertexSize && "–азмеры вершин не совпадают при сли€нии мешей.");
+  mIndex.reserve(mesh.mIndex.size());
+  size_t size = mVertex.size() / (mVertexSize / sizeof(float));
+  for (const auto &i : mesh.mIndex)
+  {
+    mIndex.push_back(size + i);
+  }
+
   mVertex.insert(mVertex.end(), mesh.mVertex.begin(), mesh.mVertex.end());
-  mIndex.insert(mIndex.end(), mesh.mIndex.begin(), mesh.mIndex.end());
 }
 
 void Mesh::Release()
