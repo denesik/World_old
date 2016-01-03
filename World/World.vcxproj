@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FpsCounter.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Graphic\GameRender\ModelBlockGenerator.cpp" />
+    <ClCompile Include="Graphic\RegistryGraphic.cpp" />
+    <ClCompile Include="Graphic\Render\Atlas.cpp" />
+    <ClCompile Include="Graphic\Render\Bitmap.cpp" />
+    <ClCompile Include="Graphic\Render\Camera.cpp" />
+    <ClCompile Include="Graphic\Render\Color.cpp" />
+    <ClCompile Include="Graphic\Render\Mesh.cpp" />
+    <ClCompile Include="Graphic\Render\Model.cpp" />
+    <ClCompile Include="Graphic\Render\Render.cpp" />
+    <ClCompile Include="Graphic\Render\RenderMeshGL1.cpp" />
+    <ClCompile Include="Graphic\Render\Shader.cpp" />
+    <ClCompile Include="Graphic\Render\Texture.cpp" />
+    <ClCompile Include="Graphic\Render\TextureManager.cpp" />
+    <ClCompile Include="Graphic\Window\Keyboard.cpp" />
+    <ClCompile Include="Graphic\Window\Mouse.cpp" />
+    <ClCompile Include="Graphic\Window\Window.cpp" />
+    <ClCompile Include="lodepng\lodepng.cpp" />
+    <ClCompile Include="Log.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FpsCounter.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Graphic\GameRender\IModelGenerator.h" />
+    <ClInclude Include="Graphic\GameRender\ModelBlockGenerator.h" />
+    <ClInclude Include="Graphic\RegistryGraphic.h" />
+    <ClInclude Include="Graphic\Render\Atlas.h" />
+    <ClInclude Include="Graphic\Render\Bitmap.h" />
+    <ClInclude Include="Graphic\Render\Camera.h" />
+    <ClInclude Include="Graphic\Render\Color.h" />
+    <ClInclude Include="Graphic\Render\IRenderMesh.h" />
+    <ClInclude Include="Graphic\Render\Mesh.h" />
+    <ClInclude Include="Graphic\Render\Model.h" />
+    <ClInclude Include="Graphic\Render\OpenGLCall.h" />
+    <ClInclude Include="Graphic\Render\Render.h" />
+    <ClInclude Include="Graphic\Render\RenderMeshGL1.h" />
+    <ClInclude Include="Graphic\Render\Shader.h" />
+    <ClInclude Include="Graphic\Render\Texture.h" />
+    <ClInclude Include="Graphic\Render\TextureManager.h" />
+    <ClInclude Include="Graphic\Render\Vertex.h" />
+    <ClInclude Include="Graphic\Render\VertexTools.h" />
+    <ClInclude Include="Graphic\Window\Keyboard.h" />
+    <ClInclude Include="Graphic\Window\Mouse.h" />
+    <ClInclude Include="Graphic\Window\Window.h" />
+    <ClInclude Include="lodepng\lodepng.h" />
+    <ClInclude Include="Log.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7703DB31-99E4-44B1-958A-98F60E8ED672}</ProjectGuid>
+    <RootNamespace>World</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost;$(SolutionDir)\..\3rdparty\msvc14_x86\glew;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw;$(SolutionDir)\..\3rdparty\msvc14_x86\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost;$(SolutionDir)\..\3rdparty\msvc14_x86\glew;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw;$(SolutionDir)\..\3rdparty\msvc14_x86\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glew32sd.lib;opengl32.lib;glfw3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
