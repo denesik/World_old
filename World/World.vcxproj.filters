@@ -13,6 +13,12 @@
     <Filter Include="Graphic\GameRender">
       <UniqueIdentifier>{ab727c66-3538-4039-b9f6-e7b34be05920}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{460c9574-cd3f-4954-95ad-03c59b19ec00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{c1843cdd-5cdb-4df6-80d7-888ba1348c7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphic\RegistryGraphic.cpp">
@@ -73,6 +79,16 @@
     <ClCompile Include="Graphic\Render\Mesh.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Agent.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\RenderAgent.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic\GameRender\RenderSector.cpp">
+      <Filter>Graphic\GameRender</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\GameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">
@@ -147,5 +163,18 @@
     <ClInclude Include="Graphic\Render\MultiModel.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Agent.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\RenderAgent.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic\GameRender\RenderSector.h">
+      <Filter>Graphic\GameRender</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\StringIntern.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameObject.h" />
   </ItemGroup>
 </Project>

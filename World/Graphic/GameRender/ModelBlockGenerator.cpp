@@ -27,7 +27,10 @@ static glm::vec2 textureCube[] =
 };
 
 
+
+
 ModelBlockGenerator::ModelBlockGenerator()
+  : mTypeName("ModelBlockGenerator")
 {
 }
 
@@ -129,6 +132,11 @@ void ModelBlockGenerator::Enable(int side, bool enabled)
       mEnabled[i] = enabled;
     }
   }
+}
+
+const StringIntern &ModelBlockGenerator::GetTypeName() const
+{
+  return mTypeName;
 }
 
 void ModelBlockGenerator::SetPosition(const glm::vec3 &pos)

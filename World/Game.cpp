@@ -23,7 +23,8 @@
 #include <vector>
 #include "Graphic/GameRender/ModelBlockGenerator.h"
 #include "Graphic/Render/MultiModel.h"
-
+#include "Core/GameObject.h"
+#include "Core/RenderAgent.h"
 
 Game::Game()
 {
@@ -163,28 +164,24 @@ void Game::Draw()
 
   MultiModel model;
   {
-    ModelBlockGenerator mg;
+    GameObject go;
+    auto &mg = *static_cast<ModelBlockGenerator *>(go.GetRenderAgent().GetModelGenerator());
+
     mg.SetTexture(ModelBlockGenerator::ALL, "Textures/sand.png");
     mg.Enable(ModelBlockGenerator::ALL, true);
     mg.SetPosition({ 0.0f, 2.0f, 0.0f });
 
-    model.Push(mg.Create());
-//     Model model = mg.Create();
-//     model.GetMesh()->Compile();
-// 
-//     REGISTRY_GRAPHIC.GetRender().Draw(model);
+    model.Push(go.GetRenderAgent().GetModel());
   }
   {
-    ModelBlockGenerator mg;
+    GameObject go;
+    auto &mg = *static_cast<ModelBlockGenerator *>(go.GetRenderAgent().GetModelGenerator());
+
     mg.SetTexture(ModelBlockGenerator::ALL, "Textures/stone.png");
     mg.Enable(ModelBlockGenerator::ALL, true);
     mg.SetPosition({ 1.0f, 2.0f, 0.0f });
 
-    model.Push(mg.Create());
-//     Model model = mg.Create();
-//     model.GetMesh()->Compile();
-// 
-//     REGISTRY_GRAPHIC.GetRender().Draw(model);
+    model.Push(go.GetRenderAgent().GetModel());
   }
   model.GetMesh()->Compile();
   REGISTRY_GRAPHIC.GetRender().Draw(model);

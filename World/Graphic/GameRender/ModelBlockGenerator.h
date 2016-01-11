@@ -8,6 +8,7 @@
 
 #include "IModelGenerator.h"
 #include <array>
+#include "..\..\tools\StringIntern.h"
 
 
 /// Генератор модели для блока.
@@ -43,6 +44,8 @@ public:
 
   void Enable(int side, bool enabled);
 
+  const StringIntern &GetTypeName() const;
+
 private:
   /// Список координат текстур для сторон куба в атласе.
   std::array<std::string, 6> mTextures;
@@ -53,6 +56,8 @@ private:
   PTexture mActiveTexture;
 
   glm::vec3 mPosition;
+
+  const StringIntern mTypeName;
 };
 
 

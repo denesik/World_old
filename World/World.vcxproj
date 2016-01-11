@@ -19,9 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Agent.cpp" />
+    <ClCompile Include="Core\GameObject.cpp" />
+    <ClCompile Include="Core\RenderAgent.cpp" />
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphic\GameRender\ModelBlockGenerator.cpp" />
+    <ClCompile Include="Graphic\GameRender\RenderSector.cpp" />
     <ClCompile Include="Graphic\RegistryGraphic.cpp" />
     <ClCompile Include="Graphic\Render\Atlas.cpp" />
     <ClCompile Include="Graphic\Render\Bitmap.cpp" />
@@ -43,10 +47,14 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Agent.h" />
+    <ClInclude Include="Core\GameObject.h" />
+    <ClInclude Include="Core\RenderAgent.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphic\GameRender\IModelGenerator.h" />
     <ClInclude Include="Graphic\GameRender\ModelBlockGenerator.h" />
+    <ClInclude Include="Graphic\GameRender\RenderSector.h" />
     <ClInclude Include="Graphic\RegistryGraphic.h" />
     <ClInclude Include="Graphic\Render\Atlas.h" />
     <ClInclude Include="Graphic\Render\Bitmap.h" />
@@ -69,6 +77,7 @@
     <ClInclude Include="Graphic\Window\Window.h" />
     <ClInclude Include="lodepng\lodepng.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="tools\StringIntern.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7703DB31-99E4-44B1-958A-98F60E8ED672}</ProjectGuid>
