@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Core\Agent.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
+    <ClCompile Include="Core\PositionAgent.cpp" />
     <ClCompile Include="Core\RenderAgent.cpp" />
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -45,10 +46,12 @@
     <ClCompile Include="lodepng\lodepng.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="tools\StringIntern.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Agent.h" />
     <ClInclude Include="Core\GameObject.h" />
+    <ClInclude Include="Core\PositionAgent.h" />
     <ClInclude Include="Core\RenderAgent.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />

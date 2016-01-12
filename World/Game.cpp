@@ -165,23 +165,23 @@ void Game::Draw()
   MultiModel model;
   {
     GameObject go;
-    auto &mg = *static_cast<ModelBlockGenerator *>(go.GetRenderAgent().GetModelGenerator());
+    auto &mg = *static_cast<ModelBlockGenerator *>(static_cast<RenderAgent *>(go.GetFromFullName(StringIntern("RenderAgent")))->GetModelGenerator());
 
     mg.SetTexture(ModelBlockGenerator::ALL, "Textures/sand.png");
     mg.Enable(ModelBlockGenerator::ALL, true);
     mg.SetPosition({ 0.0f, 2.0f, 0.0f });
 
-    model.Push(go.GetRenderAgent().GetModel());
+    model.Push(static_cast<RenderAgent *>(go.GetFromFullName(StringIntern("RenderAgent")))->GetModel());
   }
   {
     GameObject go;
-    auto &mg = *static_cast<ModelBlockGenerator *>(go.GetRenderAgent().GetModelGenerator());
+    auto &mg = *static_cast<ModelBlockGenerator *>(static_cast<RenderAgent *>(go.GetFromFullName(StringIntern("RenderAgent")))->GetModelGenerator());
 
     mg.SetTexture(ModelBlockGenerator::ALL, "Textures/stone.png");
     mg.Enable(ModelBlockGenerator::ALL, true);
     mg.SetPosition({ 1.0f, 2.0f, 0.0f });
 
-    model.Push(go.GetRenderAgent().GetModel());
+    model.Push(static_cast<RenderAgent *>(go.GetFromFullName(StringIntern("RenderAgent")))->GetModel());
   }
   model.GetMesh()->Compile();
   REGISTRY_GRAPHIC.GetRender().Draw(model);

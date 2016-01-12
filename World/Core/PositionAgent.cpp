@@ -2,16 +2,26 @@
 // ==                   Copyright (c) 2015, Smirnov Denis                    ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#pragma once
-#ifndef StringIntern_h__
-#define StringIntern_h__
+#include "PositionAgent.h"
 
-#include <string>
-#include <boost/flyweight.hpp>
 
-//using StringIntern = std::string;
-using StringIntern = boost::flyweight<std::string>;
-// 
-// StringIntern operator+(const StringIntern &a, const StringIntern &b);
 
-#endif // StringIntern_h__
+PositionAgent::PositionAgent(GameObject *parent)
+  : Agent(parent, "PositionAgent")
+{
+}
+
+
+PositionAgent::~PositionAgent()
+{
+}
+
+const glm::vec3 &PositionAgent::Get() const
+{
+  return mPosition;
+}
+
+void PositionAgent::Set(const glm::vec3 &position)
+{
+  mPosition = position;
+}

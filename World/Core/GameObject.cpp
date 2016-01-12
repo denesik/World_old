@@ -4,12 +4,17 @@
 // ============================================================================
 #include "GameObject.h"
 #include "RenderAgent.h"
+#include "PositionAgent.h"
 
 
 
 GameObject::GameObject()
 {
-  mAgents.push_back(std::make_unique<RenderAgent>(this));
+  auto positionAgent = std::make_unique<PositionAgent>(this);
+  mAgents[positionAgent->GetFullName()] = std::move(positionAgent);
+
+  auto renderAgent = std::make_unique<RenderAgent>(this);
+  mAgents[renderAgent->GetFullName()] = std::move(renderAgent);
 }
 
 
@@ -17,7 +22,14 @@ GameObject::~GameObject()
 {
 }
 
-class RenderAgent &GameObject::GetRenderAgent()
+Agent *GameObject::GetFromFullName(const StringIntern &name)
 {
-  return *static_cast<RenderAgent *>(mAgents[0].get());
+  auto it = mAgents.find(name);
+  if (it != mAgents.end())
+  {
+    return (*it).second.get();
+  }
+
+  return nullptr;
 }
+

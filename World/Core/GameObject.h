@@ -7,8 +7,9 @@
 #define GameObject_h__
 
 #include "Agent.h"
-#include <vector>
+#include <map>
 #include <memory>
+#include <functional>
 
 
 class GameObject
@@ -17,10 +18,10 @@ public:
   GameObject();
   ~GameObject();
 
-  class RenderAgent &GetRenderAgent();
+  Agent *GetFromFullName(const StringIntern &name);
 
 private:
-  std::vector<std::unique_ptr<Agent>> mAgents;
+  std::map<StringIntern, std::unique_ptr<Agent>> mAgents;
 
 };
 

@@ -14,7 +14,7 @@ class Agent
 {
 public:
   /// Создать агент с указанным типом и именем.
-  Agent(GameObject *parent, const StringIntern &type, const StringIntern &name = StringIntern());
+  Agent(GameObject *parent, const std::string &type, const std::string &name = "");
   virtual ~Agent();
 
   /// Вурнуть имя типа агента.

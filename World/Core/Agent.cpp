@@ -7,8 +7,8 @@
 
 
 
-Agent::Agent(GameObject *parent, const StringIntern &type, const StringIntern &name)
-  : mParent(parent), mTypeName(type), mAgentName(name), mFullName(mTypeName + mAgentName)
+Agent::Agent(GameObject *parent, const std::string &type, const std::string &name)
+  : mParent(parent), mTypeName(type), mAgentName(name), mFullName(type + name)
 {
 }
 

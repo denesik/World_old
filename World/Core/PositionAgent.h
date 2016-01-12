@@ -3,15 +3,27 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#ifndef StringIntern_h__
-#define StringIntern_h__
+#ifndef PositionAgent_h__
+#define PositionAgent_h__
 
-#include <string>
-#include <boost/flyweight.hpp>
+#include "Agent.h"
+#include <glm/glm.hpp>
 
-//using StringIntern = std::string;
-using StringIntern = boost::flyweight<std::string>;
-// 
-// StringIntern operator+(const StringIntern &a, const StringIntern &b);
+class PositionAgent : public Agent
+{
+public:
+  PositionAgent(GameObject *parent);
+  ~PositionAgent();
 
-#endif // StringIntern_h__
+  const glm::vec3 &Get() const;
+
+  void Set(const glm::vec3 &position);
+
+private:
+  glm::vec3 mPosition;
+
+};
+
+
+
+#endif // PositionAgent_h__
