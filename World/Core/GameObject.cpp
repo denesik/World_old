@@ -4,13 +4,13 @@
 // ============================================================================
 #include "GameObject.h"
 #include "RenderAgent.h"
-#include "PositionAgent.h"
+#include "BlockPositionAgent.h"
 
 
 
 GameObject::GameObject()
 {
-  auto positionAgent = std::make_unique<PositionAgent>(this);
+  auto positionAgent = std::make_unique<BlockPositionAgent>(this);
   mAgents[positionAgent->GetFullName()] = std::move(positionAgent);
 
   auto renderAgent = std::make_unique<RenderAgent>(this);

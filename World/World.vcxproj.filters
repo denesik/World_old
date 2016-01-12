@@ -97,6 +97,8 @@
     <ClCompile Include="tools\StringIntern.cpp">
       <Filter>tools</Filter>
     </ClCompile>
+    <ClCompile Include="Core\BlockPositionAgent.cpp" />
+    <ClCompile Include="Core\Sector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">
@@ -189,5 +191,7 @@
     <ClInclude Include="Core\PositionAgent.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Core\BlockPositionAgent.h" />
+    <ClInclude Include="Core\Sector.h" />
   </ItemGroup>
 </Project>

@@ -7,10 +7,10 @@
 #define StringIntern_h__
 
 #include <string>
-#include <boost/flyweight.hpp>
+//#include <boost/flyweight.hpp>
 
-//using StringIntern = std::string;
-using StringIntern = boost::flyweight<std::string>;
+using StringIntern = std::string;
+//using StringIntern = boost::flyweight<std::string>;
 // 
 // StringIntern operator+(const StringIntern &a, const StringIntern &b);
 

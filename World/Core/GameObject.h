@@ -9,8 +9,9 @@
 #include "Agent.h"
 #include <map>
 #include <memory>
-#include <functional>
 
+
+using PGameObject = std::shared_ptr<class GameObject>;
 
 class GameObject
 {

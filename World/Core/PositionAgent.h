@@ -15,13 +15,9 @@ public:
   PositionAgent(GameObject *parent);
   ~PositionAgent();
 
-  const glm::vec3 &Get() const;
+  virtual const glm::vec3 &Get() const = 0;
 
-  void Set(const glm::vec3 &position);
-
-private:
-  glm::vec3 mPosition;
-
+  virtual void Set(const glm::vec3 &position) = 0;
 };
 
 
