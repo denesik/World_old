@@ -26,6 +26,7 @@
 #include "Core/GameObject.h"
 #include "Core/RenderAgent.h"
 #include "Core/Sector.h"
+#include "Core/RegistryCore.h"
 
 Game::Game()
 {
@@ -62,6 +63,8 @@ int Game::Run()
 
     REGISTRY_GRAPHIC.GetTextureManager().LoadTexture({ "Textures/stone.png", "Textures/sand.png" });
     REGISTRY_GRAPHIC.GetTextureManager().Compile();
+
+    //REGISTRY_CORE.GetBlocksLibrary().Registry();
 
     FpsCounter fps;
     while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
@@ -165,27 +168,4 @@ void Game::Draw()
 
   Sector sector;
   sector.Update();
-//   MultiModel model;
-//   {
-//     GameObject go;
-//     auto &mg = *static_cast<ModelBlockGenerator *>(static_cast<RenderAgent *>(go.GetFromFullName(StringIntern("RenderAgent")))->GetModelGenerator());
-// 
-//     mg.SetTexture(ModelBlockGenerator::ALL, "Textures/sand.png");
-//     mg.Enable(ModelBlockGenerator::ALL, true);
-//     mg.SetPosition({ 0.0f, 2.0f, 0.0f });
-// 
-//     model.Push(static_cast<RenderAgent *>(go.GetFromFullName(StringIntern("RenderAgent")))->GetModel());
-//   }
-//   {
-//     GameObject go;
-//     auto &mg = *static_cast<ModelBlockGenerator *>(static_cast<RenderAgent *>(go.GetFromFullName(StringIntern("RenderAgent")))->GetModelGenerator());
-// 
-//     mg.SetTexture(ModelBlockGenerator::ALL, "Textures/stone.png");
-//     mg.Enable(ModelBlockGenerator::ALL, true);
-//     mg.SetPosition({ 1.0f, 2.0f, 0.0f });
-// 
-//     model.Push(static_cast<RenderAgent *>(go.GetFromFullName(StringIntern("RenderAgent")))->GetModel());
-//   }
-//   model.GetMesh()->Compile();
-//   REGISTRY_GRAPHIC.GetRender().Draw(model);
 }

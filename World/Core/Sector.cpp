@@ -24,7 +24,7 @@ Sector::Sector()
           [mCurrentBlockPosition.y + SECTOR_RADIUS]
         [mCurrentBlockPosition.x + SECTOR_RADIUS];
 
-        if (mCurrentBlockPosition.z == 0)
+        if (mCurrentBlockPosition.z == -2)
         {
           block = std::make_shared<GameObject>();
 

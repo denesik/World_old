@@ -97,8 +97,18 @@
     <ClCompile Include="tools\StringIntern.cpp">
       <Filter>tools</Filter>
     </ClCompile>
-    <ClCompile Include="Core\BlockPositionAgent.cpp" />
-    <ClCompile Include="Core\Sector.cpp" />
+    <ClCompile Include="Core\Sector.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\BlocksLibrary.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\BlockPositionAgent.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\RegistryCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">
@@ -191,7 +201,17 @@
     <ClInclude Include="Core\PositionAgent.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\BlockPositionAgent.h" />
-    <ClInclude Include="Core\Sector.h" />
+    <ClInclude Include="Core\Sector.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\BlocksLibrary.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\BlockPositionAgent.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\RegistryCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
