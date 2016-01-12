@@ -2,26 +2,17 @@
 // ==                   Copyright (c) 2015, Smirnov Denis                    ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#include "BlockPositionAgent.h"
+#pragma once
+#ifndef GameObjectParams_h__
+#define GameObjectParams_h__
 
+#include <glm/glm.hpp>
 
-
-BlockPositionAgent::BlockPositionAgent(GameObject *parent)
-  : PositionAgent(parent)
+struct GameObjectParams
 {
-}
+  class World *world;
+  class Sector *sector;
+  const glm::vec3 &pos;
+};
 
-
-BlockPositionAgent::~BlockPositionAgent()
-{
-}
-
-const glm::vec3 &BlockPositionAgent::Get() const
-{
-  return{};
-}
-
-void BlockPositionAgent::Set(const glm::vec3 &position)
-{
-
-}
+#endif // GameObjectParams_h__

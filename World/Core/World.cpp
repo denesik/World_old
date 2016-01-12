@@ -2,22 +2,30 @@
 // ==                   Copyright (c) 2015, Smirnov Denis                    ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#pragma once
-#include "..\Render\Model.h"
-#ifndef IModelGenerator_h__
-#define IModelGenerator_h__
+#include "World.h"
 
-class IModelGenerator
+
+
+World::World()
 {
-public:
-  IModelGenerator() {};
-  virtual ~IModelGenerator() {};
-
-  /// —генерировать модель.
-  virtual Model Create() const = 0;
-
-};
+  
+}
 
 
+World::~World()
+{
+}
 
-#endif // IModelGenerator_h__
+void World::LoadSector(const glm::ivec3 &position)
+{
+  mSectors.emplace(position, position);
+}
+
+void World::Update()
+{
+  for (auto &sector : mSectors)
+  {
+    mCurrentSector = &sector.second;
+    sector.second.Update(this);
+  }
+}

@@ -20,16 +20,14 @@ public:
   };
 
 public:
-  Sector();
+  Sector(const glm::ivec3 &position);
   ~Sector();
-
-  const glm::ivec3 &GetCurrentBlockPosition() const;
 
   const glm::ivec3 &GetSectorPosition() const;
 
   PGameObject GetBlock(const glm::ivec3 &pos);
 
-  void Update();
+  void Update(class World *world);
 
 private:
   template<class T, size_t S>
@@ -37,7 +35,6 @@ private:
 
   SectorMap<PGameObject, SECTOR_SIZE> mBlocks;
 
-  glm::ivec3 mCurrentBlockPosition;
   glm::ivec3 mSectorPosition;
 };
 

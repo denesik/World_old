@@ -15,6 +15,11 @@ BlocksLibrary &RegistryCore::GetBlocksLibrary()
   return mBlocksLibrary;
 }
 
+World &RegistryCore::GetWorld()
+{
+  return mWorld;
+}
+
 RegistryCore::RegistryCore()
 {
 

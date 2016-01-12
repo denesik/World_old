@@ -15,3 +15,13 @@ PositionAgent::PositionAgent(GameObject *parent)
 PositionAgent::~PositionAgent()
 {
 }
+
+const glm::vec3 & PositionAgent::Get() const
+{
+  return mPosition;
+}
+
+void PositionAgent::Set(const glm::vec3 &position)
+{
+  mPosition = position;
+}

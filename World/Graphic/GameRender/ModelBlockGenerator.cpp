@@ -39,7 +39,7 @@ ModelBlockGenerator::~ModelBlockGenerator()
 {
 }
 
-Model ModelBlockGenerator::Create()
+Model ModelBlockGenerator::Create() const
 {
   enum 
   {

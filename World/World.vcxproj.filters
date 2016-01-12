@@ -103,10 +103,10 @@
     <ClCompile Include="Core\BlocksLibrary.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\BlockPositionAgent.cpp">
+    <ClCompile Include="Core\RegistryCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\RegistryCore.cpp">
+    <ClCompile Include="Core\World.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -207,10 +207,13 @@
     <ClInclude Include="Core\BlocksLibrary.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\BlockPositionAgent.h">
+    <ClInclude Include="Core\RegistryCore.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\RegistryCore.h">
+    <ClInclude Include="Core\World.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameObjectParams.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

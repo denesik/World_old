@@ -7,6 +7,7 @@
 #define RegistryCore_h__
 
 #include "BlocksLibrary.h"
+#include "World.h"
 
 
 #define REGISTRY_CORE RegistryCore::Instatce()
@@ -18,6 +19,8 @@ public:
 
   BlocksLibrary &GetBlocksLibrary();
 
+  World &GetWorld();
+
 private:
   RegistryCore();
   ~RegistryCore();
@@ -28,6 +31,7 @@ private:
 
   BlocksLibrary mBlocksLibrary;
 
+  World mWorld;
 };
 
 #endif // RegistryCore_h__

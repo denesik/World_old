@@ -36,7 +36,7 @@ public:
   ModelBlockGenerator();
   ~ModelBlockGenerator();
 
-  Model Create() override;
+  Model Create() const override;
 
   void SetPosition(const glm::vec3 &pos);
 

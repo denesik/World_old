@@ -27,6 +27,7 @@
 #include "Core/RenderAgent.h"
 #include "Core/Sector.h"
 #include "Core/RegistryCore.h"
+#include "Core/World.h"
 
 Game::Game()
 {
@@ -64,7 +65,20 @@ int Game::Run()
     REGISTRY_GRAPHIC.GetTextureManager().LoadTexture({ "Textures/stone.png", "Textures/sand.png" });
     REGISTRY_GRAPHIC.GetTextureManager().Compile();
 
-    //REGISTRY_CORE.GetBlocksLibrary().Registry();
+    {
+      auto block = std::make_shared<GameObject>();
+      auto &mg = *static_cast<ModelBlockGenerator *>(static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent")))->GetModelGenerator());
+      mg.SetTexture(ModelBlockGenerator::ALL, "Textures/sand.png");
+      REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockSand"), block);
+    }
+    {
+      auto block = std::make_shared<GameObject>();
+      auto &mg = *static_cast<ModelBlockGenerator *>(static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent")))->GetModelGenerator());
+      mg.SetTexture(ModelBlockGenerator::ALL, "Textures/stone.png");
+      REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockStone"), block);
+    }
+
+    REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
 
     FpsCounter fps;
     while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
@@ -166,6 +180,5 @@ void Game::Draw()
 
   //glColor3f(1.0f, 0.0f, 0.0f);
 
-  Sector sector;
-  sector.Update();
+  REGISTRY_CORE.GetWorld().Update();
 }
