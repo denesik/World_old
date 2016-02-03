@@ -115,6 +115,9 @@
     <ClCompile Include="Core\Player.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\SectorLoader.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">
@@ -223,6 +226,9 @@
       <Filter>Core\MapGen</Filter>
     </ClInclude>
     <ClInclude Include="Core\Player.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SectorLoader.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

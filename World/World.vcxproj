@@ -27,6 +27,7 @@
     <ClCompile Include="Core\RegistryCore.cpp" />
     <ClCompile Include="Core\RenderAgent.cpp" />
     <ClCompile Include="Core\Sector.cpp" />
+    <ClCompile Include="Core\SectorLoader.cpp" />
     <ClCompile Include="Core\World.cpp" />
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="Core\RegistryCore.h" />
     <ClInclude Include="Core\RenderAgent.h" />
     <ClInclude Include="Core\Sector.h" />
+    <ClInclude Include="Core\SectorLoader.h" />
     <ClInclude Include="Core\World.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />

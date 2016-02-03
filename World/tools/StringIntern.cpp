@@ -2,7 +2,7 @@
 
 
 
-// StringIntern operator+(const StringIntern &a, const StringIntern &b)
-// {
-//   return StringIntern(a.get() + b.get());
-// }
+StringIntern operator+(const StringIntern &a, const StringIntern &b)
+{
+  return StringIntern(a.get() + b.get());
+}

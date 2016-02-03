@@ -4,6 +4,7 @@
 // ============================================================================
 #include "RenderSector.h"
 #include "..\RegistryGraphic.h"
+#include "..\..\Log.h"
 
 
 
@@ -39,9 +40,10 @@ void RenderSector::Update()
   
   if (mIsNeedBuild)
   {
+    auto currentTime = glfwGetTime();
     mModel.GetMesh()->Compile();
     mModel.GetMesh()->Release();
-
+    LOG(info) << "ListGen: " << glfwGetTime() - currentTime;
     mIsNeedBuild = false;
   }
 

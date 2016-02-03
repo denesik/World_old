@@ -39,6 +39,8 @@ Sector::Sector(const glm::ivec3 &position)
 //       }
 //     }
 //   }
+  auto currentTime = glfwGetTime();
+
   for (pos.y = -SECTOR_RADIUS; pos.y <= SECTOR_RADIUS; ++pos.y)
   {
     for (pos.x = -SECTOR_RADIUS; pos.x <= SECTOR_RADIUS; ++pos.x)
@@ -61,6 +63,8 @@ Sector::Sector(const glm::ivec3 &position)
       }
     }
   }
+
+  LOG(info) << "SectorGen: " << glfwGetTime() - currentTime;
 }
 
 
@@ -82,6 +86,7 @@ PGameObject Sector::GetBlock(const glm::ivec3 &pos)
 
 void Sector::Update(class World *world)
 {
+  auto currentTime = glfwGetTime();
   glm::ivec3 pos;
   for (pos.z = -SECTOR_RADIUS; pos.z <= SECTOR_RADIUS; ++pos.z)
   {
@@ -93,12 +98,18 @@ void Sector::Update(class World *world)
 
         if (block)
         {
-          static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent")))->Update(
+          static StringIntern renderAgentName("RenderAgent");
+          static_cast<RenderAgent *>(block->GetFromFullName(renderAgentName))->Update(
             { world , this, mPos * static_cast<int32_t>(Sector::SECTOR_SIZE) + pos }
           );
         }
       }
     }
+  }
+
+  if (mRenderSector.IsNeedBuild())
+  {
+    LOG(info) << "SectorBuild: " << glfwGetTime() - currentTime;
   }
 
   mRenderSector.Update();
