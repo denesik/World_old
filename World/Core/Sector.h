@@ -16,7 +16,7 @@ class Sector
 public:
   enum 
   {
-    SECTOR_RADIUS = 2,
+    SECTOR_RADIUS = 15,
     SECTOR_SIZE = SECTOR_RADIUS * 2 + 1,
   };
 
@@ -38,7 +38,7 @@ private:
 
   SectorMap<PGameObject, SECTOR_SIZE> mBlocks;
 
-  glm::ivec3 mSectorPosition;
+  glm::ivec3 mPos;
 
   RenderSector mRenderSector;
 };

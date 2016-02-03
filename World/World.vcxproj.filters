@@ -19,6 +19,9 @@
     <Filter Include="tools">
       <UniqueIdentifier>{c1843cdd-5cdb-4df6-80d7-888ba1348c7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\MapGen">
+      <UniqueIdentifier>{c3417e14-6780-4040-8219-9b32aef22c51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphic\RegistryGraphic.cpp">
@@ -105,6 +108,9 @@
     </ClCompile>
     <ClCompile Include="Core\World.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\MapGen\PerlinNoise.cpp">
+      <Filter>Core\MapGen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +215,9 @@
     </ClInclude>
     <ClInclude Include="Core\GameObjectParams.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\MapGen\PerlinNoise.h">
+      <Filter>Core\MapGen</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
