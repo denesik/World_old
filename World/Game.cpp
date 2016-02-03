@@ -78,7 +78,11 @@ int Game::Run()
       REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockStone"), block);
     }
 
+
+    REGISTRY_CORE.GetWorld().LoadSector({ -1,0,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 1,0,0 });
+
 
     FpsCounter fps;
     while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())

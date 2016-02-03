@@ -18,6 +18,9 @@ Thumbs.db
 *.log
 *.sdf
 *.opensdf
+*.7z
+*.zip
+*.rar
 [Dd]ebug
 [Rr]elease
 [Tt]extures

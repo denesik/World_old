@@ -16,6 +16,16 @@ RenderSector::~RenderSector()
 {
 }
 
+void RenderSector::Changed()
+{
+  mIsChanged = true;
+}
+
+bool RenderSector::IsNeedBuild() const
+{
+  return mIsNeedBuild;
+}
+
 void RenderSector::Push(const Model &model)
 {
   mModel.Push(model);
@@ -23,8 +33,23 @@ void RenderSector::Push(const Model &model)
 
 void RenderSector::Update()
 {
-  mModel.GetMesh()->Compile();
+  // Рисуем сектор.
+  // Если сектор был изменен, ставим флаг, что сектор должен быть перестроен.
+  // Если флаг о перестройке установлен - перестраиваем сектор.
+  
+  if (mIsNeedBuild)
+  {
+    mModel.GetMesh()->Compile();
+    mModel.GetMesh()->Release();
+
+    mIsNeedBuild = false;
+  }
+
   REGISTRY_GRAPHIC.GetRender().Draw(mModel);
 
-  mModel.GetMesh()->Release();
+  if (mIsChanged)
+  {
+    mIsNeedBuild = true;
+    mIsChanged = false;
+  }
 }

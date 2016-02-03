@@ -17,12 +17,21 @@ public:
   RenderSector();
   ~RenderSector();
 
+  /// —ообщить сектору, что его геометри€ изменилась.
+  void Changed();
+
+  /// Ќужно ли перестроить геометрию?
+  bool IsNeedBuild() const;
+
   void Push(const Model &model);
 
   void Update();
 
 private:
   MultiModel mModel;
+
+  bool mIsChanged = false;
+  bool mIsNeedBuild = true;
 
 };
 

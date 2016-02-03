@@ -68,7 +68,9 @@ void Sector::Update(class World *world)
 
         if (block)
         {
-          static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent")))->Update({ world , this, mSectorPosition + pos });
+          static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent")))->Update(
+            { world , this, mSectorPosition * static_cast<int32_t>(Sector::SECTOR_SIZE) + pos }
+          );
         }
       }
     }
