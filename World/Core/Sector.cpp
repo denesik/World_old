@@ -11,7 +11,6 @@
 #include "../Graphic/Render/MultiModel.h"
 #include "../Graphic/RegistryGraphic.h"
 #include "RegistryCore.h"
-#include "PositionAgent.h"
 
 
 Sector::Sector(const glm::ivec3 &position)
@@ -58,8 +57,6 @@ PGameObject Sector::GetBlock(const glm::ivec3 &pos)
 
 void Sector::Update(class World *world)
 {
-  MultiModel model;
-
   glm::ivec3 pos;
   for (pos.z = -SECTOR_RADIUS; pos.z <= SECTOR_RADIUS; ++pos.z)
   {
@@ -71,13 +68,16 @@ void Sector::Update(class World *world)
 
         if (block)
         {
-          static_cast<PositionAgent *>(block->GetFromFullName(StringIntern("PositionAgent")))->Set(mSectorPosition + pos);
-          model.Push(static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent")))->GetModel());
+          static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent")))->Update({ world , this, mSectorPosition + pos });
         }
       }
     }
   }
 
-  model.GetMesh()->Compile();
-  REGISTRY_GRAPHIC.GetRender().Draw(model);
+  mRenderSector.Update();
+}
+
+RenderSector &Sector::GetRenderSector()
+{
+  return mRenderSector;
 }

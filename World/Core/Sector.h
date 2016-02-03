@@ -9,6 +9,7 @@
 #include <array>
 #include "GameObject.h"
 #include <glm/glm.hpp>
+#include "../Graphic/GameRender/RenderSector.h"
 
 class Sector
 {
@@ -29,6 +30,8 @@ public:
 
   void Update(class World *world);
 
+  RenderSector &GetRenderSector();
+
 private:
   template<class T, size_t S>
   using SectorMap = std::array<std::array<std::array<T, S>, S>, S>;
@@ -36,6 +39,8 @@ private:
   SectorMap<PGameObject, SECTOR_SIZE> mBlocks;
 
   glm::ivec3 mSectorPosition;
+
+  RenderSector mRenderSector;
 };
 
 

@@ -18,7 +18,7 @@ public:
   RenderAgent(GameObject *parent);
   ~RenderAgent();
 
-  Model GetModel();
+  void Update(const GameObjectParams &params) override;
 
   IModelGenerator *GetModelGenerator();
 

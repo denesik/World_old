@@ -5,8 +5,7 @@
 #include "RenderAgent.h"
 #include "..\Graphic\GameRender\ModelBlockGenerator.h"
 #include "GameObject.h"
-#include "PositionAgent.h"
-
+#include "Sector.h"
 
 RenderAgent::RenderAgent(GameObject *parent)
   : Agent(parent, "RenderAgent")
@@ -19,13 +18,14 @@ RenderAgent::~RenderAgent()
 {
 }
 
-Model RenderAgent::GetModel()
+void RenderAgent::Update(const GameObjectParams &params)
 {
-  auto &mg = *static_cast<ModelBlockGenerator *>(static_cast<RenderAgent *>(mParent->GetFromFullName(StringIntern("RenderAgent")))->GetModelGenerator());
-  mg.SetPosition(static_cast<PositionAgent *>(mParent->GetFromFullName(StringIntern("PositionAgent")))->Get());
+  auto &mg = *static_cast<ModelBlockGenerator *>(GetModelGenerator());
+  mg.SetPosition(params.pos);
   mg.Enable(ModelBlockGenerator::ALL, true);
-  return mModelGenerator->Create();
+  params.sector->GetRenderSector().Push(mg.Create());
 }
+
 
 IModelGenerator *RenderAgent::GetModelGenerator()
 {

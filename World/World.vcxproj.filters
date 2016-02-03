@@ -91,9 +91,6 @@
     <ClCompile Include="Core\GameObject.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\PositionAgent.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="tools\StringIntern.cpp">
       <Filter>tools</Filter>
     </ClCompile>
@@ -196,9 +193,6 @@
       <Filter>tools</Filter>
     </ClInclude>
     <ClInclude Include="Core\GameObject.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\PositionAgent.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Sector.h">

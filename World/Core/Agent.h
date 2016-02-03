@@ -7,6 +7,7 @@
 #define Agent_h__
 
 #include "..\tools\StringIntern.h"
+#include "GameObjectParams.h"
 
 class GameObject;
 
@@ -16,6 +17,8 @@ public:
   /// Создать агент с указанным типом и именем.
   Agent(GameObject *parent, const std::string &type, const std::string &name = "");
   virtual ~Agent();
+
+  virtual void Update(const GameObjectParams &params) = 0;
 
   /// Вурнуть имя типа агента.
   const StringIntern &GetTypeName();
