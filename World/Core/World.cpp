@@ -18,7 +18,11 @@ World::~World()
 
 void World::LoadSector(const glm::ivec3 &position)
 {
-  mSectors.emplace(position, position);
+  auto it = mSectors.find(position);
+  if (it == mSectors.end())
+  {
+    mSectors.emplace(position, position);
+  }
 }
 
 void World::Update()

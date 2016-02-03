@@ -79,16 +79,27 @@ int Game::Run()
     }
 
 
+    REGISTRY_CORE.GetWorld().LoadSector({ -1,-1,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 0,-1,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 1,-1,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ -1,0,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ 1,0,0 });
-
+    REGISTRY_CORE.GetWorld().LoadSector({ -1,1,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 0,1,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 1,1,0 });
 
     FpsCounter fps;
     while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
     {
       fps.Update();
-      REGISTRY_GRAPHIC.GetWindow().SetTitle(std::to_string(fps.GetCount()) + " fps");
+      glm::ivec3 camPos = REGISTRY_GRAPHIC.GetCamera().GetPos();
+      REGISTRY_GRAPHIC.GetWindow().SetTitle(
+        std::to_string(fps.GetCount()) + std::string(" fps. x: ") +
+        std::to_string(camPos.x) + std::string(" y: ") +
+        std::to_string(camPos.y) + std::string(" z: ") +
+        std::to_string(camPos.z)
+        );
 
       Update();
       Draw();
@@ -103,7 +114,7 @@ int Game::Run()
 
 void Game::Update()
 {
-  const float speed = 0.02f;
+  const float speed = 0.06f;
 
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
   {
@@ -146,6 +157,26 @@ void Game::Update()
 //   REGISTRY_GRAPHIC.GetCamera().SetPos(REGISTRY_CORE.GetPlayer().GetPosition());
 // 
   REGISTRY_GRAPHIC.GetCamera().Update();
+
+  glm::ivec3 camPos = REGISTRY_GRAPHIC.GetCamera().GetPos();
+  camPos.z = 0;
+  camPos /= static_cast<int32_t>(Sector::SECTOR_RADIUS);
+  glm::ivec3 offsets[8] =
+  {
+    { -1,-1,0 },
+    { -1,0,0 },
+    { -1,1,0 },
+    { 0,-1,0 },
+    { 0,1,0 },
+    { 1,-1,0 },
+    { 1,0,0 },
+    { 1,1,0 },
+  };
+  for (auto i : offsets)
+  {
+    REGISTRY_CORE.GetWorld().LoadSector(camPos + i);
+  }
+  
 //   REGISTRY_CORE.GetPlayer().SetDirection(REGISTRY_GRAPHIC.GetCamera().GetDirection());
 // 
 //   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_D))

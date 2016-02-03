@@ -112,6 +112,9 @@
     <ClCompile Include="Core\MapGen\PerlinNoise.cpp">
       <Filter>Core\MapGen</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Player.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">
@@ -218,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="Core\MapGen\PerlinNoise.h">
       <Filter>Core\MapGen</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Player.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

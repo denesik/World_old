@@ -35,6 +35,8 @@ public:
 
   void SetPos(const glm::vec3 &pos);
 
+  const glm::vec3 &GetPos() const;
+
   void Resize(const glm::uvec2 &size);
 
   /// Повернуть камеру относительно текущей ориентации на заданный угол по трем осям.

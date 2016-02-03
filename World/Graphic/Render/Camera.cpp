@@ -48,6 +48,11 @@ void Camera::SetPos(const glm::vec3 &pos)
   mPos = pos;
 }
 
+const glm::vec3 & Camera::GetPos() const
+{
+  return mPos;
+}
+
 void Camera::Resize(const glm::uvec2 &size)
 {
   mAspect = static_cast<float>(size.x) / static_cast<float>(size.y);

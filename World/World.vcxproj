@@ -23,6 +23,7 @@
     <ClCompile Include="Core\BlocksLibrary.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
     <ClCompile Include="Core\MapGen\PerlinNoise.cpp" />
+    <ClCompile Include="Core\Player.cpp" />
     <ClCompile Include="Core\RegistryCore.cpp" />
     <ClCompile Include="Core\RenderAgent.cpp" />
     <ClCompile Include="Core\Sector.cpp" />
@@ -58,6 +59,7 @@
     <ClInclude Include="Core\GameObject.h" />
     <ClInclude Include="Core\GameObjectParams.h" />
     <ClInclude Include="Core\MapGen\PerlinNoise.h" />
+    <ClInclude Include="Core\Player.h" />
     <ClInclude Include="Core\RegistryCore.h" />
     <ClInclude Include="Core\RenderAgent.h" />
     <ClInclude Include="Core\Sector.h" />
