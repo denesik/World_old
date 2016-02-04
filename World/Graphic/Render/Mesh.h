@@ -40,6 +40,10 @@ public:
   /// Вернуть индексный буфер.
   const std::vector<size_t> &GetIndex() const;
 
+  std::vector<float> &GetVertex();
+
+  std::vector<size_t> &GetIndex();
+
   void SetAttribute(AttributeType type, Attribute attribute);
 
   void Compile();

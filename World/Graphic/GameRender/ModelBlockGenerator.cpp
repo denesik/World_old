@@ -56,8 +56,10 @@ Model &ModelBlockGenerator::Create()
 
   };
 
-  static std::vector<float> vertex;
-  static std::vector<size_t> index;
+  //static std::vector<float> vertex;
+  //static std::vector<size_t> index;
+  auto &vertex = mModel.GetMesh()->GetVertex();
+  auto &index = mModel.GetMesh()->GetIndex();
   vertex.clear();
   index.clear();
 
@@ -101,10 +103,10 @@ Model &ModelBlockGenerator::Create()
 //   mesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
 //   mesh->SetVertexSize(sizeof(VertexVT));
 
-  mModel.GetMesh()->Set(vertex, index);
-  mModel.GetMesh()->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
-  mModel.GetMesh()->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
-  mModel.GetMesh()->SetVertexSize(sizeof(VertexVT));
+  //mModel.GetMesh()->Set(vertex, index);
+  //mModel.GetMesh()->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
+  //mModel.GetMesh()->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
+  //mModel.GetMesh()->SetVertexSize(sizeof(VertexVT));
   mModel.SetTexture(mActiveTexture);
 
   return mModel;

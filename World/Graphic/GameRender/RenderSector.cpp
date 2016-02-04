@@ -55,4 +55,6 @@ void RenderSector::Update()
     mIsNeedBuild = true;
     mIsChanged = false;
   }
+
+  //mModel.GetMesh()->Reserve();
 }

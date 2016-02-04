@@ -75,6 +75,16 @@ const std::vector<size_t> &Mesh::GetIndex() const
   return mIndex;
 }
 
+std::vector<float>& Mesh::GetVertex()
+{
+	return mVertex;
+}
+
+std::vector<size_t>& Mesh::GetIndex()
+{
+	return mIndex;
+}
+
 void Mesh::SetAttribute(AttributeType type, Attribute attribute)
 {
   assert(mRenderMesh != nullptr && "Отсутствует рендер для рисования буфера.");
