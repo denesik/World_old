@@ -65,30 +65,14 @@ Model &ModelBlockGenerator::Create()
   {
     if (mEnabled[i])
     {
-      const auto &txtPos = std::get<glm::uvec4>(REGISTRY_GRAPHIC.GetTextureManager().GetTexture(mTextures[i]));
-
-      glm::vec2 txtCoord[] =
-      {
-        { txtPos.x,            txtPos.y },
-        { txtPos.x,            txtPos.y + txtPos.w },
-        { txtPos.x + txtPos.z, txtPos.y + txtPos.w },
-        { txtPos.x + txtPos.z, txtPos.y }
-      };
-
-      glm::vec2 scale(1.0f / (static_cast<glm::vec2>(mActiveTexture->GetSize())));
-      txtCoord[0] *= scale;
-      txtCoord[1] *= scale;
-      txtCoord[2] *= scale;
-      txtCoord[3] *= scale;
-
-      glm::vec2 txtScale((txtCoord[2].x - txtCoord[0].x), (txtCoord[2].y - txtCoord[0].y));
+      
 
       glm::vec2 test[] =
       {
-        textureCube[0] * txtScale + txtCoord[0],
-        textureCube[1] * txtScale + txtCoord[0],
-        textureCube[2] * txtScale + txtCoord[0],
-        textureCube[3] * txtScale + txtCoord[0],
+        { mTextures[i].x, mTextures[i].y },
+        { mTextures[i].x, mTextures[i].w },
+        { mTextures[i].z, mTextures[i].w },
+        { mTextures[i].z, mTextures[i].y },
       };
 
       for (size_t j = 0; j < 4; ++j)
@@ -134,7 +118,36 @@ void ModelBlockGenerator::SetTexture(int side, std::string texture)
   {
     if (side & (1 << i))
     {
-      mTextures[i] = texture;
+      const auto &txtPos = std::get<glm::uvec4>(REGISTRY_GRAPHIC.GetTextureManager().GetTexture(texture));
+
+      glm::vec2 txtCoord[] =
+      {
+        { txtPos.x,            txtPos.y },
+        { txtPos.x,            txtPos.y + txtPos.w },
+        { txtPos.x + txtPos.z, txtPos.y + txtPos.w },
+        { txtPos.x + txtPos.z, txtPos.y }
+      };
+
+      glm::vec2 scale(1.0f / (static_cast<glm::vec2>(mActiveTexture->GetSize())));
+      txtCoord[0] *= scale;
+      txtCoord[1] *= scale;
+      txtCoord[2] *= scale;
+      txtCoord[3] *= scale;
+
+      glm::vec2 txtScale((txtCoord[2].x - txtCoord[0].x), (txtCoord[2].y - txtCoord[0].y));
+
+      glm::vec2 test[] =
+      {
+        textureCube[0] * txtScale + txtCoord[0],
+        textureCube[1] * txtScale + txtCoord[0],
+        textureCube[2] * txtScale + txtCoord[0],
+        textureCube[3] * txtScale + txtCoord[0],
+      };
+
+      mTextures[i].x = test[0].x;
+      mTextures[i].y = test[0].y;
+      mTextures[i].z = test[2].x;
+      mTextures[i].w = test[2].y;
     }
   }
 }

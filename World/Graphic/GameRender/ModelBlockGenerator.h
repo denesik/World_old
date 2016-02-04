@@ -48,7 +48,7 @@ public:
 
 private:
   /// Список координат текстур для сторон куба в атласе.
-  std::array<std::string, 6> mTextures;
+  std::array<glm::vec4, 6> mTextures;
 
   /// Активна сторона или нет.
   std::array<bool, 6> mEnabled;
