@@ -19,48 +19,37 @@ static PerlinNoise noise(0);
 Sector::Sector(const glm::ivec3 &position)
   : mPos(position)
 {
-  glm::ivec3 pos;
-//   for (pos.z = -SECTOR_RADIUS; pos.z <= SECTOR_RADIUS; ++pos.z)
-//   {
-//     for (pos.y = -SECTOR_RADIUS; pos.y <= SECTOR_RADIUS; ++pos.y)
-//     {
-//       for (pos.x = -SECTOR_RADIUS; pos.x <= SECTOR_RADIUS; ++pos.x)
-//       {
-//         auto &block = mBlocks[pos.z + SECTOR_RADIUS][pos.y + SECTOR_RADIUS][pos.x + SECTOR_RADIUS];
-// 
-//         if (pos.z == -2)
-//         {
-//           block = REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern(pos.x % 2 ? "BlockSand" : "BlockStone"));
-//         }
-//         else
-//         {
-//           block = nullptr;
-//         }
-//       }
-//     }
-//   }
   auto currentTime = glfwGetTime();
 
-  for (pos.y = -SECTOR_RADIUS; pos.y <= SECTOR_RADIUS; ++pos.y)
   {
-    for (pos.x = -SECTOR_RADIUS; pos.x <= SECTOR_RADIUS; ++pos.x)
+    glm::ivec3 pos;
+    size_t index = 0;
+    for (pos.z = -SECTOR_RADIUS; pos.z <= SECTOR_RADIUS; ++pos.z)
     {
-      float tx = mPos.x * SECTOR_SIZE + static_cast<int32_t>(pos.x);
-      float ty = mPos.y * SECTOR_SIZE + static_cast<int32_t>(pos.y);
-      float h = noise.Noise2(tx / 10.0f, ty / 10.0f);
-      int32_t zh = glm::round(h * SECTOR_RADIUS);
-      for (pos.z = -SECTOR_RADIUS; pos.z <= SECTOR_RADIUS; ++pos.z)
+      for (pos.y = -SECTOR_RADIUS; pos.y <= SECTOR_RADIUS; ++pos.y)
       {
-        auto &block = mBlocks[pos.z + SECTOR_RADIUS][pos.y + SECTOR_RADIUS][pos.x + SECTOR_RADIUS];
-        if (pos.z <= zh)
+        for (pos.x = -SECTOR_RADIUS; pos.x <= SECTOR_RADIUS; ++pos.x)
         {
-          block = REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern(pos.x % 2 ? "BlockSand" : "BlockStone"));
-        }
-        else
-        {
-          block = nullptr;
+          mBlocksPos[index++] = mPos * static_cast<int32_t>(SECTOR_SIZE) + pos;
         }
       }
+    }
+  }
+
+  for (size_t i = 0; i < mBlocks.size(); ++i)
+  {
+    const auto &pos = mBlocksPos[i];
+    float tx = static_cast<float>(pos.x);
+    float ty = static_cast<float>(pos.y);
+    float h = noise.Noise2(tx / 10.0f, ty / 10.0f);
+    int32_t zh = static_cast<int32_t>(glm::round(h * SECTOR_RADIUS));
+    if (pos.z <= zh)
+    {
+      mBlocks[i] = REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern(pos.x % 2 ? "BlockSand" : "BlockStone"));
+    }
+    else
+    {
+      mBlocks[i] = nullptr;
     }
   }
 
@@ -79,31 +68,23 @@ const glm::ivec3 & Sector::GetSectorPosition() const
 
 PGameObject Sector::GetBlock(const glm::ivec3 &pos)
 {
-  assert(glm::clamp(pos, static_cast<int32_t>(-SECTOR_RADIUS), static_cast<int32_t>(SECTOR_RADIUS)) == pos);
+  //assert(glm::clamp(pos, static_cast<int32_t>(-SECTOR_RADIUS), static_cast<int32_t>(SECTOR_RADIUS)) == pos);
 
-  return mBlocks[pos.z + SECTOR_RADIUS][pos.y + SECTOR_RADIUS][pos.x + SECTOR_RADIUS];
+  //return mBlocks[pos.z + SECTOR_RADIUS][pos.y + SECTOR_RADIUS][pos.x + SECTOR_RADIUS];
+  return mBlocks[0];
 }
 
 void Sector::Update(class World *world)
 {
   auto currentTime = glfwGetTime();
-  glm::ivec3 pos;
-  for (pos.z = -SECTOR_RADIUS; pos.z <= SECTOR_RADIUS; ++pos.z)
-  {
-    for (pos.y = -SECTOR_RADIUS; pos.y <= SECTOR_RADIUS; ++pos.y)
-    {
-      for (pos.x = -SECTOR_RADIUS; pos.x <= SECTOR_RADIUS; ++pos.x)
-      {
-        auto &block = mBlocks[pos.z + SECTOR_RADIUS][pos.y + SECTOR_RADIUS][pos.x + SECTOR_RADIUS];
 
-        if (block)
-        {
-          static StringIntern renderAgentName("RenderAgent");
-          static_cast<RenderAgent *>(block->GetFromFullName(renderAgentName))->Update(
-            { world , this, mPos * static_cast<int32_t>(Sector::SECTOR_SIZE) + pos }
-          );
-        }
-      }
+  GameObjectParams params{ world , this, {} };
+  for (size_t i = 0; i < mBlocks.size(); ++i)
+  {
+    if (mBlocks[i])
+    {
+      params.pos = mBlocksPos[i];
+      mBlocks[i]->Update(params);
     }
   }
 

@@ -18,6 +18,14 @@ GameObject::~GameObject()
 {
 }
 
+void GameObject::Update(const GameObjectParams &params)
+{
+  for (auto &agent : mAgents)
+  {
+    agent.second->Update(params);
+  }
+}
+
 Agent *GameObject::GetFromFullName(const StringIntern &name)
 {
   auto it = mAgents.find(name);

@@ -33,10 +33,13 @@ public:
   RenderSector &GetRenderSector();
 
 private:
-  template<class T, size_t S>
-  using SectorMap = std::array<std::array<std::array<T, S>, S>, S>;
+  //template<class T, size_t S>
+  //using SectorMap = std::array<std::array<std::array<T, S>, S>, S>;
 
-  SectorMap<PGameObject, SECTOR_SIZE> mBlocks;
+  std::array<PGameObject, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocks;
+  std::array<glm::ivec3, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocksPos;
+
+  //SectorMap<PGameObject, SECTOR_SIZE> mBlocks;
 
   glm::ivec3 mPos;
 

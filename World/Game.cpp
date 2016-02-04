@@ -161,6 +161,11 @@ void Game::Update()
   glm::ivec3 camPos = REGISTRY_GRAPHIC.GetCamera().GetPos();
   camPos.z = 0;
   camPos /= static_cast<int32_t>(Sector::SECTOR_RADIUS);
+  camPos.x >= 0 ? ++camPos.x : --camPos.x;
+  camPos.y >= 0 ? ++camPos.y : --camPos.y;
+  camPos.z >= 0 ? ++camPos.z : --camPos.z;
+  camPos /= 2;
+
   glm::ivec3 offsets[8] =
   {
     { -1,-1,0 },

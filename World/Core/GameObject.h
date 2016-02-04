@@ -9,6 +9,7 @@
 #include "Agent.h"
 #include <map>
 #include <memory>
+#include "GameObjectParams.h"
 
 
 using PGameObject = std::shared_ptr<class GameObject>;
@@ -18,6 +19,8 @@ class GameObject
 public:
   GameObject();
   ~GameObject();
+
+  void Update(const GameObjectParams &params);
 
   Agent *GetFromFullName(const StringIntern &name);
 

@@ -12,7 +12,7 @@ struct GameObjectParams
 {
   class World *world;
   class Sector *sector;
-  const glm::vec3 &pos;
+  glm::vec3 pos;
 };
 
 #endif // GameObjectParams_h__
