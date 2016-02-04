@@ -36,7 +36,7 @@ public:
   ModelBlockGenerator();
   ~ModelBlockGenerator();
 
-  Model Create() const override;
+  Model &Create() override;
 
   void SetPosition(const glm::vec3 &pos);
 
@@ -58,6 +58,8 @@ private:
   glm::vec3 mPosition;
 
   const StringIntern mTypeName;
+
+  Model mModel;
 };
 
 

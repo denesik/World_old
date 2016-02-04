@@ -14,7 +14,7 @@ public:
   virtual ~IModelGenerator() {};
 
   /// —генерировать модель.
-  virtual Model Create() const = 0;
+  virtual Model &Create() = 0;
 
 };
 

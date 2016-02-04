@@ -32,6 +32,14 @@ static glm::vec2 textureCube[] =
 ModelBlockGenerator::ModelBlockGenerator()
   : mTypeName("ModelBlockGenerator")
 {
+  PMesh mesh = std::make_shared<Mesh>(std::make_unique<RenderMeshGL1>());
+
+  //mesh->Set(vertex, index);
+  mesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
+  mesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
+  mesh->SetVertexSize(sizeof(VertexVT));
+
+  mModel.SetMesh(mesh);
 }
 
 
@@ -39,7 +47,7 @@ ModelBlockGenerator::~ModelBlockGenerator()
 {
 }
 
-Model ModelBlockGenerator::Create() const
+Model &ModelBlockGenerator::Create()
 {
   enum 
   {
@@ -48,8 +56,10 @@ Model ModelBlockGenerator::Create() const
 
   };
 
-  std::vector<float> vertex;
-  std::vector<size_t> index;
+  static std::vector<float> vertex;
+  static std::vector<size_t> index;
+  vertex.clear();
+  index.clear();
 
   for (size_t i = 0, sideCount = 0; i < SIDE_COUNT; ++i)
   {
@@ -100,14 +110,20 @@ Model ModelBlockGenerator::Create() const
     }
   }
 
-  PMesh mesh = std::make_shared<Mesh>(std::make_unique<RenderMeshGL1>());
+//   PMesh mesh = std::make_shared<Mesh>(std::make_unique<RenderMeshGL1>());
+// 
+//   mesh->Set(vertex, index);
+//   mesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
+//   mesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
+//   mesh->SetVertexSize(sizeof(VertexVT));
 
-  mesh->Set(vertex, index);
-  mesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
-  mesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
-  mesh->SetVertexSize(sizeof(VertexVT));
+  mModel.GetMesh()->Set(vertex, index);
+  mModel.GetMesh()->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
+  mModel.GetMesh()->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
+  mModel.GetMesh()->SetVertexSize(sizeof(VertexVT));
+  mModel.SetTexture(mActiveTexture);
 
-  return{ mesh , mActiveTexture };
+  return mModel;
 }
 
 void ModelBlockGenerator::SetTexture(int side, std::string texture)
