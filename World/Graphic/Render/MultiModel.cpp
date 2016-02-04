@@ -21,6 +21,7 @@ void MultiModel::Push(const Model &model)
     mMesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
     mMesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
     mMesh->SetVertexSize(sizeof(VertexVT));
+	mMesh->Reserve();
     mMesh->Push(*model.GetMesh());
     //mMesh = model.GetMesh();
   }

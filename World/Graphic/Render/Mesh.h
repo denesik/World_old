@@ -29,6 +29,8 @@ public:
 
   void Push(const Mesh &mesh);
 
+  void Reserve();
+
   /// Очистить данные вершинного и индексного буфера.
   void Release();
 

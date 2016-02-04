@@ -53,6 +53,12 @@ void Mesh::Push(const Mesh &mesh)
   mVertex.insert(mVertex.end(), mesh.mVertex.begin(), mesh.mVertex.end());
 }
 
+void Mesh::Reserve()
+{
+	mVertex.reserve(150 * 21 * 21 * 21);
+	mIndex.reserve(40 * 21 * 21 * 21);
+}
+
 void Mesh::Release()
 {
   mVertex.swap(decltype(mVertex){});
