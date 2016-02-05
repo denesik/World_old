@@ -99,7 +99,7 @@ void Window::SetCurrentContext()
   assert(mWindow);
   glfwMakeContextCurrent(mWindow.get());
 
-  glfwSwapInterval(0);
+  glfwSwapInterval(1);
 
   const GLubyte* renderer = glGetString (GL_RENDERER);
   const GLubyte* version = glGetString (GL_VERSION);

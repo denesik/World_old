@@ -116,7 +116,7 @@ int Game::Run()
 
 void Game::Update()
 {
-  const float speed = 0.06f;
+  const float speed = 0.12f;
 
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
   {

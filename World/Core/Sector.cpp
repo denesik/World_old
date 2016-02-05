@@ -71,8 +71,7 @@ PGameObject Sector::GetBlock(const glm::ivec3 &pos)
 {
   //assert(glm::clamp(pos, static_cast<int32_t>(-SECTOR_RADIUS), static_cast<int32_t>(SECTOR_RADIUS)) == pos);
 
-  //return mBlocks[pos.z + SECTOR_RADIUS][pos.y + SECTOR_RADIUS][pos.x + SECTOR_RADIUS];
-  return mBlocks[0];
+  return mBlocks[(pos.z + SECTOR_RADIUS) * SECTOR_SIZE * SECTOR_SIZE + (pos.y + SECTOR_RADIUS) * SECTOR_SIZE + pos.x + SECTOR_RADIUS];
 }
 
 void Sector::Update(class World *world)
