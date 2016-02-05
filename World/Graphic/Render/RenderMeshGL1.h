@@ -20,7 +20,7 @@ public:
 
   void Compile(const float *vertex, size_t vertexCount, size_t vertexSize, const size_t *index, size_t indexCount) override;
 
-  void Draw() override;
+  void Draw() const override;
 
 private:
   std::array<Attribute, ATTRIBUTE_SIZE> mAttributeState;

@@ -11,7 +11,7 @@
 #include "Camera.h"
 #include "Shader.h"
 #include "StaticModel.h"
-#include "StaticModelBatch.h"
+#include "DinamicModel.h"
 
 
 
@@ -37,7 +37,7 @@ public:
   /// Устанавливает параметры для рисования и рисует модель.
   void Draw(const StaticModel &model);
 
-  void Draw(StaticModelBatch &model);
+  void Draw(const DinamicModel &model);
 
 private:
 

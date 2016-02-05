@@ -11,11 +11,9 @@
 #include "Vertex.h"
 
 
-class StaticModelBatch
+class DinamicModel
 {
 public:
-  void Push(const StaticModel &model);
-
   inline const RenderableMesh<VertexVT> &GetMesh() const noexcept
   {
     return mMesh;
@@ -29,6 +27,11 @@ public:
   inline const PTexture &GetTexture() const noexcept
   {
     return mTexture;
+  }
+
+  inline void SetTexture(const PTexture &texture) noexcept
+  {
+    mTexture = texture;
   }
 
 private:

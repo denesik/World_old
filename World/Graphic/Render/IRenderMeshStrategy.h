@@ -29,7 +29,7 @@ public:
   virtual void Compile(const float *vertex, size_t vertexCount, size_t vertexSize, const size_t *index, size_t indexCount) = 0;
 
   /// Нарисовать сетку.
-  virtual void Draw() = 0;
+  virtual void Draw() const = 0;
 
 };
 

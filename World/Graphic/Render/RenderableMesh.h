@@ -32,7 +32,7 @@ public:
   }
 
   /// Нарисовать меш.
-  inline void Draw()
+  inline void Draw() const
   {
     mRenderMesh->Draw();
   }

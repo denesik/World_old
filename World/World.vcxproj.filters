@@ -106,11 +106,11 @@
     <ClCompile Include="Graphic\Render\StaticModel.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Graphic\Render\StaticModelBatch.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Core\MeshBlockGenerator.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic\Render\DinamicModel.cpp">
+      <Filter>Graphic\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,11 +219,11 @@
     <ClInclude Include="Graphic\Render\StaticModel.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Graphic\Render\StaticModelBatch.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
     <ClInclude Include="Core\MeshBlockGenerator.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic\Render\DinamicModel.h">
+      <Filter>Graphic\Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

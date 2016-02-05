@@ -52,7 +52,7 @@ void RenderMeshGL1::Compile(const float *vertex, size_t vertexCount, size_t vert
   GL_CALL(glEndList());
 }
 
-void RenderMeshGL1::Draw()
+void RenderMeshGL1::Draw() const
 {
   GL_CALL(glCallList(mList));
 }

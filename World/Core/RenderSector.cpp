@@ -32,7 +32,18 @@ bool RenderSector::IsNeedBuild() const
 
 void RenderSector::Push(const StaticModel &model)
 {
-  mModel.Push(model);
+  if (mModel.GetMesh().Empty())
+  {
+    mModel.SetTexture(model.GetTexture());
+  }
+  if (mModel.GetTexture() == model.GetTexture())
+  {
+    mModel.GetMesh().Push(model.GetMesh());
+  }
+  else
+  {
+    LOG(warning) << "Батчинг меша в секторе пропущен. Текстуры не совпадают.";
+  }
 }
 
 void RenderSector::Update()
@@ -45,7 +56,7 @@ void RenderSector::Update()
   {
     auto currentTime = glfwGetTime();
     mModel.GetMesh().Compile();
-    mModel.GetMesh().Clear();
+    mModel.GetMesh().Release();
     LOG(info) << "ListGen: " << glfwGetTime() - currentTime;
     mIsNeedBuild = false;
   }
@@ -54,6 +65,9 @@ void RenderSector::Update()
 
   if (mIsChanged)
   {
+    mModel.GetMesh().Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE,
+                             36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
+
     mIsNeedBuild = true;
     mIsChanged = false;
   }

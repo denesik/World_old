@@ -72,7 +72,7 @@ void Render::Draw(const StaticModel &model)
   //model.GetMesh().Draw();
 }
 
-void Render::Draw(StaticModelBatch &model)
+void Render::Draw(const DinamicModel &model)
 {
   model.GetTexture()->Set(TEXTURE_SLOT_0);
   model.GetMesh().Draw();

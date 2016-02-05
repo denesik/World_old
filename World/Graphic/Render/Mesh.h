@@ -35,6 +35,12 @@ public:
     mIndex.clear();
   }
 
+  inline void Release()
+  {
+    mVertex.swap(decltype(mVertex)());
+    mIndex.swap(decltype(mIndex)());
+  }
+
   inline void PushVertex(const V &vertex)
   {
     mVertex.push_back(vertex);

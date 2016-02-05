@@ -6,7 +6,7 @@
 #ifndef RenderSector_h__
 #define RenderSector_h__
 
-#include "..\Graphic\Render\StaticModelBatch.h"
+#include "..\Graphic\Render\DinamicModel.h"
 #include "..\Graphic\Render\RenderableMesh.h"
 
 
@@ -31,7 +31,7 @@ public:
   void Update();
 
 private:
-  StaticModelBatch mModel;
+  DinamicModel mModel;
 
   bool mIsChanged = false;
   bool mIsNeedBuild = true;

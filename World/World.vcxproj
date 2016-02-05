@@ -39,7 +39,7 @@
     <ClCompile Include="Graphic\Render\Camera.cpp" />
     <ClCompile Include="Graphic\Render\Color.cpp" />
     <ClCompile Include="Graphic\Render\StaticModel.cpp" />
-    <ClCompile Include="Graphic\Render\StaticModelBatch.cpp" />
+    <ClCompile Include="Graphic\Render\DinamicModel.cpp" />
     <ClCompile Include="Graphic\Render\Render.cpp" />
     <ClCompile Include="Graphic\Render\RenderMeshGL1.cpp" />
     <ClCompile Include="Graphic\Render\Shader.cpp" />
@@ -78,7 +78,7 @@
     <ClInclude Include="Graphic\Render\IRenderMeshStrategy.h" />
     <ClInclude Include="Graphic\Render\Mesh.h" />
     <ClInclude Include="Graphic\Render\StaticModel.h" />
-    <ClInclude Include="Graphic\Render\StaticModelBatch.h" />
+    <ClInclude Include="Graphic\Render\DinamicModel.h" />
     <ClInclude Include="Graphic\Render\OpenGLCall.h" />
     <ClInclude Include="Graphic\Render\Render.h" />
     <ClInclude Include="Graphic\Render\RenderMeshGL1.h" />
