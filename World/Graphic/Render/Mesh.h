@@ -29,7 +29,7 @@ public:
     mIndex.reserve(indexCount);
   }
 
-  inline void Release()
+  inline void Clear()
   {
     mVertex.clear();
     mIndex.clear();
@@ -43,6 +43,11 @@ public:
   inline void PushIndex(size_t index)
   {
     mIndex.push_back(index);
+  }
+
+  inline bool Empty() const noexcept
+  {
+    return mVertex.empty() && mIndex.empty();
   }
 
   void Push(const Mesh<V> &mesh)

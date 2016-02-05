@@ -58,7 +58,6 @@
     <ClInclude Include="Core\BlocksLibrary.h" />
     <ClInclude Include="Core\GameObject.h" />
     <ClInclude Include="Core\GameObjectParams.h" />
-    <ClInclude Include="Core\IMeshGenerator.h" />
     <ClInclude Include="Core\MapGen\PerlinNoise.h" />
     <ClInclude Include="Core\MeshBlockGenerator.h" />
     <ClInclude Include="Core\Player.h" />

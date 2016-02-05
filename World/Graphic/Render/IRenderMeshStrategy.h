@@ -28,9 +28,6 @@ public:
   /// @param indexSize количество элементов в буфере индексов.
   virtual void Compile(const float *vertex, size_t vertexCount, size_t vertexSize, const size_t *index, size_t indexCount) = 0;
 
-  /// Скомпилирован ли буфер.
-  virtual bool IsCompiled() = 0;
-
   /// Нарисовать сетку.
   virtual void Draw() = 0;
 

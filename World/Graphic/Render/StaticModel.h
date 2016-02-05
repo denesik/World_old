@@ -13,19 +13,29 @@
 class StaticModel
 {
 public:
-  StaticModel();
-  ~StaticModel();
+  inline void SetTexture(PTexture texture)
+  {
+    mTexture = texture;
+  }
 
-  void SetTexture(PTexture texture);
+  inline Mesh<VertexVT> &GetMesh() noexcept
+  {
+    return mMesh;
+  }
 
-  Mesh<VertexVT> &GetMesh() noexcept;
+  inline const Mesh<VertexVT> &GetMesh() const noexcept
+  {
+    return mMesh;
+  }
 
-  const PTexture &GetTexture() const noexcept;
+  inline const PTexture &GetTexture() const noexcept
+  {
+    return mTexture;
+  }
 
 private:
   Mesh<VertexVT> mMesh;
   PTexture mTexture;
-
 };
 
 #endif // Model_h__

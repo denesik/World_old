@@ -39,7 +39,10 @@ public:
   ~Texture();
 
   /// Вернуть размер текстуры.
-  const glm::uvec2 &GetSize();
+  inline const glm::uvec2 &GetSize() const
+  {
+    return mSize;
+  }
 
   /// Установить текстуру на заданный текстурный слот.
   void Set(TextureSlot slot);
@@ -54,7 +57,7 @@ private:
 private:
 
   // Вспомогательная функция. Узнает, является ли число степенью 2.
-  bool IsPow2(unsigned int a)
+  inline bool IsPow2(unsigned int a) const
   {
     return !(a & (a - 1));
   }

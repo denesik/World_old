@@ -1,29 +1,19 @@
 #include "StaticModelBatch.h"
 #include "RenderMeshGL1.h"
+#include "..\..\Log.h"
 
-
-
-StaticModelBatch::StaticModelBatch()
+void StaticModelBatch::Push(const StaticModel &model)
 {
-}
-
-
-StaticModelBatch::~StaticModelBatch()
-{
-}
-
-void StaticModelBatch::Push(StaticModel &model)
-{
-  mTexture = model.GetTexture();
-  mMesh.Push(model.GetMesh());
-}
-
-RenderableMesh<VertexVT> &StaticModelBatch::GetMesh() noexcept
-{
-  return mMesh;
-}
-
-const PTexture &StaticModelBatch::GetTexture() const noexcept
-{
-  return mTexture;
+  if (mMesh.Empty())
+  {
+    mTexture = model.GetTexture();
+  }
+  if (mTexture == model.GetTexture())
+  {
+    mMesh.Push(model.GetMesh());
+  }
+  else
+  {
+    LOG(warning) << "Батчинг модели. Текстуры не совпадают.";
+  }
 }

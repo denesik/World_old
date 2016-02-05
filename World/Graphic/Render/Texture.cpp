@@ -36,11 +36,6 @@ Texture::~Texture()
   GL_CALL(glDeleteTextures(1, &mTextureId));
 }
 
-const glm::uvec2 & Texture::GetSize()
-{
-  return mSize;
-}
-
 void Texture::Set(TextureSlot slot)
 {
   GL_CALL(glActiveTexture(GL_TEXTURE0 + slot));

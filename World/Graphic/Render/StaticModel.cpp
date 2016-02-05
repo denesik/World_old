@@ -4,28 +4,3 @@
 // ============================================================================
 #include "StaticModel.h"
 
-
-
-
-StaticModel::StaticModel()
-{
-}
-
-StaticModel::~StaticModel()
-{
-}
-
-void StaticModel::SetTexture(PTexture texture)
-{
-  mTexture = texture;
-}
-
-Mesh<VertexVT> &StaticModel::GetMesh() noexcept
-{
-  return mMesh;
-}
-
-const PTexture &StaticModel::GetTexture() const noexcept
-{
-  return mTexture;
-}

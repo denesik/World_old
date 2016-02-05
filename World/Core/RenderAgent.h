@@ -9,8 +9,8 @@
 
 #include "Agent.h"
 #include <memory>
-#include "IMeshGenerator.h"
 #include "..\Graphic\Render\StaticModel.h"
+#include "MeshBlockGenerator.h"
 
 
 class RenderAgent : public Agent
@@ -21,11 +21,14 @@ public:
 
   void Update(const GameObjectParams &params) override;
 
-  IMeshGenerator *GetModelGenerator();
+  inline MeshBlockGenerator &GetMeshBlockGenerator()
+  {
+    return mMeshBlockGenerator;
+  }
 
 private:
-  std::unique_ptr<IMeshGenerator> mModelGenerator;
   StaticModel mModel;
+  MeshBlockGenerator mMeshBlockGenerator;
 
 };
 

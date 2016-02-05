@@ -14,14 +14,22 @@
 class StaticModelBatch
 {
 public:
-  StaticModelBatch();
-  ~StaticModelBatch();
+  void Push(const StaticModel &model);
 
-  void Push(StaticModel &model);
+  inline const RenderableMesh<VertexVT> &GetMesh() const noexcept
+  {
+    return mMesh;
+  }
 
-  RenderableMesh<VertexVT> &GetMesh() noexcept;
+  inline RenderableMesh<VertexVT> &GetMesh() noexcept
+  {
+    return mMesh;
+  }
 
-  const PTexture &GetTexture() const noexcept;
+  inline const PTexture &GetTexture() const noexcept
+  {
+    return mTexture;
+  }
 
 private:
   RenderableMesh<VertexVT> mMesh;

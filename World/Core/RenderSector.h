@@ -26,7 +26,7 @@ public:
   /// Нужно ли перестроить геометрию?
   bool IsNeedBuild() const;
 
-  void Push(StaticModel &model);
+  void Push(const StaticModel &model);
 
   void Update();
 

@@ -6,16 +6,16 @@
 #ifndef ModelBlockGenerator_h__
 #define ModelBlockGenerator_h__
 
-#include "IMeshGenerator.h"
 #include <array>
-#include "..\tools\StringIntern.h"
+#include "..\Graphic\Render\Mesh.h"
+#include "..\Graphic\Render\Vertex.h"
 
 
 /// √енератор модели дл€ блока.
 /// ћеш формируетс€ автоматически, дл€ каждой стороны блока можно указать текстуру.
 /// ¬се текстуры должны находитьс€ в одном текстурном атласе.
 /// ƒл€ каждой стороны блока можно указать, нужно ли рисовать сторону. 
-class MeshBlockGenerator : public IMeshGenerator
+class MeshBlockGenerator
 {
 public:
   enum Side
@@ -33,25 +33,15 @@ public:
   };
 
 public:
-  MeshBlockGenerator();
-  ~MeshBlockGenerator();
-
-  void Create(const glm::vec3 &pos, Mesh<VertexVT> &mesh) override;
+  void Create(Mesh<VertexVT> &mesh, const glm::vec3 &pos, Side side);
 
   void SetTexture(int side, std::string texture);
 
   void Enable(int side, bool enabled);
 
-  const StringIntern &GetTypeName() const;
-
 private:
   /// —писок координат текстур дл€ сторон куба в атласе.
   std::array<glm::vec4, 6> mTextures;
-
-  /// јктивна сторона или нет.
-  std::array<bool, 6> mEnabled;
-
-  const StringIntern mTypeName;
 };
 
 

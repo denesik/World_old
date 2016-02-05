@@ -8,6 +8,7 @@
 
 #include <memory>
 #include "IRenderMeshStrategy.h"
+#include "RenderMeshGL1.h"
 
 
 /// Компилирует и рисует меш.

@@ -20,8 +20,6 @@ public:
 
   void Compile(const float *vertex, size_t vertexCount, size_t vertexSize, const size_t *index, size_t indexCount) override;
 
-  bool IsCompiled() override;
-
   void Draw() override;
 
 private:

@@ -27,19 +27,7 @@ static glm::vec2 textureCube[] =
 };
 
 
-
-
-MeshBlockGenerator::MeshBlockGenerator()
-  : mTypeName("ModelBlockGenerator")
-{
-}
-
-
-MeshBlockGenerator::~MeshBlockGenerator()
-{
-}
-
-void MeshBlockGenerator::Create(const glm::vec3 &pos, Mesh<VertexVT> &mesh)
+void MeshBlockGenerator::Create(Mesh<VertexVT> &mesh, const glm::vec3 &pos, Side side)
 {
   enum 
   {
@@ -50,7 +38,7 @@ void MeshBlockGenerator::Create(const glm::vec3 &pos, Mesh<VertexVT> &mesh)
   
   for (size_t i = 0, sideCount = 0; i < SIDE_COUNT; ++i)
   {
-    if (mEnabled[i])
+    if (side & (1 << i))
     {
       
 
@@ -126,20 +114,4 @@ void MeshBlockGenerator::SetTexture(int side, std::string texture)
       mTextures[i].w = test[2].y;
     }
   }
-}
-
-void MeshBlockGenerator::Enable(int side, bool enabled)
-{
-  for (unsigned int i = 0; i < 6; ++i)
-  {
-    if (side & (1 << i))
-    {
-      mEnabled[i] = enabled;
-    }
-  }
-}
-
-const StringIntern &MeshBlockGenerator::GetTypeName() const
-{
-  return mTypeName;
 }

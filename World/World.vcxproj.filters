@@ -222,9 +222,6 @@
     <ClInclude Include="Graphic\Render\StaticModelBatch.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Core\IMeshGenerator.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core\MeshBlockGenerator.h">
       <Filter>Core</Filter>
     </ClInclude>
