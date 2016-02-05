@@ -29,7 +29,6 @@ public:
 private:
   StaticModel mModel;
   MeshBlockGenerator mMeshBlockGenerator;
-
 };
 
 

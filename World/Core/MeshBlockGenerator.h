@@ -33,15 +33,26 @@ public:
   };
 
 public:
+  MeshBlockGenerator();
+
   void Create(Mesh<VertexVT> &mesh, Side side);
 
   void SetTexture(int side, std::string texture);
 
   void Enable(int side, bool enabled);
 
+  void Generate();
+
+  inline const PMesh<VertexVT> &Create(Side side) const
+  {
+    return mMeshArray[side];
+  }
+
 private:
   /// —писок координат текстур дл€ сторон куба в атласе.
   std::array<glm::vec4, 6> mTextures;
+
+  std::array<PMesh<VertexVT>, 64> mMeshArray;
 };
 
 

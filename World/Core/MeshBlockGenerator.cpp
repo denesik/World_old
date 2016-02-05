@@ -5,6 +5,7 @@
 #include "MeshBlockGenerator.h"
 #include "..\Graphic\Render\RenderMeshGL1.h"
 #include "..\Graphic\RegistryGraphic.h"
+#include <type_traits>
 
 static glm::vec3 vertexCube[] =
 {
@@ -26,6 +27,14 @@ static glm::vec2 textureCube[] =
   { 0.0f, 0.0f },{ 0.0f, 1.0f },{ 1.0f, 1.0f },{ 1.0f, 0.0f }
 };
 
+
+MeshBlockGenerator::MeshBlockGenerator()
+{
+  for (auto &i : mMeshArray)
+  {
+    i = std::make_shared<std::remove_reference_t<decltype(i)>::element_type>();
+  }
+}
 
 void MeshBlockGenerator::Create(Mesh<VertexVT> &mesh, Side side)
 {
@@ -113,5 +122,13 @@ void MeshBlockGenerator::SetTexture(int side, std::string texture)
       mTextures[i].z = test[2].x;
       mTextures[i].w = test[2].y;
     }
+  }
+}
+
+void MeshBlockGenerator::Generate()
+{
+  for (size_t i = 0; i < 64; ++i)
+  {
+    Create(*mMeshArray[i], static_cast<Side>(i));
   }
 }

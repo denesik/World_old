@@ -11,6 +11,12 @@
 #include "RenderMeshGL1.h"
 
 
+template<class V>
+class RenderableMesh;
+
+template<class V>
+using PRenderableMesh = std::shared_ptr<RenderableMesh<V>>;
+
 /// Компилирует и рисует меш.
 template<class V>
 class RenderableMesh : public Mesh<V>

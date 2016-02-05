@@ -68,12 +68,14 @@ int Game::Run()
       auto block = std::make_shared<GameObject>();
       auto &mg = (static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent"))))->GetMeshBlockGenerator();
       mg.SetTexture(MeshBlockGenerator::ALL, "Textures/sand.png");
+      mg.Generate();
       REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockSand"), block);
     }
     {
       auto block = std::make_shared<GameObject>(); 
       auto &mg = (static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent"))))->GetMeshBlockGenerator();
       mg.SetTexture(MeshBlockGenerator::ALL, "Textures/stone.png");
+      mg.Generate();
       REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockStone"), block);
     }
 

@@ -18,12 +18,12 @@ public:
     mTexture = texture;
   }
 
-  inline Mesh<VertexVT> &GetMesh() noexcept
+  inline PMesh<VertexVT> &GetMesh() noexcept
   {
     return mMesh;
   }
 
-  inline const Mesh<VertexVT> &GetMesh() const noexcept
+  inline const PMesh<VertexVT> &GetMesh() const noexcept
   {
     return mMesh;
   }
@@ -34,7 +34,7 @@ public:
   }
 
 private:
-  Mesh<VertexVT> mMesh;
+  PMesh<VertexVT> mMesh;
   PTexture mTexture;
 };
 

@@ -10,6 +10,12 @@
 #include <vector>
 
 template<class V>
+class Mesh;
+
+template<class V>
+using PMesh = std::shared_ptr<Mesh<V>>;
+
+template<class V>
 class Mesh
 {
 public:

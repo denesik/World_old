@@ -23,8 +23,9 @@ void RenderAgent::Update(const GameObjectParams &params)
 {
   if (params.sector->GetRenderSector().IsNeedBuild())
   {
-    mModel.GetMesh().Clear();
-    mMeshBlockGenerator.Create(mModel.GetMesh(), MeshBlockGenerator::ALL);
+    //mModel.GetMesh()->Clear();
+    mModel.GetMesh() = mMeshBlockGenerator.Create(MeshBlockGenerator::ALL);
+    //mMeshBlockGenerator.Create(mModel.GetMesh(), MeshBlockGenerator::ALL);
     params.sector->GetRenderSector().Push(mModel, params.pos);
   }
 }

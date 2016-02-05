@@ -11,15 +11,16 @@
 #include "Vertex.h"
 
 
+
 class DinamicModel
 {
 public:
-  inline const RenderableMesh<VertexVT> &GetMesh() const noexcept
+  inline const PRenderableMesh<VertexVT> &GetMesh() const noexcept
   {
     return mMesh;
   }
 
-  inline RenderableMesh<VertexVT> &GetMesh() noexcept
+  inline PRenderableMesh<VertexVT> &GetMesh() noexcept
   {
     return mMesh;
   }
@@ -35,7 +36,7 @@ public:
   }
 
 private:
-  RenderableMesh<VertexVT> mMesh;
+  PRenderableMesh<VertexVT> mMesh;
   PTexture mTexture;
 };
 

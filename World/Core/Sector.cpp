@@ -34,6 +34,8 @@ Sector::Sector(const glm::ivec3 &position)
     }
   }
 
+  size_t blocksCount = 0;
+
   for (size_t i = 0; i < mBlocks.size(); ++i)
   {
     const auto &pos = mBlocksPos[i];
@@ -44,6 +46,7 @@ Sector::Sector(const glm::ivec3 &position)
     if (pos.z <= zh)
     {
       mBlocks[i] = REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern(pos.x % 2 ? "BlockSand" : "BlockStone"));
+      ++blocksCount;
     }
     else
     {
@@ -51,7 +54,7 @@ Sector::Sector(const glm::ivec3 &position)
     }
   }
 
-  LOG(info) << "SectorGen: " << glfwGetTime() - currentTime;
+  LOG(info) << "SectorGen: " << glfwGetTime() - currentTime << " blocks count: " << blocksCount;
 }
 
 

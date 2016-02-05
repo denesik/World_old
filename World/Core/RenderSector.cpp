@@ -11,7 +11,8 @@
 
 RenderSector::RenderSector()
 {
-  mModel.GetMesh().Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE, 
+  mModel.GetMesh() = std::make_shared<std::remove_reference_t<decltype(mModel.GetMesh())>::element_type>();
+  mModel.GetMesh()->Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE, 
                            36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
 }
 
@@ -34,17 +35,17 @@ void RenderSector::Push(const StaticModel &model, const glm::vec3 &pos)
 {
   auto &dst = mModel.GetMesh();
   const auto &src = model.GetMesh();
-  if (dst.Empty())
+  if (dst->Empty())
   {
     mModel.SetTexture(model.GetTexture());
   }
   if (mModel.GetTexture() == model.GetTexture())
   {
-    size_t size = dst.SizeVertex();
-    dst.Push(src);
-    for (size_t i = size; i < dst.SizeVertex(); ++i)
+    size_t size = dst->SizeVertex();
+    dst->Push(*src);
+    for (size_t i = size; i < dst->SizeVertex(); ++i)
     {
-      dst.Vertex(i).vertex += pos;
+      dst->Vertex(i).vertex += pos;
     }
   }
   else
@@ -62,8 +63,8 @@ void RenderSector::Update()
   if (mIsNeedBuild)
   {
     auto currentTime = glfwGetTime();
-    mModel.GetMesh().Compile();
-    mModel.GetMesh().Release();
+    mModel.GetMesh()->Compile();
+    mModel.GetMesh()->Release();
     LOG(info) << "ListGen: " << glfwGetTime() - currentTime;
     mIsNeedBuild = false;
   }
@@ -72,7 +73,7 @@ void RenderSector::Update()
 
   if (mIsChanged)
   {
-    mModel.GetMesh().Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE,
+    mModel.GetMesh()->Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE,
                              36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
 
     mIsNeedBuild = true;
