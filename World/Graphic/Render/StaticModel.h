@@ -3,22 +3,30 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#ifndef IModelGenerator_h__
-#define IModelGenerator_h__
+#ifndef Model_h__
+#define Model_h__
 
-#include "..\Graphic\Render\Model.h"
+#include "Texture.h"
+#include "Mesh.h"
+#include "Vertex.h"
 
-class IModelGenerator
+class StaticModel
 {
 public:
-  IModelGenerator() {};
-  virtual ~IModelGenerator() {};
+  StaticModel();
+  ~StaticModel();
 
-  /// —генерировать модель.
-  virtual Model &Create() = 0;
+  void SetTexture(PTexture texture);
+
+  Mesh<VertexVT> &GetMesh() noexcept;
+
+  const PTexture &GetTexture() const noexcept;
+
+private:
+  Mesh<VertexVT> mMesh;
+  PTexture mTexture;
 
 };
 
+#endif // Model_h__
 
-
-#endif // IModelGenerator_h__

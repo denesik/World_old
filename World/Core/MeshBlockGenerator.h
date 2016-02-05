@@ -6,7 +6,7 @@
 #ifndef ModelBlockGenerator_h__
 #define ModelBlockGenerator_h__
 
-#include "IModelGenerator.h"
+#include "IMeshGenerator.h"
 #include <array>
 #include "..\tools\StringIntern.h"
 
@@ -15,7 +15,7 @@
 /// Меш формируется автоматически, для каждой стороны блока можно указать текстуру.
 /// Все текстуры должны находиться в одном текстурном атласе.
 /// Для каждой стороны блока можно указать, нужно ли рисовать сторону. 
-class ModelBlockGenerator : public IModelGenerator
+class MeshBlockGenerator : public IMeshGenerator
 {
 public:
   enum Side
@@ -33,12 +33,10 @@ public:
   };
 
 public:
-  ModelBlockGenerator();
-  ~ModelBlockGenerator();
+  MeshBlockGenerator();
+  ~MeshBlockGenerator();
 
-  Model &Create() override;
-
-  void SetPosition(const glm::vec3 &pos);
+  void Create(const glm::vec3 &pos, Mesh<VertexVT> &mesh) override;
 
   void SetTexture(int side, std::string texture);
 
@@ -53,13 +51,7 @@ private:
   /// Активна сторона или нет.
   std::array<bool, 6> mEnabled;
 
-  PTexture mActiveTexture;
-
-  glm::vec3 mPosition;
-
   const StringIntern mTypeName;
-
-  Model mModel;
 };
 
 

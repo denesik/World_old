@@ -2,7 +2,7 @@
 // ==                   Copyright (c) 2015, Smirnov Denis                    ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#include "ModelBlockGenerator.h"
+#include "MeshBlockGenerator.h"
 #include "..\Graphic\Render\RenderMeshGL1.h"
 #include "..\Graphic\RegistryGraphic.h"
 
@@ -29,25 +29,17 @@ static glm::vec2 textureCube[] =
 
 
 
-ModelBlockGenerator::ModelBlockGenerator()
+MeshBlockGenerator::MeshBlockGenerator()
   : mTypeName("ModelBlockGenerator")
 {
-  //PMesh mesh = std::make_shared<MeshOld>(std::make_unique<RenderMeshGL1>());
-
-  //mesh->Set(vertex, index);
-//   mesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
-//   mesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
-//   mesh->SetVertexSize(sizeof(VertexVT));
-
-  //mModel.SetMesh(mesh);
 }
 
 
-ModelBlockGenerator::~ModelBlockGenerator()
+MeshBlockGenerator::~MeshBlockGenerator()
 {
 }
 
-Model &ModelBlockGenerator::Create()
+void MeshBlockGenerator::Create(const glm::vec3 &pos, Mesh<VertexVT> &mesh)
 {
   enum 
   {
@@ -55,17 +47,7 @@ Model &ModelBlockGenerator::Create()
     SIDE_COUNT = VERTEX_COUNT / 4,
 
   };
-
-  //static std::vector<float> vertex;
-  //static std::vector<size_t> index;
-  auto &mesh = mModel.GetMesh();
-  mesh.Release();
   
-//   auto &vertex = mModel.GetMesh().GetVertex();
-//   auto &index = mModel.GetMesh().GetIndex();
-//   vertex.clear();
-//   index.clear();
-
   for (size_t i = 0, sideCount = 0; i < SIDE_COUNT; ++i)
   {
     if (mEnabled[i])
@@ -84,22 +66,15 @@ Model &ModelBlockGenerator::Create()
       {
         mesh.PushVertex({
           { 
-            vertexCube[i * 4 + j][0] + mPosition.x ,
-            vertexCube[i * 4 + j][1] + mPosition.y ,
-            vertexCube[i * 4 + j][2] + mPosition.z 
+            vertexCube[i * 4 + j][0] + pos.x ,
+            vertexCube[i * 4 + j][1] + pos.y ,
+            vertexCube[i * 4 + j][2] + pos.z
           },
           {
             test[j][0],
             test[j][1]
           }
         });
-//         vertex.push_back(vertexCube[i * 4 + j][0] + mPosition.x);
-//         vertex.push_back(vertexCube[i * 4 + j][1] + mPosition.y);
-//         vertex.push_back(vertexCube[i * 4 + j][2] + mPosition.z);
-// //         vertex.push_back(textureCube[j][0] * txtScale[0] + txtCoord[0].x);
-// //         vertex.push_back(textureCube[j][1] * txtScale[1] + txtCoord[0].y);
-//         vertex.push_back(test[j][0]);
-//         vertex.push_back(test[j][1]);
       }
 
       for (size_t j = 0; j < (sizeof(indexCubeSide) / sizeof(indexCubeSide[0])); ++j)
@@ -109,26 +84,11 @@ Model &ModelBlockGenerator::Create()
       sideCount += 4;
     }
   }
-
-//   PMesh mesh = std::make_shared<Mesh>(std::make_unique<RenderMeshGL1>());
-// 
-//   mesh->Set(vertex, index);
-//   mesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
-//   mesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
-//   mesh->SetVertexSize(sizeof(VertexVT));
-
-  //mModel.GetMesh()->Set(vertex, index);
-  //mModel.GetMesh()->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
-  //mModel.GetMesh()->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
-  //mModel.GetMesh()->SetVertexSize(sizeof(VertexVT));
-  mModel.SetTexture(mActiveTexture);
-
-  return mModel;
 }
 
-void ModelBlockGenerator::SetTexture(int side, std::string texture)
+void MeshBlockGenerator::SetTexture(int side, std::string texture)
 {
-  mActiveTexture = std::get<0>(REGISTRY_GRAPHIC.GetTextureManager().GetTexture(texture));
+  auto mActiveTexture = std::get<0>(REGISTRY_GRAPHIC.GetTextureManager().GetTexture(texture));
 
   for (unsigned int i = 0; i < 6; ++i)
   {
@@ -168,7 +128,7 @@ void ModelBlockGenerator::SetTexture(int side, std::string texture)
   }
 }
 
-void ModelBlockGenerator::Enable(int side, bool enabled)
+void MeshBlockGenerator::Enable(int side, bool enabled)
 {
   for (unsigned int i = 0; i < 6; ++i)
   {
@@ -179,12 +139,7 @@ void ModelBlockGenerator::Enable(int side, bool enabled)
   }
 }
 
-const StringIntern &ModelBlockGenerator::GetTypeName() const
+const StringIntern &MeshBlockGenerator::GetTypeName() const
 {
   return mTypeName;
-}
-
-void ModelBlockGenerator::SetPosition(const glm::vec3 &pos)
-{
-  mPosition = pos;
 }

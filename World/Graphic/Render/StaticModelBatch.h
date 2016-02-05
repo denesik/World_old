@@ -3,35 +3,31 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#ifndef Model_h__
-#define Model_h__
+#ifndef MultiModel_h__
+#define MultiModel_h__
 
-#include "Texture.h"
-#include "Mesh.h"
+#include "StaticModel.h"
+#include "RenderableMesh.h"
+#include "Vertex.h"
 
-class Model
+
+class StaticModelBatch
 {
 public:
-  Model(PMesh = nullptr, PTexture = nullptr);
-  ~Model();
+  StaticModelBatch();
+  ~StaticModelBatch();
 
-  //void SetMesh(PMesh mesh);
+  void Push(StaticModel &model);
 
-  void SetTexture(PTexture texture);
-
-  //const PMesh &GetMesh() const noexcept;
-
-  Mesh<VertexVT> &GetMesh() noexcept;
+  RenderableMesh<VertexVT> &GetMesh() noexcept;
 
   const PTexture &GetTexture() const noexcept;
 
 private:
-
-  Mesh<VertexVT> mMesh;
-  //PMesh mMesh;
+  RenderableMesh<VertexVT> mMesh;
   PTexture mTexture;
-
 };
 
-#endif // Model_h__
 
+
+#endif // MultiModel_h__

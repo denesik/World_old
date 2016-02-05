@@ -5,12 +5,14 @@
 #include "RenderSector.h"
 #include "..\Graphic\RegistryGraphic.h"
 #include "..\Log.h"
+#include "Sector.h"
 
 
 
 RenderSector::RenderSector()
 {
-
+  mModel.GetMesh().Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE, 
+                           36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
 }
 
 
@@ -28,7 +30,7 @@ bool RenderSector::IsNeedBuild() const
   return mIsNeedBuild;
 }
 
-void RenderSector::Push(Model &model)
+void RenderSector::Push(StaticModel &model)
 {
   mModel.Push(model);
 }
@@ -43,6 +45,7 @@ void RenderSector::Update()
   {
     auto currentTime = glfwGetTime();
     mModel.GetMesh().Compile();
+    mModel.GetMesh().Release();
     LOG(info) << "ListGen: " << glfwGetTime() - currentTime;
     mIsNeedBuild = false;
   }

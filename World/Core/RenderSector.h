@@ -6,7 +6,7 @@
 #ifndef RenderSector_h__
 #define RenderSector_h__
 
-#include "..\Graphic\Render\MultiModel.h"
+#include "..\Graphic\Render\StaticModelBatch.h"
 #include "..\Graphic\Render\RenderableMesh.h"
 
 
@@ -26,12 +26,12 @@ public:
   /// Нужно ли перестроить геометрию?
   bool IsNeedBuild() const;
 
-  void Push(Model &model);
+  void Push(StaticModel &model);
 
   void Update();
 
 private:
-  MultiModel mModel;
+  StaticModelBatch mModel;
 
   bool mIsChanged = false;
   bool mIsNeedBuild = true;

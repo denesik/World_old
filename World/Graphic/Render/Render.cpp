@@ -66,13 +66,13 @@ const Render::Version &Render::GetVersion() const
   return mVersion;
 }
 
-void Render::Draw(const Model &model)
+void Render::Draw(const StaticModel &model)
 {
   model.GetTexture()->Set(TEXTURE_SLOT_0);
   //model.GetMesh().Draw();
 }
 
-void Render::Draw(MultiModel &model)
+void Render::Draw(StaticModelBatch &model)
 {
   model.GetTexture()->Set(TEXTURE_SLOT_0);
   model.GetMesh().Draw();

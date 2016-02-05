@@ -64,16 +64,7 @@
       <Filter>Graphic\Render</Filter>
     </ClCompile>
     <ClCompile Include="Log.cpp" />
-    <ClCompile Include="Graphic\Render\Model.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Graphic\Render\RenderMeshGL1.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\MultiModel.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\Mesh.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
     <ClCompile Include="Core\Agent.cpp">
@@ -112,7 +103,13 @@
     <ClCompile Include="Core\RenderSector.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\ModelBlockGenerator.cpp">
+    <ClCompile Include="Graphic\Render\StaticModel.cpp">
+      <Filter>Graphic\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic\Render\StaticModelBatch.cpp">
+      <Filter>Graphic\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\MeshBlockGenerator.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -168,16 +165,10 @@
     <ClInclude Include="Graphic\Render\OpenGLCall.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Graphic\Render\Model.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
     <ClInclude Include="Graphic\Render\Mesh.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
     <ClInclude Include="Graphic\Render\RenderMeshGL1.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\MultiModel.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
     <ClInclude Include="Core\Agent.h">
@@ -219,17 +210,23 @@
     <ClInclude Include="Core\RenderSector.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\ModelBlockGenerator.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\IModelGenerator.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Graphic\Render\IRenderMeshStrategy.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
     <ClInclude Include="Graphic\Render\RenderableMesh.h">
       <Filter>Graphic\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic\Render\StaticModel.h">
+      <Filter>Graphic\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic\Render\StaticModelBatch.h">
+      <Filter>Graphic\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IMeshGenerator.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\MeshBlockGenerator.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

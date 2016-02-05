@@ -23,7 +23,7 @@
     <ClCompile Include="Core\BlocksLibrary.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
     <ClCompile Include="Core\MapGen\PerlinNoise.cpp" />
-    <ClCompile Include="Core\ModelBlockGenerator.cpp" />
+    <ClCompile Include="Core\MeshBlockGenerator.cpp" />
     <ClCompile Include="Core\Player.cpp" />
     <ClCompile Include="Core\RegistryCore.cpp" />
     <ClCompile Include="Core\RenderAgent.cpp" />
@@ -38,9 +38,8 @@
     <ClCompile Include="Graphic\Render\Bitmap.cpp" />
     <ClCompile Include="Graphic\Render\Camera.cpp" />
     <ClCompile Include="Graphic\Render\Color.cpp" />
-    <ClCompile Include="Graphic\Render\Mesh.cpp" />
-    <ClCompile Include="Graphic\Render\Model.cpp" />
-    <ClCompile Include="Graphic\Render\MultiModel.cpp" />
+    <ClCompile Include="Graphic\Render\StaticModel.cpp" />
+    <ClCompile Include="Graphic\Render\StaticModelBatch.cpp" />
     <ClCompile Include="Graphic\Render\Render.cpp" />
     <ClCompile Include="Graphic\Render\RenderMeshGL1.cpp" />
     <ClCompile Include="Graphic\Render\Shader.cpp" />
@@ -59,9 +58,9 @@
     <ClInclude Include="Core\BlocksLibrary.h" />
     <ClInclude Include="Core\GameObject.h" />
     <ClInclude Include="Core\GameObjectParams.h" />
-    <ClInclude Include="Core\IModelGenerator.h" />
+    <ClInclude Include="Core\IMeshGenerator.h" />
     <ClInclude Include="Core\MapGen\PerlinNoise.h" />
-    <ClInclude Include="Core\ModelBlockGenerator.h" />
+    <ClInclude Include="Core\MeshBlockGenerator.h" />
     <ClInclude Include="Core\Player.h" />
     <ClInclude Include="Core\RegistryCore.h" />
     <ClInclude Include="Core\RenderAgent.h" />
@@ -79,8 +78,8 @@
     <ClInclude Include="Graphic\Render\RenderableMesh.h" />
     <ClInclude Include="Graphic\Render\IRenderMeshStrategy.h" />
     <ClInclude Include="Graphic\Render\Mesh.h" />
-    <ClInclude Include="Graphic\Render\Model.h" />
-    <ClInclude Include="Graphic\Render\MultiModel.h" />
+    <ClInclude Include="Graphic\Render\StaticModel.h" />
+    <ClInclude Include="Graphic\Render\StaticModelBatch.h" />
     <ClInclude Include="Graphic\Render\OpenGLCall.h" />
     <ClInclude Include="Graphic\Render\Render.h" />
     <ClInclude Include="Graphic\Render\RenderMeshGL1.h" />

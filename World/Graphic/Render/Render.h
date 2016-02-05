@@ -10,8 +10,8 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Shader.h"
-#include "Model.h"
-#include "MultiModel.h"
+#include "StaticModel.h"
+#include "StaticModelBatch.h"
 
 
 
@@ -35,9 +35,9 @@ public:
 
   /// Нарисовать модель.
   /// Устанавливает параметры для рисования и рисует модель.
-  void Draw(const Model &model);
+  void Draw(const StaticModel &model);
 
-  void Draw(MultiModel &model);
+  void Draw(StaticModelBatch &model);
 
 private:
 
