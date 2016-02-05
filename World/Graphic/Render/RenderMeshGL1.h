@@ -6,10 +6,10 @@
 #ifndef RenderMeshGL1_h__
 #define RenderMeshGL1_h__
 
-#include "IRenderMesh.h"
+#include "IRenderMeshStrategy.h"
 #include <array>
 
-class RenderMeshGL1 : public IRenderMesh
+class RenderMeshGL1 : public IRenderMeshStrategy
 {
 public:
   RenderMeshGL1();

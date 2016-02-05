@@ -174,9 +174,6 @@
     <ClInclude Include="Graphic\Render\Mesh.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Graphic\Render\IRenderMesh.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
     <ClInclude Include="Graphic\Render\RenderMeshGL1.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
@@ -227,6 +224,12 @@
     </ClInclude>
     <ClInclude Include="Core\IModelGenerator.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic\Render\IRenderMeshStrategy.h">
+      <Filter>Graphic\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic\Render\RenderableMesh.h">
+      <Filter>Graphic\Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

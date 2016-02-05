@@ -8,10 +8,10 @@
 
 #include "Vertex.h"
 
-class IRenderMesh
+class IRenderMeshStrategy
 {
 public:
-  virtual ~IRenderMesh() {};
+  virtual ~IRenderMeshStrategy() {};
 
   /// Настроить и включить атрибут.
   /// Для каждого типа атрибута определена фиксированная локация, 

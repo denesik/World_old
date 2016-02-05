@@ -6,29 +6,29 @@
 
 
 
-Mesh::Mesh(std::unique_ptr<IRenderMesh> renderMesh)
+MeshOld::MeshOld(std::unique_ptr<IRenderMeshStrategy> renderMesh)
   : mRenderMesh(std::move(renderMesh))
 {
 
 }
 
-Mesh::~Mesh()
+MeshOld::~MeshOld()
 {
 
 }
 
-void Mesh::SetVertexSize(size_t size)
+void MeshOld::SetVertexSize(size_t size)
 {
   mVertexSize = size;
 }
 
-void Mesh::Set(const std::vector<float> &vertex, const std::vector<size_t> &index)
+void MeshOld::Set(const std::vector<float> &vertex, const std::vector<size_t> &index)
 {
   mVertex = vertex;
   mIndex = index;
 }
 
-void Mesh::Push(const std::vector<float> &vertex, const std::vector<size_t> &index)
+void MeshOld::Push(const std::vector<float> &vertex, const std::vector<size_t> &index)
 {
   mIndex.reserve(index.size());
   size_t size = mVertex.size() / (mVertexSize / sizeof(float));
@@ -40,7 +40,7 @@ void Mesh::Push(const std::vector<float> &vertex, const std::vector<size_t> &ind
   mVertex.insert(mVertex.end(), vertex.begin(), vertex.end());
 }
 
-void Mesh::Push(const Mesh &mesh)
+void MeshOld::Push(const MeshOld &mesh)
 {
   assert(mVertexSize == mesh.mVertexSize && "Размеры вершин не совпадают при слиянии мешей.");
   mIndex.reserve(mesh.mIndex.size());
@@ -53,57 +53,57 @@ void Mesh::Push(const Mesh &mesh)
   mVertex.insert(mVertex.end(), mesh.mVertex.begin(), mesh.mVertex.end());
 }
 
-void Mesh::Reserve()
+void MeshOld::Reserve()
 {
 	mVertex.reserve(150 * 21 * 21 * 21);
 	mIndex.reserve(40 * 21 * 21 * 21);
 }
 
-void Mesh::Release()
+void MeshOld::Release()
 {
   mVertex.swap(decltype(mVertex){});
   mIndex.swap(decltype(mIndex){});
 }
 
-const std::vector<float> &Mesh::GetVertex() const
+const std::vector<float> &MeshOld::GetVertex() const
 {
   return mVertex;
 }
 
-const std::vector<size_t> &Mesh::GetIndex() const
+const std::vector<size_t> &MeshOld::GetIndex() const
 {
   return mIndex;
 }
 
-std::vector<float>& Mesh::GetVertex()
+std::vector<float>& MeshOld::GetVertex()
 {
 	return mVertex;
 }
 
-std::vector<size_t>& Mesh::GetIndex()
+std::vector<size_t>& MeshOld::GetIndex()
 {
 	return mIndex;
 }
 
-void Mesh::SetAttribute(AttributeType type, Attribute attribute)
+void MeshOld::SetAttribute(AttributeType type, Attribute attribute)
 {
   assert(mRenderMesh != nullptr && "Отсутствует рендер для рисования буфера.");
   mRenderMesh->SetAttribute(type, attribute);
 }
 
-void Mesh::Compile()
+void MeshOld::Compile()
 {
   assert(mRenderMesh != nullptr && "Отсутствует рендер для рисования буфера.");
   mRenderMesh->Compile(mVertex.data(), mVertex.size(), mVertexSize, mIndex.data(), mIndex.size());
 }
 
-bool Mesh::IsCompiled()
+bool MeshOld::IsCompiled()
 {
   assert(mRenderMesh != nullptr && "Отсутствует рендер для рисования буфера.");
   return mRenderMesh->IsCompiled();
 }
 
-void Mesh::Draw()
+void MeshOld::Draw()
 {
   assert(mRenderMesh != nullptr && "Отсутствует рендер для рисования буфера.");
   mRenderMesh->Draw();

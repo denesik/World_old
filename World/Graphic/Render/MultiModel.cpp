@@ -17,7 +17,7 @@ void MultiModel::Push(const Model &model)
   mTexture = model.GetTexture();
   if (!mMesh)
   {
-    mMesh = std::make_shared<Mesh>(std::make_unique<RenderMeshGL1>());
+    mMesh = std::make_shared<MeshOld>(std::make_unique<RenderMeshGL1>());
     mMesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
     mMesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
     mMesh->SetVertexSize(sizeof(VertexVT));

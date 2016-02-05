@@ -6,17 +6,17 @@
 #ifndef Mesh_h__
 #define Mesh_h__
 
-#include "IRenderMesh.h"
+#include "IRenderMeshStrategy.h"
 #include <memory>
 #include <vector>
 
-typedef std::shared_ptr<class Mesh> PMesh;
+typedef std::shared_ptr<class MeshOld> PMesh;
 
-class Mesh
+class MeshOld
 {
 public:
-  Mesh(std::unique_ptr<IRenderMesh> renderMesh = nullptr);
-  ~Mesh();
+  MeshOld(std::unique_ptr<IRenderMeshStrategy> renderMesh = nullptr);
+  ~MeshOld();
 
   /// Установить размер вершины в байтах.
   void SetVertexSize(size_t size);
@@ -27,7 +27,7 @@ public:
   /// Добавить данные вершинного и индексного буфера в конец буферов.
   void Push(const std::vector<float> &vertex, const std::vector<size_t> &index);
 
-  void Push(const Mesh &mesh);
+  void Push(const MeshOld &mesh);
 
   void Reserve();
 
@@ -53,12 +53,52 @@ public:
   void Draw();
 
 private:
-  std::unique_ptr<IRenderMesh> mRenderMesh;
+  std::unique_ptr<IRenderMeshStrategy> mRenderMesh;
 
   std::vector<float> mVertex;
   std::vector<size_t> mIndex;
 
   size_t mVertexSize = 0;
+};
+
+
+template<class V>
+class Mesh
+{
+public:
+  Mesh()
+  {
+  }
+
+  ~Mesh()
+  {
+  }
+
+  inline V &Vertex(size_t i)
+  {
+    return mVertex[i];
+  }
+
+  inline size_t &Index(size_t i)
+  {
+    return mIndex[i];
+  }
+
+  void Push(const Mesh<V> &mesh)
+  {
+    mIndex.reserve(mesh.mIndex.size());
+    size_t size = mVertex.size();
+    for (const auto &i : mesh.mIndex)
+    {
+      mIndex.push_back(size + i);
+    }
+
+    mVertex.insert(mVertex.end(), mesh.mVertex.begin(), mesh.mVertex.end());
+  }
+
+protected:
+  std::vector<V> mVertex;
+  std::vector<size_t> mIndex;
 };
 
 

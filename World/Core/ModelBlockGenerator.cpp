@@ -32,7 +32,7 @@ static glm::vec2 textureCube[] =
 ModelBlockGenerator::ModelBlockGenerator()
   : mTypeName("ModelBlockGenerator")
 {
-  PMesh mesh = std::make_shared<Mesh>(std::make_unique<RenderMeshGL1>());
+  PMesh mesh = std::make_shared<MeshOld>(std::make_unique<RenderMeshGL1>());
 
   //mesh->Set(vertex, index);
   mesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });

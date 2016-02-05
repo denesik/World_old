@@ -76,7 +76,8 @@
     <ClInclude Include="Graphic\Render\Bitmap.h" />
     <ClInclude Include="Graphic\Render\Camera.h" />
     <ClInclude Include="Graphic\Render\Color.h" />
-    <ClInclude Include="Graphic\Render\IRenderMesh.h" />
+    <ClInclude Include="Graphic\Render\RenderableMesh.h" />
+    <ClInclude Include="Graphic\Render\IRenderMeshStrategy.h" />
     <ClInclude Include="Graphic\Render\Mesh.h" />
     <ClInclude Include="Graphic\Render\Model.h" />
     <ClInclude Include="Graphic\Render\MultiModel.h" />
