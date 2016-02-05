@@ -69,13 +69,13 @@ const Render::Version &Render::GetVersion() const
 void Render::Draw(const Model &model)
 {
   model.GetTexture()->Set(TEXTURE_SLOT_0);
-  model.GetMesh()->Draw();
+  //model.GetMesh().Draw();
 }
 
-void Render::Draw(const MultiModel &model)
+void Render::Draw(MultiModel &model)
 {
   model.GetTexture()->Set(TEXTURE_SLOT_0);
-  model.GetMesh()->Draw();
+  model.GetMesh().Draw();
 }
 
 

@@ -7,6 +7,7 @@
 #define RenderSector_h__
 
 #include "..\Graphic\Render\MultiModel.h"
+#include "..\Graphic\Render\RenderableMesh.h"
 
 
 /// Рисует сектор.
@@ -25,7 +26,7 @@ public:
   /// Нужно ли перестроить геометрию?
   bool IsNeedBuild() const;
 
-  void Push(const Model &model);
+  void Push(Model &model);
 
   void Update();
 

@@ -12,31 +12,18 @@ MultiModel::~MultiModel()
 {
 }
 
-void MultiModel::Push(const Model &model)
+void MultiModel::Push(Model &model)
 {
   mTexture = model.GetTexture();
-  if (!mMesh)
-  {
-    mMesh = std::make_shared<MeshOld>(std::make_unique<RenderMeshGL1>());
-    mMesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
-    mMesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
-    mMesh->SetVertexSize(sizeof(VertexVT));
-	mMesh->Reserve();
-    mMesh->Push(*model.GetMesh());
-    //mMesh = model.GetMesh();
-  }
-  else
-  {
-    mMesh->Push(*model.GetMesh());
-  }
+  mMesh.Push(model.GetMesh());
 }
 
-const PMesh &MultiModel::GetMesh() const noexcept
-{
-  return mMesh;
-}
-
-PMesh &MultiModel::GetMesh() noexcept
+// const PMesh &MultiModel::GetMesh() const noexcept
+// {
+//   return mMesh;
+// }
+// 
+RenderableMesh<VertexVT> &MultiModel::GetMesh() noexcept
 {
   return mMesh;
 }

@@ -28,7 +28,7 @@ bool RenderSector::IsNeedBuild() const
   return mIsNeedBuild;
 }
 
-void RenderSector::Push(const Model &model)
+void RenderSector::Push(Model &model)
 {
   mModel.Push(model);
 }
@@ -42,8 +42,7 @@ void RenderSector::Update()
   if (mIsNeedBuild)
   {
     auto currentTime = glfwGetTime();
-    mModel.GetMesh()->Compile();
-    mModel.GetMesh()->Release();
+    mModel.GetMesh().Compile();
     LOG(info) << "ListGen: " << glfwGetTime() - currentTime;
     mIsNeedBuild = false;
   }
@@ -55,6 +54,4 @@ void RenderSector::Update()
     mIsNeedBuild = true;
     mIsChanged = false;
   }
-
-  //mModel.GetMesh()->Reserve();
 }

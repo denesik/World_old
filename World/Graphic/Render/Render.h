@@ -37,7 +37,7 @@ public:
   /// Устанавливает параметры для рисования и рисует модель.
   void Draw(const Model &model);
 
-  void Draw(const MultiModel &model);
+  void Draw(MultiModel &model);
 
 private:
 

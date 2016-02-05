@@ -78,11 +78,12 @@ int Game::Run()
     }
 
 
+    REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
+
     REGISTRY_CORE.GetWorld().LoadSector({ -1,-1,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ 0,-1,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ 1,-1,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ -1,0,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ 1,0,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ -1,1,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ 0,1,0 });

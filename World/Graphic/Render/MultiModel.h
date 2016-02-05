@@ -7,6 +7,8 @@
 #define MultiModel_h__
 
 #include "Model.h"
+#include "RenderableMesh.h"
+#include "Vertex.h"
 
 
 class MultiModel
@@ -15,16 +17,16 @@ public:
   MultiModel();
   ~MultiModel();
 
-  void Push(const Model &model);
+  void Push(Model &model);
 
-  const PMesh &GetMesh() const noexcept;
+//   const PMesh &GetMesh() const noexcept;
 
-  PMesh &GetMesh() noexcept;
+  RenderableMesh<VertexVT> &GetMesh() noexcept;
 
   const PTexture &GetTexture() const noexcept;
 
 private:
-  PMesh mMesh;
+  RenderableMesh<VertexVT> mMesh;
   PTexture mTexture;
 
 };

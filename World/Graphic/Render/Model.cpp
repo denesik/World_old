@@ -8,7 +8,7 @@
 
 
 Model::Model(PMesh mesh, PTexture texture)
-  : mMesh(mesh), mTexture(texture)
+  : /*mMesh(mesh),*/ mTexture(texture)
 {
 }
 
@@ -16,22 +16,22 @@ Model::~Model()
 {
 }
 
-void Model::SetMesh(PMesh mesh)
-{
-  mMesh = mesh;
-}
+// void Model::SetMesh(PMesh mesh)
+// {
+//   mMesh = mesh;
+// }
 
 void Model::SetTexture(PTexture texture)
 {
   mTexture = texture;
 }
 
-const PMesh &Model::GetMesh() const noexcept
-{
-  return mMesh;
-}
+// const PMesh &Model::GetMesh() const noexcept
+// {
+//   return mMesh;
+// }
 
-PMesh &Model::GetMesh() noexcept
+Mesh<VertexVT> &Model::GetMesh() noexcept
 {
   return mMesh;
 }

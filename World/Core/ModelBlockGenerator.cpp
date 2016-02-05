@@ -32,14 +32,14 @@ static glm::vec2 textureCube[] =
 ModelBlockGenerator::ModelBlockGenerator()
   : mTypeName("ModelBlockGenerator")
 {
-  PMesh mesh = std::make_shared<MeshOld>(std::make_unique<RenderMeshGL1>());
+  //PMesh mesh = std::make_shared<MeshOld>(std::make_unique<RenderMeshGL1>());
 
   //mesh->Set(vertex, index);
-  mesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
-  mesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
-  mesh->SetVertexSize(sizeof(VertexVT));
+//   mesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
+//   mesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
+//   mesh->SetVertexSize(sizeof(VertexVT));
 
-  mModel.SetMesh(mesh);
+  //mModel.SetMesh(mesh);
 }
 
 
@@ -58,10 +58,13 @@ Model &ModelBlockGenerator::Create()
 
   //static std::vector<float> vertex;
   //static std::vector<size_t> index;
-  auto &vertex = mModel.GetMesh()->GetVertex();
-  auto &index = mModel.GetMesh()->GetIndex();
-  vertex.clear();
-  index.clear();
+  auto &mesh = mModel.GetMesh();
+  mesh.Release();
+  
+//   auto &vertex = mModel.GetMesh().GetVertex();
+//   auto &index = mModel.GetMesh().GetIndex();
+//   vertex.clear();
+//   index.clear();
 
   for (size_t i = 0, sideCount = 0; i < SIDE_COUNT; ++i)
   {
@@ -79,18 +82,29 @@ Model &ModelBlockGenerator::Create()
 
       for (size_t j = 0; j < 4; ++j)
       {
-        vertex.push_back(vertexCube[i * 4 + j][0] + mPosition.x);
-        vertex.push_back(vertexCube[i * 4 + j][1] + mPosition.y);
-        vertex.push_back(vertexCube[i * 4 + j][2] + mPosition.z);
-//         vertex.push_back(textureCube[j][0] * txtScale[0] + txtCoord[0].x);
-//         vertex.push_back(textureCube[j][1] * txtScale[1] + txtCoord[0].y);
-        vertex.push_back(test[j][0]);
-        vertex.push_back(test[j][1]);
+        mesh.PushVertex({
+          { 
+            vertexCube[i * 4 + j][0] + mPosition.x ,
+            vertexCube[i * 4 + j][1] + mPosition.y ,
+            vertexCube[i * 4 + j][2] + mPosition.z 
+          },
+          {
+            test[j][0],
+            test[j][1]
+          }
+        });
+//         vertex.push_back(vertexCube[i * 4 + j][0] + mPosition.x);
+//         vertex.push_back(vertexCube[i * 4 + j][1] + mPosition.y);
+//         vertex.push_back(vertexCube[i * 4 + j][2] + mPosition.z);
+// //         vertex.push_back(textureCube[j][0] * txtScale[0] + txtCoord[0].x);
+// //         vertex.push_back(textureCube[j][1] * txtScale[1] + txtCoord[0].y);
+//         vertex.push_back(test[j][0]);
+//         vertex.push_back(test[j][1]);
       }
 
       for (size_t j = 0; j < (sizeof(indexCubeSide) / sizeof(indexCubeSide[0])); ++j)
       {
-        index.push_back(indexCubeSide[j] + sideCount);
+        mesh.PushIndex(indexCubeSide[j] + sideCount);
       }
       sideCount += 4;
     }

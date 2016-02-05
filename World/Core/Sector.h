@@ -16,7 +16,7 @@ class Sector
 public:
   enum 
   {
-    SECTOR_RADIUS = 8,
+    SECTOR_RADIUS = 10,
     SECTOR_SIZE = SECTOR_RADIUS * 2 + 1,
   };
 

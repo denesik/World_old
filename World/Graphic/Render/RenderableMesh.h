@@ -27,7 +27,7 @@ public:
   inline void Compile()
   {
     mRenderMesh->Compile(reinterpret_cast<float *>(mVertex.data()), mVertex.size(), sizeof(V),
-      reinterpret_cast<float *>(mIndex.data()), mIndex.size());
+      reinterpret_cast<size_t *>(mIndex.data()), mIndex.size());
   }
 
   /// Нарисовать меш.

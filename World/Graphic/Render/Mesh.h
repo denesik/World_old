@@ -84,6 +84,22 @@ public:
     return mIndex[i];
   }
 
+  inline void Release()
+  {
+    mVertex.clear();
+    mIndex.clear();
+  }
+
+  inline void PushVertex(const V &vertex)
+  {
+    mVertex.push_back(vertex);
+  }
+
+  inline void PushIndex(size_t index)
+  {
+    mIndex.push_back(index);
+  }
+
   void Push(const Mesh<V> &mesh)
   {
     mIndex.reserve(mesh.mIndex.size());

@@ -15,19 +15,20 @@ public:
   Model(PMesh = nullptr, PTexture = nullptr);
   ~Model();
 
-  void SetMesh(PMesh mesh);
+  //void SetMesh(PMesh mesh);
 
   void SetTexture(PTexture texture);
 
-  const PMesh &GetMesh() const noexcept;
+  //const PMesh &GetMesh() const noexcept;
 
-  PMesh &GetMesh() noexcept;
+  Mesh<VertexVT> &GetMesh() noexcept;
 
   const PTexture &GetTexture() const noexcept;
 
 private:
 
-  PMesh mMesh;
+  Mesh<VertexVT> mMesh;
+  //PMesh mMesh;
   PTexture mTexture;
 
 };
