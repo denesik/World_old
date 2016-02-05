@@ -10,9 +10,6 @@
     <Filter Include="Graphic\Window">
       <UniqueIdentifier>{45b94841-6599-4c91-9413-e5753e4a6c3e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphic\GameRender">
-      <UniqueIdentifier>{ab727c66-3538-4039-b9f6-e7b34be05920}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{460c9574-cd3f-4954-95ad-03c59b19ec00}</UniqueIdentifier>
     </Filter>
@@ -70,9 +67,6 @@
     <ClCompile Include="Graphic\Render\Model.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Graphic\GameRender\ModelBlockGenerator.cpp">
-      <Filter>Graphic\GameRender</Filter>
-    </ClCompile>
     <ClCompile Include="Graphic\Render\RenderMeshGL1.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
@@ -87,9 +81,6 @@
     </ClCompile>
     <ClCompile Include="Core\RenderAgent.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\GameRender\RenderSector.cpp">
-      <Filter>Graphic\GameRender</Filter>
     </ClCompile>
     <ClCompile Include="Core\GameObject.cpp">
       <Filter>Core</Filter>
@@ -116,6 +107,12 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\SectorLoader.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\RenderSector.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ModelBlockGenerator.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -174,12 +171,6 @@
     <ClInclude Include="Graphic\Render\Model.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Graphic\GameRender\IModelGenerator.h">
-      <Filter>Graphic\GameRender</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\GameRender\ModelBlockGenerator.h">
-      <Filter>Graphic\GameRender</Filter>
-    </ClInclude>
     <ClInclude Include="Graphic\Render\Mesh.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
@@ -197,9 +188,6 @@
     </ClInclude>
     <ClInclude Include="Core\RenderAgent.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\GameRender\RenderSector.h">
-      <Filter>Graphic\GameRender</Filter>
     </ClInclude>
     <ClInclude Include="tools\StringIntern.h">
       <Filter>tools</Filter>
@@ -229,6 +217,15 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\SectorLoader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\RenderSector.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ModelBlockGenerator.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IModelGenerator.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

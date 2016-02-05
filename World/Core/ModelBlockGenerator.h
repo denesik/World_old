@@ -8,7 +8,7 @@
 
 #include "IModelGenerator.h"
 #include <array>
-#include "..\..\tools\StringIntern.h"
+#include "..\tools\StringIntern.h"
 
 
 /// Генератор модели для блока.

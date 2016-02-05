@@ -9,7 +9,7 @@
 #include <array>
 #include "GameObject.h"
 #include <glm/glm.hpp>
-#include "../Graphic/GameRender/RenderSector.h"
+#include "RenderSector.h"
 
 class Sector
 {

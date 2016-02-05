@@ -3,9 +3,10 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#include "..\Render\Model.h"
 #ifndef IModelGenerator_h__
 #define IModelGenerator_h__
+
+#include "..\Graphic\Render\Model.h"
 
 class IModelGenerator
 {

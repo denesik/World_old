@@ -3,9 +3,11 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#include "..\Render\MultiModel.h"
 #ifndef RenderSector_h__
 #define RenderSector_h__
+
+#include "..\Graphic\Render\MultiModel.h"
+
 
 /// Рисует сектор.
 /// Поток логики: Если установлен флаг, пробегаем по всем блокам, запрашиваем рендер агента,

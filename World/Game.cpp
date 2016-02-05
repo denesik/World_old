@@ -21,13 +21,12 @@
 #include "Log.h"
 #include "Graphic/Render/OpenGLCall.h"
 #include <vector>
-#include "Graphic/GameRender/ModelBlockGenerator.h"
-#include "Graphic/Render/MultiModel.h"
 #include "Core/GameObject.h"
 #include "Core/RenderAgent.h"
 #include "Core/Sector.h"
 #include "Core/RegistryCore.h"
 #include "Core/World.h"
+#include "Core/ModelBlockGenerator.h"
 
 Game::Game()
 {

@@ -9,8 +9,8 @@
 
 #include "Agent.h"
 #include <memory>
-#include "..\Graphic\GameRender\IModelGenerator.h"
-#include "..\Graphic\Render\Model.h"
+#include "IModelGenerator.h"
+
 
 class RenderAgent : public Agent
 {

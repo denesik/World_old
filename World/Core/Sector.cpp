@@ -4,12 +4,10 @@
 // ============================================================================
 #include "Sector.h"
 
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <stdint.h>
 #include "RenderAgent.h"
-#include "../Graphic/GameRender/ModelBlockGenerator.h"
-#include "../Graphic/Render/MultiModel.h"
-#include "../Graphic/RegistryGraphic.h"
 #include "RegistryCore.h"
 #include "MapGen/PerlinNoise.h"
 #include "../Log.h"

@@ -3,8 +3,8 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "RenderSector.h"
-#include "..\RegistryGraphic.h"
-#include "..\..\Log.h"
+#include "..\Graphic\RegistryGraphic.h"
+#include "..\Log.h"
 
 
 

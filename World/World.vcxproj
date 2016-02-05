@@ -23,16 +23,16 @@
     <ClCompile Include="Core\BlocksLibrary.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
     <ClCompile Include="Core\MapGen\PerlinNoise.cpp" />
+    <ClCompile Include="Core\ModelBlockGenerator.cpp" />
     <ClCompile Include="Core\Player.cpp" />
     <ClCompile Include="Core\RegistryCore.cpp" />
     <ClCompile Include="Core\RenderAgent.cpp" />
+    <ClCompile Include="Core\RenderSector.cpp" />
     <ClCompile Include="Core\Sector.cpp" />
     <ClCompile Include="Core\SectorLoader.cpp" />
     <ClCompile Include="Core\World.cpp" />
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Graphic\GameRender\ModelBlockGenerator.cpp" />
-    <ClCompile Include="Graphic\GameRender\RenderSector.cpp" />
     <ClCompile Include="Graphic\RegistryGraphic.cpp" />
     <ClCompile Include="Graphic\Render\Atlas.cpp" />
     <ClCompile Include="Graphic\Render\Bitmap.cpp" />
@@ -59,18 +59,18 @@
     <ClInclude Include="Core\BlocksLibrary.h" />
     <ClInclude Include="Core\GameObject.h" />
     <ClInclude Include="Core\GameObjectParams.h" />
+    <ClInclude Include="Core\IModelGenerator.h" />
     <ClInclude Include="Core\MapGen\PerlinNoise.h" />
+    <ClInclude Include="Core\ModelBlockGenerator.h" />
     <ClInclude Include="Core\Player.h" />
     <ClInclude Include="Core\RegistryCore.h" />
     <ClInclude Include="Core\RenderAgent.h" />
+    <ClInclude Include="Core\RenderSector.h" />
     <ClInclude Include="Core\Sector.h" />
     <ClInclude Include="Core\SectorLoader.h" />
     <ClInclude Include="Core\World.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Graphic\GameRender\IModelGenerator.h" />
-    <ClInclude Include="Graphic\GameRender\ModelBlockGenerator.h" />
-    <ClInclude Include="Graphic\GameRender\RenderSector.h" />
     <ClInclude Include="Graphic\RegistryGraphic.h" />
     <ClInclude Include="Graphic\Render\Atlas.h" />
     <ClInclude Include="Graphic\Render\Bitmap.h" />
@@ -150,7 +150,7 @@
     <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost;$(SolutionDir)\..\3rdparty\msvc14_x86\glew;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw;$(SolutionDir)\..\3rdparty\msvc14_x86\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\3rdparty\msvc14_x86\boost;$(SolutionDir)..\3rdparty\msvc14_x86\glew;$(SolutionDir)..\3rdparty\msvc14_x86\glfw;$(SolutionDir)..\3rdparty\msvc14_x86\glm;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

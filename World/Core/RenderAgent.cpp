@@ -3,9 +3,9 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "RenderAgent.h"
-#include "..\Graphic\GameRender\ModelBlockGenerator.h"
 #include "GameObject.h"
 #include "Sector.h"
+#include "ModelBlockGenerator.h"
 
 RenderAgent::RenderAgent(GameObject *parent)
   : Agent(parent, "RenderAgent")

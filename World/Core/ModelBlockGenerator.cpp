@@ -3,8 +3,8 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "ModelBlockGenerator.h"
-#include "..\RegistryGraphic.h"
-#include "..\Render\RenderMeshGL1.h"
+#include "..\Graphic\Render\RenderMeshGL1.h"
+#include "..\Graphic\RegistryGraphic.h"
 
 static glm::vec3 vertexCube[] =
 {
