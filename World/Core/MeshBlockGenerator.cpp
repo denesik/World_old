@@ -27,7 +27,7 @@ static glm::vec2 textureCube[] =
 };
 
 
-void MeshBlockGenerator::Create(Mesh<VertexVT> &mesh, const glm::vec3 &pos, Side side)
+void MeshBlockGenerator::Create(Mesh<VertexVT> &mesh, Side side)
 {
   enum 
   {
@@ -54,9 +54,9 @@ void MeshBlockGenerator::Create(Mesh<VertexVT> &mesh, const glm::vec3 &pos, Side
       {
         mesh.PushVertex({
           { 
-            vertexCube[i * 4 + j][0] + pos.x ,
-            vertexCube[i * 4 + j][1] + pos.y ,
-            vertexCube[i * 4 + j][2] + pos.z
+            vertexCube[i * 4 + j][0],
+            vertexCube[i * 4 + j][1],
+            vertexCube[i * 4 + j][2]
           },
           {
             test[j][0],

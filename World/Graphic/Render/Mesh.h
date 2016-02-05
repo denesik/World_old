@@ -41,6 +41,16 @@ public:
     mIndex.swap(decltype(mIndex)());
   }
 
+  inline size_t SizeVertex() const
+  {
+    return mVertex.size();
+  }
+
+  inline size_t SizeIndex() const
+  {
+    return mIndex.size();
+  }
+
   inline void PushVertex(const V &vertex)
   {
     mVertex.push_back(vertex);

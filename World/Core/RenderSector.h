@@ -26,7 +26,7 @@ public:
   /// Нужно ли перестроить геометрию?
   bool IsNeedBuild() const;
 
-  void Push(const StaticModel &model);
+  void Push(const StaticModel &model, const glm::vec3 &pos);
 
   void Update();
 

@@ -30,15 +30,22 @@ bool RenderSector::IsNeedBuild() const
   return mIsNeedBuild;
 }
 
-void RenderSector::Push(const StaticModel &model)
+void RenderSector::Push(const StaticModel &model, const glm::vec3 &pos)
 {
-  if (mModel.GetMesh().Empty())
+  auto &dst = mModel.GetMesh();
+  const auto &src = model.GetMesh();
+  if (dst.Empty())
   {
     mModel.SetTexture(model.GetTexture());
   }
   if (mModel.GetTexture() == model.GetTexture())
   {
-    mModel.GetMesh().Push(model.GetMesh());
+    size_t size = dst.SizeVertex();
+    dst.Push(src);
+    for (size_t i = size; i < dst.SizeVertex(); ++i)
+    {
+      dst.Vertex(i).vertex += pos;
+    }
   }
   else
   {

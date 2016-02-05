@@ -33,7 +33,7 @@ public:
   };
 
 public:
-  void Create(Mesh<VertexVT> &mesh, const glm::vec3 &pos, Side side);
+  void Create(Mesh<VertexVT> &mesh, Side side);
 
   void SetTexture(int side, std::string texture);
 
