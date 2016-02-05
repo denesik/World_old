@@ -33,3 +33,12 @@ void World::Update()
     sector.second.Update(this);
   }
 }
+
+void World::Draw()
+{
+  for (auto &sector : mSectors)
+  {
+    mCurrentSector = &sector.second;
+    sector.second.Draw(this);
+  }
+}

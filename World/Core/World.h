@@ -36,6 +36,8 @@ public:
 
   void Update();
 
+  void Draw();
+
 private:
   std::unordered_map<glm::ivec3, Sector> mSectors;
 

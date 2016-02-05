@@ -27,6 +27,8 @@
 #include "Core/RegistryCore.h"
 #include "Core/World.h"
 #include "Core/MeshBlockGenerator.h"
+#include <thread>
+#include <atomic>
 
 Game::Game()
 {
@@ -58,65 +60,76 @@ int Game::Run()
     return -1;
   }
 
+  REGISTRY_GRAPHIC.GetCamera().Resize(REGISTRY_GRAPHIC.GetWindow().GetSize());
+
+  REGISTRY_GRAPHIC.GetTextureManager().LoadTexture({ "Textures/stone.png", "Textures/sand.png" });
+  REGISTRY_GRAPHIC.GetTextureManager().Compile();
+
   {
-    REGISTRY_GRAPHIC.GetCamera().Resize(REGISTRY_GRAPHIC.GetWindow().GetSize());
-
-    REGISTRY_GRAPHIC.GetTextureManager().LoadTexture({ "Textures/stone.png", "Textures/sand.png" });
-    REGISTRY_GRAPHIC.GetTextureManager().Compile();
-
-    {
-      auto block = std::make_shared<GameObject>();
-      auto &mg = (static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent"))))->GetMeshBlockGenerator();
-      mg.SetTexture(MeshBlockGenerator::ALL, "Textures/sand.png");
-      mg.Generate();
-      REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockSand"), block);
-    }
-    {
-      auto block = std::make_shared<GameObject>(); 
-      auto &mg = (static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent"))))->GetMeshBlockGenerator();
-      mg.SetTexture(MeshBlockGenerator::ALL, "Textures/stone.png");
-      mg.Generate();
-      REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockStone"), block);
-    }
-
-
-    REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
-
-    REGISTRY_CORE.GetWorld().LoadSector({ -1,-1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 0,-1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 1,-1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ -1,0,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 1,0,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ -1,1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 0,1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 1,1,0 });
-
-    FpsCounter fps;
-    while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
-    {
-      fps.Update();
-      glm::ivec3 camPos = REGISTRY_GRAPHIC.GetCamera().GetPos();
-      REGISTRY_GRAPHIC.GetWindow().SetTitle(
-        std::to_string(fps.GetCount()) + std::string(" fps. x: ") +
-        std::to_string(camPos.x) + std::string(" y: ") +
-        std::to_string(camPos.y) + std::string(" z: ") +
-        std::to_string(camPos.z)
-        );
-
-      Update();
-      Draw();
-
-      REGISTRY_GRAPHIC.GetWindow().SwapBuffers();
-      Window::WindowSystemPollEvents();
-    }
+    auto block = std::make_shared<GameObject>();
+    auto &mg = (static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent"))))->GetMeshBlockGenerator();
+    mg.SetTexture(MeshBlockGenerator::ALL, "Textures/sand.png");
+    mg.Generate();
+    REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockSand"), block);
   }
+  {
+    auto block = std::make_shared<GameObject>();
+    auto &mg = (static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent"))))->GetMeshBlockGenerator();
+    mg.SetTexture(MeshBlockGenerator::ALL, "Textures/stone.png");
+    mg.Generate();
+    REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockStone"), block);
+  }
+
+
+  REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
+
+  REGISTRY_CORE.GetWorld().LoadSector({ -1,-1,0 });
+  REGISTRY_CORE.GetWorld().LoadSector({ 0,-1,0 });
+  REGISTRY_CORE.GetWorld().LoadSector({ 1,-1,0 });
+  REGISTRY_CORE.GetWorld().LoadSector({ -1,0,0 });
+  REGISTRY_CORE.GetWorld().LoadSector({ 1,0,0 });
+  REGISTRY_CORE.GetWorld().LoadSector({ -1,1,0 });
+  REGISTRY_CORE.GetWorld().LoadSector({ 0,1,0 });
+  REGISTRY_CORE.GetWorld().LoadSector({ 1,1,0 });
+
+  std::atomic<bool> close = false;
+
+  std::thread thread([&close]
+  {
+    while (!close)
+    {
+      REGISTRY_CORE.GetWorld().Update();
+    }
+  });
+
+  FpsCounter fps;
+  while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
+  {
+    fps.Update();
+    glm::ivec3 camPos = REGISTRY_GRAPHIC.GetCamera().GetPos();
+    REGISTRY_GRAPHIC.GetWindow().SetTitle(
+      std::to_string(fps.GetCount()) + std::string(" fps. x: ") +
+      std::to_string(camPos.x) + std::string(" y: ") +
+      std::to_string(camPos.y) + std::string(" z: ") +
+      std::to_string(camPos.z)
+      );
+
+    Update();
+    Draw();
+
+    REGISTRY_GRAPHIC.GetWindow().SwapBuffers();
+    Window::WindowSystemPollEvents();
+  }
+
+  close = true;
+  thread.join();
 
   return 0;
 }
 
 void Game::Update()
 {
-  const float speed = 0.12f;
+  const float speed = 0.16f;
 
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
   {
@@ -222,5 +235,5 @@ void Game::Draw()
 
   //glColor3f(1.0f, 0.0f, 0.0f);
 
-  REGISTRY_CORE.GetWorld().Update();
+  REGISTRY_CORE.GetWorld().Draw();
 }

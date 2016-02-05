@@ -56,27 +56,42 @@ void RenderSector::Push(const StaticModel &model, const glm::vec3 &pos)
 
 void RenderSector::Update()
 {
+  // Сектор должен был перестроиться. К этому моменту он уже перестроен.
+  if (mIsNeedBuild)
+  {
+    mIsNeedBuild = false;
+    // Обновляем буфер, если не нужно перестраивать сектор.
+    if (!mIsChanged)
+    {
+      mRebuildBuffers = true;
+    }
+  }
+
+  // Сектор был изменен, нужно его перестроить.
+  if (mIsChanged)
+  {
+    mModel.GetMesh()->Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE,
+      36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
+
+    mIsNeedBuild = true;
+    mIsChanged = false;
+  }
+}
+
+void RenderSector::Draw()
+{
   // Рисуем сектор.
   // Если сектор был изменен, ставим флаг, что сектор должен быть перестроен.
   // Если флаг о перестройке установлен - перестраиваем сектор.
   
-  if (mIsNeedBuild)
+  if (mRebuildBuffers)
   {
     auto currentTime = glfwGetTime();
     mModel.GetMesh()->Compile();
     mModel.GetMesh()->Release();
     LOG(info) << "ListGen: " << glfwGetTime() - currentTime;
-    mIsNeedBuild = false;
+    mRebuildBuffers = false;
   }
 
   REGISTRY_GRAPHIC.GetRender().Draw(mModel);
-
-  if (mIsChanged)
-  {
-    mModel.GetMesh()->Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE,
-                             36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
-
-    mIsNeedBuild = true;
-    mIsChanged = false;
-  }
 }

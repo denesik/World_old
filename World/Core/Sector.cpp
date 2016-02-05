@@ -92,8 +92,12 @@ void Sector::Update(class World *world)
   {
     LOG(info) << "SectorBuild: " << glfwGetTime() - currentTime;
   }
-
   mRenderSector.Update();
+}
+
+void Sector::Draw(class World *world)
+{
+  mRenderSector.Draw();
 }
 
 RenderSector &Sector::GetRenderSector()

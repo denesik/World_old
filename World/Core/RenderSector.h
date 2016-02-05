@@ -8,6 +8,7 @@
 
 #include "..\Graphic\Render\DinamicModel.h"
 #include "..\Graphic\Render\RenderableMesh.h"
+#include <atomic>
 
 
 /// Рисует сектор.
@@ -30,11 +31,15 @@ public:
 
   void Update();
 
+  void Draw();
+
 private:
   DinamicModel mModel;
 
-  bool mIsChanged = false;
-  bool mIsNeedBuild = true;
+  bool mIsChanged = true;
+  bool mIsNeedBuild = false;
+
+  std::atomic<bool> mRebuildBuffers = false;
 
 };
 

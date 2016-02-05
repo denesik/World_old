@@ -30,6 +30,8 @@ public:
 
   void Update(class World *world);
 
+  void Draw(class World *world);
+
   RenderSector &GetRenderSector();
 
 private:
