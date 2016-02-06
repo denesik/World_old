@@ -7,10 +7,14 @@
 #define World_h__
 
 #include <unordered_map>
+#include <unordered_set>
 #include <glm/glm.hpp>
 #include "Sector.h"
 #include <memory>
 #include "GameObject.h"
+#include "RenderSector.h"
+#include <mutex>
+#include <list>
 
 namespace std
 {
@@ -33,7 +37,7 @@ public:
   World();
   ~World();
 
-  void LoadSector(const glm::ivec3 &position); 
+  void LoadSector(const glm::ivec3 &position);
 
   void Update();
 
@@ -46,6 +50,12 @@ public:
 
 private:
   std::unordered_map<glm::ivec3, Sector> mSectors;
+  std::unordered_map<glm::ivec3, RenderSector> mRenderSectors;
+
+  glm::ivec3 mLastLoadPos;
+  std::list<glm::ivec3> mListLoad;
+
+  std::mutex mMutex;
 
   Sector *mCurrentSector;
 };

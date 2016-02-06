@@ -80,26 +80,25 @@ int Game::Run()
     REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockStone"), block);
   }
 
-
-  REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
-
-  REGISTRY_CORE.GetWorld().LoadSector({ -1,-1,0 });
-  REGISTRY_CORE.GetWorld().LoadSector({ 0,-1,0 });
-  REGISTRY_CORE.GetWorld().LoadSector({ 1,-1,0 });
-  REGISTRY_CORE.GetWorld().LoadSector({ -1,0,0 });
-  REGISTRY_CORE.GetWorld().LoadSector({ 1,0,0 });
-  REGISTRY_CORE.GetWorld().LoadSector({ -1,1,0 });
-  REGISTRY_CORE.GetWorld().LoadSector({ 0,1,0 });
-  REGISTRY_CORE.GetWorld().LoadSector({ 1,1,0 });
-
   std::atomic<bool> close = false;
 
   std::thread thread([&close]
   {
+    REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
+
+    REGISTRY_CORE.GetWorld().LoadSector({ -1,-1,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 0,-1,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 1,-1,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ -1,0,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 1,0,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ -1,1,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 0,1,0 });
+    REGISTRY_CORE.GetWorld().LoadSector({ 1,1,0 });
+
     while (!close)
     {
       REGISTRY_CORE.GetWorld().Update();
-      std::this_thread::sleep_for(std::chrono::milliseconds(10));
+      std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
   });
 

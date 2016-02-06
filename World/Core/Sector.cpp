@@ -14,8 +14,8 @@
 
 static PerlinNoise noise(0);
 
-Sector::Sector(const glm::ivec3 &position)
-  : mPos(position)
+Sector::Sector(const glm::ivec3 &position, RenderSector &renderSector)
+  : mPos(position), mRenderSector(renderSector)
 {
   auto currentTime = glfwGetTime();
 
@@ -93,11 +93,6 @@ void Sector::Update(class World *world)
     LOG(info) << "SectorBuild: " << glfwGetTime() - currentTime;
   }
   mRenderSector.Update();
-}
-
-void Sector::Draw(class World *world)
-{
-  mRenderSector.Draw();
 }
 
 RenderSector &Sector::GetRenderSector()

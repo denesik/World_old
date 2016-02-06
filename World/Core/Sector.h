@@ -21,7 +21,7 @@ public:
   };
 
 public:
-  Sector(const glm::ivec3 &position);
+  Sector(const glm::ivec3 &position, RenderSector &renderSector);
   ~Sector();
 
   const glm::ivec3 &GetSectorPosition() const;
@@ -30,8 +30,6 @@ public:
   PGameObject GetBlock(const glm::ivec3 &pos);
 
   void Update(class World *world);
-
-  void Draw(class World *world);
 
   RenderSector &GetRenderSector();
 
@@ -46,7 +44,7 @@ private:
 
   glm::ivec3 mPos;
 
-  RenderSector mRenderSector;
+  RenderSector &mRenderSector;
 };
 
 

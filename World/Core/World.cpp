@@ -4,6 +4,9 @@
 // ============================================================================
 #include "World.h"
 #include "..\Log.h"
+#include <tuple>
+#include <utility>
+#include <GLFW\glfw3.h>
 
 
 
@@ -19,29 +22,62 @@ World::~World()
 
 void World::LoadSector(const glm::ivec3 &position)
 {
-  auto it = mSectors.find(position);
-  if (it == mSectors.end())
+  if (position != mLastLoadPos)
   {
-    mSectors.emplace(position, position);
-    LOG(info) << "Count sectors: " << mSectors.size();
+    mMutex.lock();
+    mListLoad.emplace_back(position);
+    mMutex.unlock();
+    mLastLoadPos = position;
   }
 }
 
 void World::Update()
 {
+  bool load = false;
+  glm::ivec3 position;
+  mMutex.lock();
+  while (!mListLoad.empty())
+  {
+    auto it = mSectors.find(mListLoad.front());
+    if (it == mSectors.end())
+    {
+      position = mListLoad.front();
+      mListLoad.pop_front();
+      load = true;
+      break;
+    }
+    else
+    {
+      mListLoad.pop_front();
+    }
+  }
+  mMutex.unlock();
+
+  if (load)
+  {
+    auto res = mRenderSectors.emplace(std::piecewise_construct,
+      std::forward_as_tuple(position),
+      std::forward_as_tuple());
+    mSectors.emplace(std::piecewise_construct,
+      std::forward_as_tuple(position),
+      std::forward_as_tuple(position, res.first->second));
+    LOG(info) << "Count sectors: " << mSectors.size();
+  }
+
+  auto currentTime = glfwGetTime();
   for (auto &sector : mSectors)
   {
     mCurrentSector = &sector.second;
     sector.second.Update(this);
   }
+  LOG(info) << "SectorUpdate: " << glfwGetTime() - currentTime;
 }
 
 void World::Draw()
 {
-  for (auto &sector : mSectors)
+  for (auto &sector : mRenderSectors)
   {
-    mCurrentSector = &sector.second;
-    sector.second.Draw(this);
+    sector.second.Draw();
   }
 }
 

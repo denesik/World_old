@@ -25,6 +25,7 @@ public:
 private:
   std::array<Attribute, ATTRIBUTE_SIZE> mAttributeState;
 
+  bool mCreated = false;
   uint32_t mList = 0;
 };
 

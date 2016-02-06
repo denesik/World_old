@@ -14,7 +14,6 @@ RenderMeshGL1::RenderMeshGL1()
   {
     i = { false, 0, 0 };
   }
-  GL_CALL(mList = glGenLists(1));
 }
 
 
@@ -32,6 +31,12 @@ void RenderMeshGL1::Compile(const float *vertex, size_t vertexCount, size_t vert
 {
   assert(vertex && "vertex pointer is null");
   assert(index && "index pointer is null");
+  if (!mCreated)
+  {
+    GL_CALL(mList = glGenLists(1));
+    mCreated = true;
+  }
+
   /// Имеется массив вершин и индексов, нужно сформировать дисплейный список.
   /// Для этого нужно перейти к неиндексированному массиву.
 
@@ -54,6 +59,9 @@ void RenderMeshGL1::Compile(const float *vertex, size_t vertexCount, size_t vert
 
 void RenderMeshGL1::Draw() const
 {
-  GL_CALL(glCallList(mList));
+  if (mCreated)
+  {
+    GL_CALL(glCallList(mList));
+  }
 }
 
