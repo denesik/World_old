@@ -22,13 +22,16 @@
 #include "Graphic/Render/OpenGLCall.h"
 #include <vector>
 #include "Core/GameObject.h"
-#include "Core/RenderAgent.h"
+#include "Core/StaticRenderAgent.h"
 #include "Core/Sector.h"
 #include "Core/RegistryCore.h"
 #include "Core/World.h"
 #include "Core/MeshBlockGenerator.h"
 #include <thread>
 #include <atomic>
+#include "Core/BlockStaticRenderAgent.h"
+#include "Core/agent_cast.h"
+#include "Core/Block.h"
 
 Game::Game()
 {
@@ -66,15 +69,15 @@ int Game::Run()
   REGISTRY_GRAPHIC.GetTextureManager().Compile();
 
   {
-    auto block = std::make_shared<GameObject>();
-    auto &mg = (static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent"))))->GetMeshBlockGenerator();
+    auto block = std::make_shared<Block>();
+    auto &mg = (agent_cast<BlockStaticRenderAgent>(block->GetFromFullName(StringIntern("StaticRenderAgent"))))->GetMeshBlockGenerator();
     mg.SetTexture(MeshBlockGenerator::ALL, "Textures/sand.png");
     mg.Generate();
     REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockSand"), block);
   }
   {
-    auto block = std::make_shared<GameObject>();
-    auto &mg = (static_cast<RenderAgent *>(block->GetFromFullName(StringIntern("RenderAgent"))))->GetMeshBlockGenerator();
+    auto block = std::make_shared<Block>();
+    auto &mg = (agent_cast<BlockStaticRenderAgent>(block->GetFromFullName(StringIntern("StaticRenderAgent"))))->GetMeshBlockGenerator();
     mg.SetTexture(MeshBlockGenerator::ALL, "Textures/stone.png");
     mg.Generate();
     REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockStone"), block);

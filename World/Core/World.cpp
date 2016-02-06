@@ -64,13 +64,11 @@ void World::Update()
     LOG(info) << "Count sectors: " << mSectors.size();
   }
 
-  auto currentTime = glfwGetTime();
   for (auto &sector : mSectors)
   {
     mCurrentSector = &sector.second;
     sector.second.Update(this);
   }
-  LOG(info) << "SectorUpdate: " << glfwGetTime() - currentTime;
 }
 
 void World::Draw()
@@ -92,7 +90,7 @@ Sector *World::GetSector(const glm::ivec3 &position)
   return nullptr;
 }
 
-PGameObject World::GetBlock(const glm::ivec3 &position)
+PBlock World::GetBlock(const glm::ivec3 &position)
 {
   auto secPos = position;
   const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);

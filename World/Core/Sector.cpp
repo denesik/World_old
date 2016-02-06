@@ -7,7 +7,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <stdint.h>
-#include "RenderAgent.h"
+#include "StaticRenderAgent.h"
 #include "RegistryCore.h"
 #include "MapGen/PerlinNoise.h"
 #include "../Log.h"
@@ -67,7 +67,7 @@ const glm::ivec3 & Sector::GetSectorPosition() const
   return mPos;
 }
 
-PGameObject Sector::GetBlock(const glm::ivec3 &pos)
+PBlock Sector::GetBlock(const glm::ivec3 &pos)
 {
   //assert(glm::clamp(pos, static_cast<int32_t>(-SECTOR_RADIUS), static_cast<int32_t>(SECTOR_RADIUS)) == pos);
 
@@ -79,17 +79,25 @@ void Sector::Update(class World *world)
   auto currentTime = glfwGetTime();
 
   GameObjectParams params{ world , this, {} };
-  for (size_t i = 0; i < mBlocks.size(); ++i)
-  {
-    if (mBlocks[i])
-    {
-      params.pos = mBlocksPos[i];
-      mBlocks[i]->Update(params);
-    }
-  }
+//   for (size_t i = 0; i < mBlocks.size(); ++i)
+//   {
+//     if (mBlocks[i] && !mBlocks[i]->IsStatic())
+//     {
+//       params.pos = mBlocksPos[i];
+//       mBlocks[i]->Update(params);
+//     }
+//   }
 
   if (mRenderSector.IsNeedBuild())
   {
+    for (size_t i = 0; i < mBlocks.size(); ++i)
+    {
+      if (mBlocks[i])
+      {
+        params.pos = mBlocksPos[i];
+        mBlocks[i]->UpdateGraphic(params);
+      }
+    }
     LOG(info) << "SectorBuild: " << glfwGetTime() - currentTime;
   }
   mRenderSector.Update();

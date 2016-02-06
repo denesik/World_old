@@ -3,14 +3,12 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "GameObject.h"
-#include "RenderAgent.h"
+#include "BlockStaticRenderAgent.h"
 
 
 
 GameObject::GameObject()
 {
-  auto renderAgent = std::make_unique<RenderAgent>(this);
-  mAgents[renderAgent->GetFullName()] = std::move(renderAgent);
 }
 
 

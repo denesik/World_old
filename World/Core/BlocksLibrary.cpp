@@ -15,12 +15,12 @@ BlocksLibrary::~BlocksLibrary()
 {
 }
 
-void BlocksLibrary::Registry(const StringIntern &name, PGameObject block, bool isStatic)
+void BlocksLibrary::Registry(const StringIntern &name, PBlock block, bool isStatic)
 {
   mBlocks[name] = block;
 }
 
-PGameObject BlocksLibrary::Create(const StringIntern &name)
+PBlock BlocksLibrary::Create(const StringIntern &name)
 {
   return mBlocks[name];
 }

@@ -112,14 +112,20 @@
     <ClCompile Include="Core\Agent.cpp">
       <Filter>Core\Agents</Filter>
     </ClCompile>
-    <ClCompile Include="Core\RenderAgent.cpp">
-      <Filter>Core\Agents</Filter>
-    </ClCompile>
     <ClCompile Include="Core\PositionAgent.cpp">
       <Filter>Core\Agents</Filter>
     </ClCompile>
     <ClCompile Include="Core\Creature.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\StaticRenderAgent.cpp">
+      <Filter>Core\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Block.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\BlockStaticRenderAgent.cpp">
+      <Filter>Core\Agents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,9 +237,6 @@
     <ClInclude Include="Core\Agent.h">
       <Filter>Core\Agents</Filter>
     </ClInclude>
-    <ClInclude Include="Core\RenderAgent.h">
-      <Filter>Core\Agents</Filter>
-    </ClInclude>
     <ClInclude Include="Core\PositionAgent.h">
       <Filter>Core\Agents</Filter>
     </ClInclude>
@@ -241,6 +244,15 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\agent_cast.h">
+      <Filter>Core\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\StaticRenderAgent.h">
+      <Filter>Core\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Block.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\BlockStaticRenderAgent.h">
       <Filter>Core\Agents</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,7 +6,7 @@
 #ifndef BlocksLibrary_h__
 #define BlocksLibrary_h__
 
-#include "GameObject.h"
+#include "Block.h"
 #include "..\tools\StringIntern.h"
 #include <unordered_map>
 
@@ -17,17 +17,17 @@ public:
   BlocksLibrary();
   ~BlocksLibrary();
 
-  void Registry(const StringIntern &name, PGameObject block, bool isStatic = true);
+  void Registry(const StringIntern &name, PBlock block, bool isStatic = true);
 
 
   /// Создать блок.
   /// Если блок статический, возвращается указатель на экземпляр блока, хранящийся в библиотеке.
   /// Если блок динамический, создается копия блока.
   /// @param blockId Идентификатор блока.
-  PGameObject Create(const StringIntern &name);
+  PBlock Create(const StringIntern &name);
 
 private:
-  std::unordered_map<StringIntern, PGameObject> mBlocks;
+  std::unordered_map<StringIntern, PBlock> mBlocks;
 
 };
 

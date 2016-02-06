@@ -2,25 +2,26 @@
 // ==                   Copyright (c) 2015, Smirnov Denis                    ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#include "RenderAgent.h"
+#include "BlockStaticRenderAgent.h"
 #include "GameObject.h"
 #include "Sector.h"
 #include "MeshBlockGenerator.h"
 #include "..\Graphic\RegistryGraphic.h"
 #include "World.h"
 
-RenderAgent::RenderAgent(GameObject *parent)
-  : Agent(parent, "RenderAgent")
+
+BlockStaticRenderAgent::BlockStaticRenderAgent(GameObject *parent)
+  : StaticRenderAgent(parent)
 {
   mModel.SetTexture(std::get<0>(REGISTRY_GRAPHIC.GetTextureManager().GetTexture("Textures/stone.png")));
 }
 
 
-RenderAgent::~RenderAgent()
+BlockStaticRenderAgent::~BlockStaticRenderAgent()
 {
 }
 
-void RenderAgent::Update(const GameObjectParams &params)
+void BlockStaticRenderAgent::Update(const GameObjectParams &params)
 {
   if (params.sector->GetRenderSector().IsNeedBuild())
   {
@@ -37,7 +38,7 @@ void RenderAgent::Update(const GameObjectParams &params)
         sides &= ~MeshBlockGenerator::RIGHT;
       }
       --pos.x;
-    } 
+    }
     else
     {
       auto pos = static_cast<glm::ivec3>(params.pos);

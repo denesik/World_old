@@ -3,17 +3,21 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#ifndef agent_cast_h__
-#define agent_cast_h__
+#ifndef RenderAgent_h__
+#define RenderAgent_h__
+
 
 #include "Agent.h"
 
 
-template<class T>
-T *agent_cast(Agent *agent)
+
+class StaticRenderAgent : public Agent
 {
-  return static_cast<T *>(agent);
-}
+public:
+  StaticRenderAgent(GameObject *parent);
+  ~StaticRenderAgent();
+};
 
 
-#endif // agent_cast_h__
+
+#endif // RenderAgent_h__

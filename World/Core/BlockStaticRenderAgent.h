@@ -3,21 +3,19 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#ifndef RenderAgent_h__
-#define RenderAgent_h__
+#ifndef BlockStaticRenderAgent_h__
+#define BlockStaticRenderAgent_h__
 
-
-#include "Agent.h"
-#include <memory>
+#include "StaticRenderAgent.h"
 #include "..\Graphic\Render\StaticModel.h"
 #include "MeshBlockGenerator.h"
 
 
-class RenderAgent : public Agent
+class BlockStaticRenderAgent : public StaticRenderAgent
 {
 public:
-  RenderAgent(GameObject *parent);
-  ~RenderAgent();
+  BlockStaticRenderAgent(GameObject *parent);
+  ~BlockStaticRenderAgent();
 
   void Update(const GameObjectParams &params) override;
 
@@ -25,7 +23,6 @@ public:
   {
     return mMeshBlockGenerator;
   }
-
 private:
   StaticModel mModel;
   MeshBlockGenerator mMeshBlockGenerator;
@@ -33,4 +30,4 @@ private:
 
 
 
-#endif // RenderAgent_h__
+#endif // BlockStaticRenderAgent_h__

@@ -2,18 +2,20 @@
 // ==                   Copyright (c) 2015, Smirnov Denis                    ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#pragma once
-#ifndef agent_cast_h__
-#define agent_cast_h__
+#include "StaticRenderAgent.h"
+#include "GameObject.h"
+#include "Sector.h"
+#include "MeshBlockGenerator.h"
+#include "..\Graphic\RegistryGraphic.h"
+#include "World.h"
 
-#include "Agent.h"
-
-
-template<class T>
-T *agent_cast(Agent *agent)
+StaticRenderAgent::StaticRenderAgent(GameObject *parent)
+  : Agent(parent, "StaticRenderAgent")
 {
-  return static_cast<T *>(agent);
+  
 }
 
 
-#endif // agent_cast_h__
+StaticRenderAgent::~StaticRenderAgent()
+{
+}

@@ -7,7 +7,7 @@
 #define Sector_h__
 
 #include <array>
-#include "GameObject.h"
+#include "Block.h"
 #include <glm/glm.hpp>
 #include "RenderSector.h"
 
@@ -27,20 +27,15 @@ public:
   const glm::ivec3 &GetSectorPosition() const;
 
   /// ¬ернуть блок в локальных координатах сектора.
-  PGameObject GetBlock(const glm::ivec3 &pos);
+  PBlock GetBlock(const glm::ivec3 &pos);
 
   void Update(class World *world);
 
   RenderSector &GetRenderSector();
 
 private:
-  //template<class T, size_t S>
-  //using SectorMap = std::array<std::array<std::array<T, S>, S>, S>;
-
-  std::array<PGameObject, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocks;
+  std::array<PBlock, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocks;
   std::array<glm::ivec3, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocksPos;
-
-  //SectorMap<PGameObject, SECTOR_SIZE> mBlocks;
 
   glm::ivec3 mPos;
 
