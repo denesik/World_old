@@ -107,12 +107,23 @@ int Game::Run()
   while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
   {
     fps.Update();
-    glm::ivec3 camPos = REGISTRY_GRAPHIC.GetCamera().GetPos();
+    auto pos = REGISTRY_GRAPHIC.GetCamera().GetPos();
+    glm::ivec3 camPos = glm::round(REGISTRY_GRAPHIC.GetCamera().GetPos());
+    glm::ivec3 secPos = glm::round(REGISTRY_GRAPHIC.GetCamera().GetPos());
+    const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);
+    secPos.x >= 0 ? secPos.x += radius : secPos.x -= radius;
+    secPos.y >= 0 ? secPos.y += radius : secPos.y -= radius;
+    secPos.z >= 0 ? secPos.z += radius : secPos.z -= radius;
+    secPos /= static_cast<int32_t>(Sector::SECTOR_SIZE);
+
     REGISTRY_GRAPHIC.GetWindow().SetTitle(
-      std::to_string(fps.GetCount()) + std::string(" fps. x: ") +
+      std::to_string(fps.GetCount()) + std::string(" fps. pos: [x: ") +
       std::to_string(camPos.x) + std::string(" y: ") +
       std::to_string(camPos.y) + std::string(" z: ") +
-      std::to_string(camPos.z)
+      std::to_string(camPos.z) + std::string("] sec: [x: ") +
+      std::to_string(secPos.x) + std::string(" y: ") +
+      std::to_string(secPos.y) + std::string(" z: ") +
+      std::to_string(secPos.z) + std::string("]")
       );
 
     Update();
@@ -179,13 +190,13 @@ void Game::Update()
 // 
   REGISTRY_GRAPHIC.GetCamera().Update();
 
-  glm::ivec3 camPos = REGISTRY_GRAPHIC.GetCamera().GetPos();
-  camPos.z = 0;
-  camPos /= static_cast<int32_t>(Sector::SECTOR_RADIUS);
-  camPos.x >= 0 ? ++camPos.x : --camPos.x;
-  camPos.y >= 0 ? ++camPos.y : --camPos.y;
-  camPos.z >= 0 ? ++camPos.z : --camPos.z;
-  camPos /= 2;
+  glm::ivec3 secPos = glm::round(REGISTRY_GRAPHIC.GetCamera().GetPos());
+  const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);
+  secPos.x >= 0 ? secPos.x += radius : secPos.x -= radius;
+  secPos.y >= 0 ? secPos.y += radius : secPos.y -= radius;
+  secPos.z >= 0 ? secPos.z += radius : secPos.z -= radius;
+  secPos /= static_cast<int32_t>(Sector::SECTOR_SIZE);
+  secPos.z = 0;
 
   glm::ivec3 offsets[8] =
   {
@@ -200,7 +211,7 @@ void Game::Update()
   };
   for (auto i : offsets)
   {
-    REGISTRY_CORE.GetWorld().LoadSector(camPos + i);
+    REGISTRY_CORE.GetWorld().LoadSector(secPos + i);
   }
   
 //   REGISTRY_CORE.GetPlayer().SetDirection(REGISTRY_GRAPHIC.GetCamera().GetDirection());

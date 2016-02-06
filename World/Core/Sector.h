@@ -26,6 +26,7 @@ public:
 
   const glm::ivec3 &GetSectorPosition() const;
 
+  /// ¬ернуть блок в локальных координатах сектора.
   PGameObject GetBlock(const glm::ivec3 &pos);
 
   void Update(class World *world);

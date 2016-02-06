@@ -10,6 +10,7 @@
 #include <glm/glm.hpp>
 #include "Sector.h"
 #include <memory>
+#include "GameObject.h"
 
 namespace std
 {
@@ -37,6 +38,11 @@ public:
   void Update();
 
   void Draw();
+
+  /// Получить сектор по позиции сектора.
+  Sector *GetSector(const glm::ivec3 &position);
+
+  PGameObject GetBlock(const glm::ivec3 &position);
 
 private:
   std::unordered_map<glm::ivec3, Sector> mSectors;

@@ -7,6 +7,7 @@
 #include "Sector.h"
 #include "MeshBlockGenerator.h"
 #include "..\Graphic\RegistryGraphic.h"
+#include "World.h"
 
 RenderAgent::RenderAgent(GameObject *parent)
   : Agent(parent, "RenderAgent")
@@ -36,6 +37,15 @@ void RenderAgent::Update(const GameObjectParams &params)
         sides &= ~MeshBlockGenerator::RIGHT;
       }
       --pos.x;
+    } 
+    else
+    {
+      auto pos = static_cast<glm::ivec3>(params.pos);
+      ++pos.x;
+      if (params.world->GetBlock(pos))
+      {
+        sides &= ~MeshBlockGenerator::RIGHT;
+      }
     }
     if (pos.x > -radius)
     {
@@ -45,6 +55,15 @@ void RenderAgent::Update(const GameObjectParams &params)
         sides &= ~MeshBlockGenerator::LEFT;
       }
       ++pos.x;
+    }
+    else
+    {
+      auto pos = static_cast<glm::ivec3>(params.pos);
+      --pos.x;
+      if (params.world->GetBlock(pos))
+      {
+        sides &= ~MeshBlockGenerator::LEFT;
+      }
     }
 
     if (pos.y < radius)
@@ -56,6 +75,15 @@ void RenderAgent::Update(const GameObjectParams &params)
       }
       --pos.y;
     }
+    else
+    {
+      auto pos = static_cast<glm::ivec3>(params.pos);
+      ++pos.y;
+      if (params.world->GetBlock(pos))
+      {
+        sides &= ~MeshBlockGenerator::BACK;
+      }
+    }
     if (pos.y > -radius)
     {
       --pos.y;
@@ -64,6 +92,15 @@ void RenderAgent::Update(const GameObjectParams &params)
         sides &= ~MeshBlockGenerator::FRONT;
       }
       ++pos.y;
+    }
+    else
+    {
+      auto pos = static_cast<glm::ivec3>(params.pos);
+      --pos.y;
+      if (params.world->GetBlock(pos))
+      {
+        sides &= ~MeshBlockGenerator::FRONT;
+      }
     }
 
     if (pos.z < radius)
@@ -75,6 +112,15 @@ void RenderAgent::Update(const GameObjectParams &params)
       }
       --pos.z;
     }
+    else
+    {
+      auto pos = static_cast<glm::ivec3>(params.pos);
+      ++pos.z;
+      if (params.world->GetBlock(pos))
+      {
+        sides &= ~MeshBlockGenerator::TOP;
+      }
+    }
     if (pos.z > -radius)
     {
       --pos.z;
@@ -84,6 +130,16 @@ void RenderAgent::Update(const GameObjectParams &params)
       }
       ++pos.z;
     }
+    else
+    {
+      auto pos = static_cast<glm::ivec3>(params.pos);
+      --pos.z;
+      if (params.world->GetBlock(pos))
+      {
+        sides &= ~MeshBlockGenerator::BOTTOM;
+      }
+    }
+
     if (sides)
     {
       mModel.GetMesh() = mMeshBlockGenerator.Create(static_cast<MeshBlockGenerator::Side>(sides));
