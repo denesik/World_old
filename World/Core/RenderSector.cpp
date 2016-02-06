@@ -60,21 +60,21 @@ void RenderSector::Update()
   if (mIsNeedBuild)
   {
     mIsNeedBuild = false;
-    // Обновляем буфер, если не нужно перестраивать сектор.
-    if (!mIsChanged)
-    {
-      mRebuildBuffers = true;
-    }
+    mRebuildBuffers = true;
   }
 
   // Сектор был изменен, нужно его перестроить.
   if (mIsChanged)
   {
-    mModel.GetMesh()->Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE,
-      36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
+    // Если буфер компилируется, не трогаем сектор.
+    if (!mRebuildBuffers)
+    {
+      mModel.GetMesh()->Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE,
+        36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
 
-    mIsNeedBuild = true;
-    mIsChanged = false;
+      mIsNeedBuild = true;
+      mIsChanged = false;
+    }
   }
 }
 

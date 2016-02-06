@@ -18,7 +18,7 @@ GameObject::~GameObject()
 {
 }
 
-void GameObject::Update(const GameObjectParams &params)
+void GameObject::Update(GameObjectParams &params)
 {
   for (auto &agent : mAgents)
   {

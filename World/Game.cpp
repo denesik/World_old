@@ -99,6 +99,7 @@ int Game::Run()
     while (!close)
     {
       REGISTRY_CORE.GetWorld().Update();
+      std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
   });
 
@@ -129,8 +130,13 @@ int Game::Run()
 
 void Game::Update()
 {
-  const float speed = 0.16f;
+  float speed = 0.16f;
+  float speedk = 3.0f;
 
+  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT_SHIFT))
+  {
+    speed *= speedk;
+  }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
   {
     REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, -speed / 2.0f });

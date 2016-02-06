@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClCompile Include="Core\Agent.cpp" />
     <ClCompile Include="Core\BlocksLibrary.cpp" />
+    <ClCompile Include="Core\Creature.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
     <ClCompile Include="Core\MapGen\PerlinNoise.cpp" />
     <ClCompile Include="Core\MeshBlockGenerator.cpp" />
     <ClCompile Include="Core\Player.cpp" />
+    <ClCompile Include="Core\PositionAgent.cpp" />
     <ClCompile Include="Core\RegistryCore.cpp" />
     <ClCompile Include="Core\RenderAgent.cpp" />
     <ClCompile Include="Core\RenderSector.cpp" />
@@ -55,12 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Agent.h" />
+    <ClInclude Include="Core\agent_cast.h" />
     <ClInclude Include="Core\BlocksLibrary.h" />
+    <ClInclude Include="Core\Creature.h" />
     <ClInclude Include="Core\GameObject.h" />
     <ClInclude Include="Core\GameObjectParams.h" />
     <ClInclude Include="Core\MapGen\PerlinNoise.h" />
     <ClInclude Include="Core\MeshBlockGenerator.h" />
     <ClInclude Include="Core\Player.h" />
+    <ClInclude Include="Core\PositionAgent.h" />
     <ClInclude Include="Core\RegistryCore.h" />
     <ClInclude Include="Core\RenderAgent.h" />
     <ClInclude Include="Core\RenderSector.h" />

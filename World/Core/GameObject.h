@@ -18,13 +18,13 @@ class GameObject
 {
 public:
   GameObject();
-  ~GameObject();
+  virtual ~GameObject();
 
-  void Update(const GameObjectParams &params);
+  virtual void Update(GameObjectParams &params);
 
   Agent *GetFromFullName(const StringIntern &name);
 
-private:
+protected:
   std::map<StringIntern, std::unique_ptr<Agent>> mAgents;
 
 };

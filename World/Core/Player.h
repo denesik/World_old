@@ -6,10 +6,10 @@
 #ifndef Player_h__
 #define Player_h__
 
-#include "GameObject.h"
+#include "Creature.h"
 
 
-class Player : public GameObject
+class Player : public Creature
 {
 public:
   Player();

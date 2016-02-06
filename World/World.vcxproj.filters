@@ -19,6 +19,9 @@
     <Filter Include="Core\MapGen">
       <UniqueIdentifier>{c3417e14-6780-4040-8219-9b32aef22c51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Agents">
+      <UniqueIdentifier>{ceb7abd4-d9b3-4d64-91bf-4efd67815e5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphic\RegistryGraphic.cpp">
@@ -67,12 +70,6 @@
     <ClCompile Include="Graphic\Render\RenderMeshGL1.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Agent.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\RenderAgent.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Core\GameObject.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -111,6 +108,18 @@
     </ClCompile>
     <ClCompile Include="Graphic\Render\DinamicModel.cpp">
       <Filter>Graphic\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Agent.cpp">
+      <Filter>Core\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\RenderAgent.cpp">
+      <Filter>Core\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\PositionAgent.cpp">
+      <Filter>Core\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Creature.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,12 +180,6 @@
     <ClInclude Include="Graphic\Render\RenderMeshGL1.h">
       <Filter>Graphic\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Agent.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\RenderAgent.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="tools\StringIntern.h">
       <Filter>tools</Filter>
     </ClInclude>
@@ -224,6 +227,21 @@
     </ClInclude>
     <ClInclude Include="Graphic\Render\DinamicModel.h">
       <Filter>Graphic\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Agent.h">
+      <Filter>Core\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\RenderAgent.h">
+      <Filter>Core\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PositionAgent.h">
+      <Filter>Core\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Creature.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\agent_cast.h">
+      <Filter>Core\Agents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
