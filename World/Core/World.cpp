@@ -3,6 +3,7 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "World.h"
+#include "..\Log.h"
 
 
 
@@ -22,6 +23,7 @@ void World::LoadSector(const glm::ivec3 &position)
   if (it == mSectors.end())
   {
     mSectors.emplace(position, position);
+    LOG(info) << "Count sectors: " << mSectors.size();
   }
 }
 

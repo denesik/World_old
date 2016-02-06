@@ -142,12 +142,21 @@ int Game::Run()
 void Game::Update()
 {
   float speed = 0.16f;
-  float speedk = 3.0f;
+  static float k = 1.0f;
 
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT_SHIFT))
+  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyPress(GLFW_KEY_9))
   {
-    speed *= speedk;
+    k += 1.0f;
   }
+  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyPress(GLFW_KEY_0))
+  {
+    k -= 1.0f;
+  }
+  if (k < 1.0f)
+  {
+    k = 1.0f;
+  }
+
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
   {
     REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, -speed / 2.0f });
@@ -167,19 +176,19 @@ void Game::Update()
 
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_D))
   {
-    REGISTRY_GRAPHIC.GetCamera().Move({ speed, 0.0f, 0.0f });
+    REGISTRY_GRAPHIC.GetCamera().Move({ speed * k, 0.0f, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_A))
   {
-    REGISTRY_GRAPHIC.GetCamera().Move({ -speed, 0.0f, 0.0f });
+    REGISTRY_GRAPHIC.GetCamera().Move({ -speed * k, 0.0f, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_W))
   {
-    REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, speed, 0.0f });
+    REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, speed * k, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_S))
   {
-    REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, -speed, 0.0f });
+    REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, -speed * k, 0.0f });
   }
 
   float ay = REGISTRY_GRAPHIC.GetWindow().GetMouse().IsMoveX() / 30.0f;
