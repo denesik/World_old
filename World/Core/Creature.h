@@ -18,8 +18,9 @@ public:
 
   void Update(GameObjectParams &params) override;
 
+
 private:
-  PositionAgent *mPositionAgent;
+  static const StringIntern mPositionAgentName;
 
 };
 

@@ -27,6 +27,7 @@
     <ClCompile Include="Core\GameObject.cpp" />
     <ClCompile Include="Core\MapGen\PerlinNoise.cpp" />
     <ClCompile Include="Core\MeshBlockGenerator.cpp" />
+    <ClCompile Include="Core\PhysicAgent.cpp" />
     <ClCompile Include="Core\Player.cpp" />
     <ClCompile Include="Core\PositionAgent.cpp" />
     <ClCompile Include="Core\RegistryCore.cpp" />
@@ -68,6 +69,7 @@
     <ClInclude Include="Core\GameObjectParams.h" />
     <ClInclude Include="Core\MapGen\PerlinNoise.h" />
     <ClInclude Include="Core\MeshBlockGenerator.h" />
+    <ClInclude Include="Core\PhysicAgent.h" />
     <ClInclude Include="Core\Player.h" />
     <ClInclude Include="Core\PositionAgent.h" />
     <ClInclude Include="Core\RegistryCore.h" />

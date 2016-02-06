@@ -15,5 +15,10 @@ T *agent_cast(Agent *agent)
   return static_cast<T *>(agent);
 }
 
+template<class T>
+const T *agent_const_cast(const Agent *agent)
+{
+  return static_cast<const T *>(agent);
+}
 
 #endif // agent_cast_h__

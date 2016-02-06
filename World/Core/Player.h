@@ -15,6 +15,17 @@ public:
   Player();
   ~Player();
 
+  /// Повернуть камеру относительно текущей ориентации на заданный угол по трем осям.
+  void Rotate(const glm::vec3 &degrees);
+
+  /// Переместиться, относительно текущего положения и ориентации.
+  void Move(const glm::vec3 &dist);
+
+  const glm::vec3 &GetPosition() const;
+
+private:
+  static const StringIntern mPhysicAgentName;
+
 };
 
 

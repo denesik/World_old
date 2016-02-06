@@ -15,6 +15,7 @@
 #include "RenderSector.h"
 #include <mutex>
 #include <list>
+#include "Player.h"
 
 namespace std
 {
@@ -48,6 +49,8 @@ public:
 
   PBlock GetBlock(const glm::ivec3 &position);
 
+  Player *GetPlayer();
+
 private:
   std::unordered_map<glm::ivec3, Sector> mSectors;
   std::unordered_map<glm::ivec3, RenderSector> mRenderSectors;
@@ -58,6 +61,8 @@ private:
   std::mutex mMutex;
 
   Sector *mCurrentSector;
+
+  std::unique_ptr<Player> mPlayer;
 };
 
 

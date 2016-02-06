@@ -161,44 +161,52 @@ void Game::Update()
 
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
   {
+    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ 0.0f, 0.0f, -speed / 2.0f });
     REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, -speed / 2.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_RIGHT))
   {
+    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ 0.0f, 0.0f, speed / 2.0f });
     REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, speed / 2.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_DOWN))
   {
+    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ speed / 2.0f, 0.0f, 0.0f });
     REGISTRY_GRAPHIC.GetCamera().Rotate({ speed / 2.0f, 0.0f, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_UP))
   {
+    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ -speed / 2.0f, 0.0f, 0.0f });
     REGISTRY_GRAPHIC.GetCamera().Rotate({ -speed / 2.0f, 0.0f, 0.0f });
   }
 
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_D))
   {
-    REGISTRY_GRAPHIC.GetCamera().Move({ speed * k, 0.0f, 0.0f });
+    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ speed * k, 0.0f, 0.0f });
+    //REGISTRY_GRAPHIC.GetCamera().Move({ speed * k, 0.0f, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_A))
   {
-    REGISTRY_GRAPHIC.GetCamera().Move({ -speed * k, 0.0f, 0.0f });
+    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ -speed * k, 0.0f, 0.0f });
+    //REGISTRY_GRAPHIC.GetCamera().Move({ -speed * k, 0.0f, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_W))
   {
-    REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, speed * k, 0.0f });
+    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, speed * k, 0.0f });
+    //REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, speed * k, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_S))
   {
-    REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, -speed * k, 0.0f });
+    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, -speed * k, 0.0f });
+    //REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, -speed * k, 0.0f });
   }
 
   float ay = REGISTRY_GRAPHIC.GetWindow().GetMouse().IsMoveX() / 30.0f;
   float ax = REGISTRY_GRAPHIC.GetWindow().GetMouse().IsMoveY() / 30.0f;
   //REGISTRY_GRAPHIC.GetCamera().Rotate(glm::vec3(ax, ay, 0.0f) / 2.0f);
 
-//   REGISTRY_GRAPHIC.GetCamera().SetPos(REGISTRY_CORE.GetPlayer().GetPosition());
-// 
+  REGISTRY_GRAPHIC.GetCamera().SetPos(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
+
   REGISTRY_GRAPHIC.GetCamera().Update();
 
   glm::ivec3 secPos = glm::round(REGISTRY_GRAPHIC.GetCamera().GetPos());
@@ -265,3 +273,38 @@ void Game::Draw()
 
   REGISTRY_CORE.GetWorld().Draw();
 }
+
+
+//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
+//   {
+//     REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, -speed / 2.0f });
+//   }
+//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_RIGHT))
+//   {
+//     REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, speed / 2.0f });
+//   }
+//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_DOWN))
+//   {
+//     REGISTRY_GRAPHIC.GetCamera().Rotate({ speed / 2.0f, 0.0f, 0.0f });
+//   }
+//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_UP))
+//   {
+//     REGISTRY_GRAPHIC.GetCamera().Rotate({ -speed / 2.0f, 0.0f, 0.0f });
+//   }
+// 
+//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_D))
+//   {
+//     REGISTRY_GRAPHIC.GetCamera().Move({ speed * k, 0.0f, 0.0f });
+//   }
+//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_A))
+//   {
+//     REGISTRY_GRAPHIC.GetCamera().Move({ -speed * k, 0.0f, 0.0f });
+//   }
+//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_W))
+//   {
+//     REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, speed * k, 0.0f });
+//   }
+//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_S))
+//   {
+//     REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, -speed * k, 0.0f });
+//   }

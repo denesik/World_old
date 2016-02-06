@@ -12,7 +12,7 @@
 
 World::World()
 {
-  
+  mPlayer = std::make_unique<Player>();
 }
 
 
@@ -33,6 +33,8 @@ void World::LoadSector(const glm::ivec3 &position)
 
 void World::Update()
 {
+  mPlayer->Update(GameObjectParams{ this, nullptr, {} });
+
   bool load = false;
   glm::ivec3 position;
   mMutex.lock();
@@ -61,6 +63,27 @@ void World::Update()
     mSectors.emplace(std::piecewise_construct,
       std::forward_as_tuple(position),
       std::forward_as_tuple(position, res.first->second));
+
+//     glm::ivec3 offsets[] =
+//     {
+//       { -1,-1,0 },
+//       { -1,0,0 },
+//       { -1,1,0 },
+//       { 0,-1,0 },
+//       { 0,1,0 },
+//       { 1,-1,0 },
+//       { 1,0,0 },
+//       { 1,1,0 },
+//     };
+// 
+//     for (auto i : offsets)
+//     {
+//       if (auto sector = GetSector(position + i))
+//       {
+//         sector->GetRenderSector().Changed();
+//       }
+//     }
+
     LOG(info) << "Count sectors: " << mSectors.size();
   }
 
@@ -103,4 +126,9 @@ PBlock World::GetBlock(const glm::ivec3 &position)
     return sector->GetBlock(position - secPos * static_cast<int32_t>(Sector::SECTOR_SIZE));
   }
   return nullptr;
+}
+
+Player *World::GetPlayer()
+{
+  return mPlayer.get();
 }

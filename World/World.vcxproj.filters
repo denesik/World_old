@@ -127,6 +127,9 @@
     <ClCompile Include="Core\BlockStaticRenderAgent.cpp">
       <Filter>Core\Agents</Filter>
     </ClCompile>
+    <ClCompile Include="Core\PhysicAgent.cpp">
+      <Filter>Core\Agents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">
@@ -253,6 +256,9 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\BlockStaticRenderAgent.h">
+      <Filter>Core\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PhysicAgent.h">
       <Filter>Core\Agents</Filter>
     </ClInclude>
   </ItemGroup>

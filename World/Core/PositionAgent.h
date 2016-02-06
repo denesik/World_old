@@ -17,6 +17,11 @@ public:
 
   void Update(const GameObjectParams &params) override;
 
+  inline void Set(const glm::vec3 &pos) noexcept
+  {
+    mPos = pos;
+  }
+
   inline const glm::vec3 &Get() const noexcept
   {
     return mPos;

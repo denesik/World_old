@@ -3,14 +3,19 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "Creature.h"
+#include "agent_cast.h"
+#include "PhysicAgent.h"
 
+
+const StringIntern Creature::mPositionAgentName = StringIntern("PositionAgent");
 
 
 Creature::Creature()
 {
   auto positionAgent = std::make_unique<PositionAgent>(this);
   mAgents[positionAgent->GetFullName()] = std::move(positionAgent);
-  mPositionAgent = positionAgent.get();
+  auto physicAgent = std::make_unique<PhysicAgent>(this);
+  mAgents[physicAgent->GetFullName()] = std::move(physicAgent);
 }
 
 
@@ -20,6 +25,6 @@ Creature::~Creature()
 
 void Creature::Update(GameObjectParams &params)
 {
-  params.pos = mPositionAgent->Get();
+  params.pos = GetFromFullName<PositionAgent>(mPositionAgentName)->Get();
   GameObject::Update(params);
 }
