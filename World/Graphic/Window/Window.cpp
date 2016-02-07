@@ -37,6 +37,8 @@ Window::Window(const glm::uvec2 &size)
     throw "Window not created.";
   }
 
+  mMouse = std::make_unique<Mouse>(*mWindow);
+
   /// Привязываем к glfw окну указатель на объект WindowGL.
   glfwSetWindowUserPointer(mWindow.get(), this);
 
@@ -45,13 +47,6 @@ Window::Window(const glm::uvec2 &size)
     Window *window = static_cast<Window *>(glfwGetWindowUserPointer(win));
     assert(window);
     window->mKeyboard->SetKey(key, scancode, action, mods);
-  });
-
-  glfwSetCursorPosCallback(mWindow.get(), [](GLFWwindow *win, double x, double y)
-  {
-    Window *window = static_cast<Window *>(glfwGetWindowUserPointer(win));
-    assert(window);
-    window->mMouse.SetPos(glm::vec2(static_cast<float>(x), static_cast<float>(y)));
   });
 
   std::cout << "Window created" << std::endl;
@@ -89,11 +84,6 @@ void Window::WindowSystemFinally()
   glfwTerminate();
 }
 
-void Window::WindowSystemPollEvents()
-{
-  glfwPollEvents();
-}
-
 void Window::SetCurrentContext()
 {
   assert(mWindow);
@@ -113,10 +103,13 @@ bool Window::WindowShouldClose()
   return glfwWindowShouldClose(mWindow.get()) == GL_TRUE;
 }
 
-void Window::SwapBuffers()
+void Window::Update()
 {
   assert(mWindow);
   glfwSwapBuffers(mWindow.get());
+
+  mMouse->Update();
+  glfwPollEvents();
 }
 
 const glm::uvec2 & Window::GetSize() const
@@ -140,9 +133,9 @@ void Window::SetTitle(const std::string &title)
   glfwSetWindowTitle(mWindow.get(), title.c_str());
 }
 
-Mouse & Window::GetMouse()
+Mouse &Window::GetMouse()
 {
-  return mMouse;
+  return *mMouse;
 }
 
 

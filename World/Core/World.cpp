@@ -24,9 +24,7 @@ void World::LoadSector(const glm::ivec3 &position)
 {
   if (position != mLastLoadPos)
   {
-    mMutex.lock();
     mListLoad.emplace_back(position);
-    mMutex.unlock();
     mLastLoadPos = position;
   }
 }
@@ -37,7 +35,6 @@ void World::Update()
 
   bool load = false;
   glm::ivec3 position;
-  mMutex.lock();
   while (!mListLoad.empty())
   {
     auto it = mSectors.find(mListLoad.front());
@@ -53,7 +50,6 @@ void World::Update()
       mListLoad.pop_front();
     }
   }
-  mMutex.unlock();
 
   if (load)
   {

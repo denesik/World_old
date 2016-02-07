@@ -13,7 +13,6 @@
 #include <memory>
 #include "Block.h"
 #include "RenderSector.h"
-#include <mutex>
 #include <list>
 #include "Player.h"
 
@@ -57,8 +56,6 @@ private:
 
   glm::ivec3 mLastLoadPos;
   std::list<glm::ivec3> mListLoad;
-
-  std::mutex mMutex;
 
   Sector *mCurrentSector;
 

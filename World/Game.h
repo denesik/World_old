@@ -15,9 +15,9 @@ public:
 
   void Initialize();
 
-  void Update();
+  void Update(double dt);
 
-  void Draw();
+  void Draw(double dt);
 
 private:
 

@@ -7,14 +7,14 @@
 #define Mouse_h__
 
 #include <glm/glm.hpp>
+#include <mutex>
+
 
 class Mouse
 {
 public:
-  Mouse(void);
+  Mouse(struct GLFWwindow &window);
   ~Mouse(void);
-
-  void SetPos(const glm::vec2 &pos);
 
   float IsMoveX();
 
@@ -23,11 +23,14 @@ public:
   void Update();
 
 private:
+  struct GLFWwindow &mWindow;
 
   glm::vec2 mPos;
-
   glm::vec2 mMoved;
 
+  std::mutex mMutex;
+
+  bool mIsFocused;
 };
 
 

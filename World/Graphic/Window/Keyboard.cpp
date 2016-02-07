@@ -7,9 +7,11 @@
 #include <GLFW\glfw3.h>
 
 Keyboard::Keyboard()
-  : mKeyState(GLFW_KEY_LAST + 1, GLFW_RELEASE)
 {
-
+  for (auto &key : mKeyState)
+  {
+    key = GLFW_RELEASE;
+  }
 }
 
 Keyboard::~Keyboard()
@@ -25,11 +27,14 @@ void Keyboard::SetKey(int key, int , int action, int )
     //printf("glfw unknown key\n");
     return;
   }
+
+  std::lock_guard<std::mutex> lock(mMutex);
   mKeyState[key] = action;
 }
 
 bool Keyboard::IsKeyPress(int key)
 {
+  std::lock_guard<std::mutex> lock(mMutex);
   if(mKeyState[key] == GLFW_PRESS)
   {
     mKeyState[key] = GLFW_REPEAT;
@@ -40,6 +45,7 @@ bool Keyboard::IsKeyPress(int key)
 
 bool Keyboard::IsKeyUp(int key)
 {
+  std::lock_guard<std::mutex> lock(mMutex);
   if(mKeyState[key] == GLFW_RELEASE)
     return true;
   return false;
@@ -47,6 +53,7 @@ bool Keyboard::IsKeyUp(int key)
 
 bool Keyboard::IsKeyDown(int key)
 {
+  std::lock_guard<std::mutex> lock(mMutex);
   if(mKeyState[key] == GLFW_REPEAT || mKeyState[key] == GLFW_PRESS)
     return true;
   return false;

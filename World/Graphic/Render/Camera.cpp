@@ -11,7 +11,7 @@ Camera::Camera(void)
 {
   mFov = 45.0f;
   mAspect = 1.0f;
-  mNear = 0.1f;
+  mNear = 0.001f;
   mFar = 1000.0f;
   mProjection = glm::perspective(mFov, mAspect, mNear, mFar);
 

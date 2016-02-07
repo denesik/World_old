@@ -6,7 +6,9 @@
 #ifndef Keyboard_GLFW_h__
 #define Keyboard_GLFW_h__
 
-#include <vector>
+#include <GLFW\glfw3.h>
+#include <array>
+#include <mutex>
 
 class Keyboard
 {
@@ -21,8 +23,8 @@ public:
   bool IsKeyDown(int key);
 
 private:
-
-  std::vector<int> mKeyState;
+  std::array<int, GLFW_KEY_LAST + 1> mKeyState;
+  std::mutex mMutex;
 };
 
 

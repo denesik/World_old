@@ -87,7 +87,7 @@ int Game::Run()
 
   REGISTRY_CORE.GetWorld().GetPlayer()->SetPosition({ 0,0,10 });
 
-  std::thread thread([&close]
+  std::thread thread([this, &close]
   {
     REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
 
@@ -100,14 +100,19 @@ int Game::Run()
     REGISTRY_CORE.GetWorld().LoadSector({ 0,1,0 });
     REGISTRY_CORE.GetWorld().LoadSector({ 1,1,0 });
 
+
+    auto currTime = glfwGetTime();
     while (!close)
     {
-      REGISTRY_CORE.GetWorld().Update();
+      auto lastTime = currTime;
+      currTime = glfwGetTime();
+      Update(currTime - lastTime);
       std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
   });
 
   FpsCounter fps;
+  auto currTime = glfwGetTime();
   while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
   {
     fps.Update();
@@ -130,11 +135,11 @@ int Game::Run()
       std::to_string(secPos.z) + std::string("]")
       );
 
-    Update();
-    Draw();
+    auto lastTime = currTime;
+    currTime = glfwGetTime();
+    Draw(currTime - lastTime);
 
-    REGISTRY_GRAPHIC.GetWindow().SwapBuffers();
-    Window::WindowSystemPollEvents();
+    REGISTRY_GRAPHIC.GetWindow().Update();
   }
 
   close = true;
@@ -143,11 +148,37 @@ int Game::Run()
   return 0;
 }
 
-void Game::Update()
+void Game::Update(double dt)
 {
-  float speed = 0.16f;
-  static float k = 1.0f;
+  float speedRot = static_cast<float>(3.0 * dt);
 
+  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
+  {
+    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ 0.0f, 0.0f, -speedRot });
+    REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, -speedRot });
+  }
+  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_RIGHT))
+  {
+    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ 0.0f, 0.0f, speedRot });
+    REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, speedRot });
+  }
+  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_DOWN))
+  {
+    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ speedRot, 0.0f, 0.0f });
+    REGISTRY_GRAPHIC.GetCamera().Rotate({ speedRot, 0.0f, 0.0f });
+  }
+  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_UP))
+  {
+    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ -speedRot, 0.0f, 0.0f });
+    REGISTRY_GRAPHIC.GetCamera().Rotate({ -speedRot, 0.0f, 0.0f });
+  }
+
+  float ay = REGISTRY_GRAPHIC.GetWindow().GetMouse().IsMoveX();
+  float ax = REGISTRY_GRAPHIC.GetWindow().GetMouse().IsMoveY();
+  REGISTRY_CORE.GetWorld().GetPlayer()->Rotate(glm::vec3(ax, 0.0f, ay) * static_cast<float>(dt));
+  REGISTRY_GRAPHIC.GetCamera().Rotate(glm::vec3(ax, 0.0f, ay) * static_cast<float>(dt));
+
+  static float k = 1.0f;
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyPress(GLFW_KEY_9))
   {
     k += 1.0f;
@@ -160,58 +191,26 @@ void Game::Update()
   {
     k = 1.0f;
   }
-
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
-  {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ 0.0f, 0.0f, -speed / 2.0f });
-    REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, -speed / 2.0f });
-  }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_RIGHT))
-  {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ 0.0f, 0.0f, speed / 2.0f });
-    REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, speed / 2.0f });
-  }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_DOWN))
-  {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ speed / 2.0f, 0.0f, 0.0f });
-    REGISTRY_GRAPHIC.GetCamera().Rotate({ speed / 2.0f, 0.0f, 0.0f });
-  }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_UP))
-  {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ -speed / 2.0f, 0.0f, 0.0f });
-    REGISTRY_GRAPHIC.GetCamera().Rotate({ -speed / 2.0f, 0.0f, 0.0f });
-  }
+  float speedMov = static_cast<float>(15.0 * dt) * k;
 
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_D))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ speed * k, 0.0f, 0.0f });
-    //REGISTRY_GRAPHIC.GetCamera().Move({ speed * k, 0.0f, 0.0f });
+    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ speedMov, 0.0f, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_A))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ -speed * k, 0.0f, 0.0f });
-    //REGISTRY_GRAPHIC.GetCamera().Move({ -speed * k, 0.0f, 0.0f });
+    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ -speedMov, 0.0f, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_W))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, speed * k, 0.0f });
-    //REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, speed * k, 0.0f });
+    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, speedMov, 0.0f });
   }
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_S))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, -speed * k, 0.0f });
-    //REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, -speed * k, 0.0f });
+    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, -speedMov, 0.0f });
   }
 
-  float ay = REGISTRY_GRAPHIC.GetWindow().GetMouse().IsMoveX() / 30.0f;
-  float ax = REGISTRY_GRAPHIC.GetWindow().GetMouse().IsMoveY() / 30.0f;
-  //REGISTRY_GRAPHIC.GetCamera().Rotate(glm::vec3(ax, ay, 0.0f) / 2.0f);
-
-  REGISTRY_GRAPHIC.GetCamera().SetPos(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
-
-  REGISTRY_GRAPHIC.GetCamera().Update();
-
-  glm::ivec3 secPos = glm::round(REGISTRY_GRAPHIC.GetCamera().GetPos());
+  glm::ivec3 secPos = glm::round(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
   const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);
   secPos.x >= 0 ? secPos.x += radius : secPos.x -= radius;
   secPos.y >= 0 ? secPos.y += radius : secPos.y -= radius;
@@ -234,33 +233,17 @@ void Game::Update()
   {
     REGISTRY_CORE.GetWorld().LoadSector(secPos + i);
   }
-  
-//   REGISTRY_CORE.GetPlayer().SetDirection(REGISTRY_GRAPHIC.GetCamera().GetDirection());
-// 
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_D))
-//   {
-//     REGISTRY_CORE.GetPlayer().Move({ speed, 0.0f, 0.0f });
-//   }
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_A))
-//   {
-//     REGISTRY_CORE.GetPlayer().Move({ -speed, 0.0f, 0.0f });
-//   }
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_W))
-//   {
-//     REGISTRY_CORE.GetPlayer().Move({ 0.0f, speed, 0.0f });
-//   }
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_S))
-//   {
-//     REGISTRY_CORE.GetPlayer().Move({ 0.0f, -speed, 0.0f });
-//   }
-// 
-//   REGISTRY_GRAPHIC.GetWindow().GetMouse().Update();
 
+  REGISTRY_CORE.GetWorld().Update();
 }
 
 
-void Game::Draw()
+void Game::Draw(double dt)
 {
+  REGISTRY_GRAPHIC.GetCamera().SetPos(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
+
+  REGISTRY_GRAPHIC.GetCamera().Update();
+
   GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));     // Очистка экрана
 
   glMatrixMode(GL_PROJECTION);
@@ -271,42 +254,6 @@ void Game::Draw()
   GL_CALL(glTranslatef(-1.5f, 0.0f, -6.0f));
   glLoadMatrixf(glm::value_ptr(REGISTRY_GRAPHIC.GetCamera().GetView()));
 
-  //glColor3f(1.0f, 0.0f, 0.0f);
-
   REGISTRY_CORE.GetWorld().Draw();
 }
 
-
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
-//   {
-//     REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, -speed / 2.0f });
-//   }
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_RIGHT))
-//   {
-//     REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, speed / 2.0f });
-//   }
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_DOWN))
-//   {
-//     REGISTRY_GRAPHIC.GetCamera().Rotate({ speed / 2.0f, 0.0f, 0.0f });
-//   }
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_UP))
-//   {
-//     REGISTRY_GRAPHIC.GetCamera().Rotate({ -speed / 2.0f, 0.0f, 0.0f });
-//   }
-// 
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_D))
-//   {
-//     REGISTRY_GRAPHIC.GetCamera().Move({ speed * k, 0.0f, 0.0f });
-//   }
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_A))
-//   {
-//     REGISTRY_GRAPHIC.GetCamera().Move({ -speed * k, 0.0f, 0.0f });
-//   }
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_W))
-//   {
-//     REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, speed * k, 0.0f });
-//   }
-//   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_S))
-//   {
-//     REGISTRY_GRAPHIC.GetCamera().Move({ 0.0f, -speed * k, 0.0f });
-//   }

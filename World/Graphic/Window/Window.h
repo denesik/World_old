@@ -25,17 +25,13 @@ public:
   /// Завершить работу с оконной системой.
   static void WindowSystemFinally();
 
-  /// Обработать события.
-  static void WindowSystemPollEvents();
-
   /// Установить текущий контекст для данного окна.
   void SetCurrentContext();
 
   /// Должно ли окно закрыться?
   bool WindowShouldClose();
 
-  /// Переключить буферы.
-  void SwapBuffers();
+  void Update();
 
   const glm::uvec2 &GetSize() const;
 
@@ -65,7 +61,7 @@ private:
 
   std::unique_ptr<Keyboard> mKeyboard;
 
-  Mouse mMouse;
+  std::unique_ptr<Mouse> mMouse;
 
   std::function<void(glm::uvec2)> mResizeCallback;
 
