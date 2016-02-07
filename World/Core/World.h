@@ -48,6 +48,10 @@ public:
 
   PBlock GetBlock(const glm::ivec3 &position);
 
+  /// Установить блок в заданную позицию.
+  /// Существующий блок будет удален.
+  void SetBlock(const glm::ivec3 &pos, PBlock block);
+
   Player *GetPlayer();
 
 private:

@@ -29,6 +29,10 @@ public:
   /// ¬ернуть блок в локальных координатах сектора.
   PBlock GetBlock(const glm::ivec3 &pos);
 
+  /// ”становить блок в заданную позицию.
+  /// —уществующий блок будет удален.
+  void SetBlock(const glm::ivec3 &pos, PBlock block);
+
   void Update(class World *world);
 
   RenderSector &GetRenderSector();

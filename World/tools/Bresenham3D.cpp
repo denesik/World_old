@@ -4,17 +4,17 @@
 // ============================================================================
 #include "Bresenham3D.h"
 
-std::vector<glm::ivec3> Bresenham3D(const glm::ivec3 &begin, const glm::ivec3 &end)
+std::vector<glm::ivec3> Bresenham3D(const glm::vec3 &begin, const glm::vec3 &end)
 {
-  int x = begin.x;
-  int y = begin.y;
-  int z = begin.z;
-  int dx = glm::abs(end.x - x);
-  int dy = glm::abs(end.y - y);
-  int dz = glm::abs(end.z - z);
-  int sx = glm::sign(end.x - x);
-  int sy = glm::sign(end.y - y);
-  int sz = glm::sign(end.z - z);
+  int x = static_cast<int>(begin.x);
+  int y = static_cast<int>(begin.y);
+  int z = static_cast<int>(begin.z);
+  int dx = static_cast<int>(glm::abs(end.x - x));
+  int dy = static_cast<int>(glm::abs(end.y - y));
+  int dz = static_cast<int>(glm::abs(end.z - z));
+  int sx = static_cast<int>(glm::sign(end.x - x));
+  int sy = static_cast<int>(glm::sign(end.y - y));
+  int sz = static_cast<int>(glm::sign(end.z - z));
 
   std::vector<glm::ivec3> points;
 

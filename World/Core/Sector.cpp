@@ -74,6 +74,11 @@ PBlock Sector::GetBlock(const glm::ivec3 &pos)
   return mBlocks[(pos.z + SECTOR_RADIUS) * SECTOR_SIZE * SECTOR_SIZE + (pos.y + SECTOR_RADIUS) * SECTOR_SIZE + pos.x + SECTOR_RADIUS];
 }
 
+void Sector::SetBlock(const glm::ivec3 &pos, PBlock block)
+{
+  mBlocks[(pos.z + SECTOR_RADIUS) * SECTOR_SIZE * SECTOR_SIZE + (pos.y + SECTOR_RADIUS) * SECTOR_SIZE + pos.x + SECTOR_RADIUS] = block;
+}
+
 void Sector::Update(class World *world)
 {
   auto currentTime = glfwGetTime();

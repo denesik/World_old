@@ -9,6 +9,6 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-std::vector<glm::ivec3> Bresenham3D(const glm::ivec3 &begin, const glm::ivec3 &end);
+std::vector<glm::ivec3> Bresenham3D(const glm::vec3 &begin, const glm::vec3 &end);
 
 #endif // Bresenham3D_h__

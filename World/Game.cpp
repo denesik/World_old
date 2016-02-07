@@ -66,7 +66,7 @@ int Game::Run()
 
   REGISTRY_GRAPHIC.GetCamera().Resize(REGISTRY_GRAPHIC.GetWindow().GetSize());
 
-  REGISTRY_GRAPHIC.GetTextureManager().LoadTexture({ "Textures/stone.png", "Textures/sand.png" });
+  REGISTRY_GRAPHIC.GetTextureManager().LoadTexture({ "Textures/stone.png", "Textures/sand.png", "Textures/brick.png" });
   REGISTRY_GRAPHIC.GetTextureManager().Compile();
 
   {
@@ -82,6 +82,13 @@ int Game::Run()
     mg.SetTexture(MeshBlockGenerator::ALL, "Textures/stone.png");
     mg.Generate();
     REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockStone"), block);
+  }
+  {
+    auto block = std::make_shared<Block>();
+    auto &mg = (agent_cast<BlockStaticRenderAgent>(block->GetFromFullName(StringIntern("StaticRenderAgent"))))->GetMeshBlockGenerator();
+    mg.SetTexture(MeshBlockGenerator::ALL, "Textures/brick.png");
+    mg.Generate();
+    REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockBrick"), block);
   }
 
   std::atomic<bool> close = false;
@@ -117,20 +124,24 @@ int Game::Run()
   while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
   {
     fps.Update();
-    glm::ivec3 camPos = glm::round(REGISTRY_GRAPHIC.GetCamera().GetPos());
+    glm::vec3 camPos = REGISTRY_GRAPHIC.GetCamera().GetPos();
     
     auto &moved = REGISTRY_GRAPHIC.GetWindow().GetMouse().GetPos();
     auto ray = REGISTRY_GRAPHIC.GetCamera().GetRay(moved);
     ray *= 3;
 
-    auto points = Bresenham3D(camPos, camPos + glm::ivec3(glm::round(ray)));
+    auto points = Bresenham3D(camPos, camPos + ray);
 
-    glm::ivec3 block;
+    glm::ivec3 blockPos;
     for (auto &p : points)
     {
       if (REGISTRY_CORE.GetWorld().GetBlock(p))
       {
-        block = p;
+        blockPos = p;
+        if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyPress(GLFW_KEY_SPACE))
+        {
+          REGISTRY_CORE.GetWorld().SetBlock(p, REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern("BlockBrick")));
+        }
         break;
       }
     }
@@ -140,9 +151,9 @@ int Game::Run()
       std::to_string(camPos.x) + std::string(" y: ") +
       std::to_string(camPos.y) + std::string(" z: ") +
       std::to_string(camPos.z) + std::string("] block: [x: ") +
-      std::to_string(block.x) + std::string(" y: ") +
-      std::to_string(block.y) + std::string(" z: ") +
-      std::to_string(block.z) + std::string("]")
+      std::to_string(blockPos.x) + std::string(" y: ") +
+      std::to_string(blockPos.y) + std::string(" z: ") +
+      std::to_string(blockPos.z) + std::string("]")
       );
 
     auto lastTime = currTime;
@@ -262,16 +273,9 @@ void Game::Draw(double dt)
 
   glMatrixMode(GL_MODELVIEW);
   GL_CALL(glLoadIdentity());                               // Сброс просмотра
-  GL_CALL(glTranslatef(-1.5f, 0.0f, -6.0f));
   glLoadMatrixf(glm::value_ptr(REGISTRY_GRAPHIC.GetCamera().GetView()));
+  //GL_CALL(glTranslatef(0.5f, 0.5f, 0.5f));
 
   REGISTRY_CORE.GetWorld().Draw();
 }
 
-// glm::vec3 near = glm::unProject(glm::vec3(
-//   Mouse::getCursorPos().x, RESY - Mouse::getCursorPos().y, 0.f), 
-//   cam->getModel() * cam->getView(), 
-//   cam->getProjection(), 
-//   cam->getViewport()
-//   );
-// 

@@ -124,6 +124,21 @@ PBlock World::GetBlock(const glm::ivec3 &position)
   return nullptr;
 }
 
+void World::SetBlock(const glm::ivec3 &pos, PBlock block)
+{
+  auto secPos = pos;
+  const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);
+  secPos.x >= 0 ? secPos.x += radius : secPos.x -= radius;
+  secPos.y >= 0 ? secPos.y += radius : secPos.y -= radius;
+  secPos.z >= 0 ? secPos.z += radius : secPos.z -= radius;
+  secPos /= static_cast<int32_t>(Sector::SECTOR_SIZE);
+  if (auto sector = GetSector(secPos))
+  {
+    sector->SetBlock(pos - secPos * static_cast<int32_t>(Sector::SECTOR_SIZE), block);
+    sector->GetRenderSector().Changed();
+  }
+}
+
 Player *World::GetPlayer()
 {
   return mPlayer.get();
