@@ -85,6 +85,8 @@ int Game::Run()
 
   std::atomic<bool> close = false;
 
+  REGISTRY_CORE.GetWorld().GetPlayer()->SetPosition({ 0,0,10 });
+
   std::thread thread([&close]
   {
     REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });

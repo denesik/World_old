@@ -39,10 +39,11 @@ private:
   static const StringIntern mPositionAgentName;
 
   glm::mat3 mDirection;
+  glm::vec3 mDeltaPos;
 
   glm::quat mQuat;
-
   glm::vec3 mDir;
+
 
 };
 

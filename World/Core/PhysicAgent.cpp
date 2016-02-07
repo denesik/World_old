@@ -5,7 +5,7 @@
 #include "PhysicAgent.h"
 #include "PositionAgent.h"
 #include <glm/gtc/matrix_transform.hpp>
-
+#include "World.h"
 
 const StringIntern PhysicAgent::mPositionAgentName = StringIntern("PositionAgent");
 
@@ -37,6 +37,39 @@ void PhysicAgent::Update(const GameObjectParams &params)
   mQuat = glm::normalize(mQuat);
 
   mDirection = glm::mat3_cast(mQuat);
+
+  auto pos = GetPos();
+  auto newPos = pos;
+  pos.x += mDeltaPos.x;
+  if (!params.world->GetBlock(glm::round(pos)))
+  {
+    newPos = pos;
+  }
+  else
+  {
+    pos.x -= mDeltaPos.x;
+  }
+  pos.y += mDeltaPos.y;
+  if (!params.world->GetBlock(glm::round(pos)))
+  {
+    newPos = pos;
+  }
+  else
+  {
+    pos.y -= mDeltaPos.y;
+  }
+  pos.z += mDeltaPos.z;
+  if (!params.world->GetBlock(glm::round(pos)))
+  {
+    newPos = pos;
+  }
+  else
+  {
+    pos.z -= mDeltaPos.z;
+  }
+
+  SetPos(newPos);
+  mDeltaPos = {};
 }
 
 void PhysicAgent::SetPos(const glm::vec3 &pos)
@@ -56,6 +89,5 @@ void PhysicAgent::Rotate(const glm::vec3 &degrees)
 
 void PhysicAgent::Move(const glm::vec3 &dist)
 {
-  auto &pos = mParent->GetFromFullName<PositionAgent>(mPositionAgentName)->Get();
-  pos += glm::vec3(dist.x, dist.z, -dist.y) * mQuat;
+  mDeltaPos += glm::vec3(dist.x, dist.z, -dist.y) * mQuat;
 }

@@ -31,3 +31,8 @@ const glm::vec3 & Player::GetPosition() const
 {
   return GetFromFullName<PhysicAgent>(mPhysicAgentName)->GetPos();
 }
+
+void Player::SetPosition(const glm::vec3 &pos)
+{
+  GetFromFullName<PhysicAgent>(mPhysicAgentName)->SetPos(pos);
+}
