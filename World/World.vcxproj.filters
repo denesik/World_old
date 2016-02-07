@@ -130,6 +130,7 @@
     <ClCompile Include="Core\PhysicAgent.cpp">
       <Filter>Core\Agents</Filter>
     </ClCompile>
+    <ClCompile Include="tools\Bresenham3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">
@@ -261,5 +262,6 @@
     <ClInclude Include="Core\PhysicAgent.h">
       <Filter>Core\Agents</Filter>
     </ClInclude>
+    <ClInclude Include="tools\Bresenham3D.h" />
   </ItemGroup>
 </Project>

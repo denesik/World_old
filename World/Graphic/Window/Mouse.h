@@ -22,6 +22,8 @@ public:
 
   glm::vec2 GetMoved();
 
+  const glm::vec2 &GetPos();
+
   void Update();
 
 private:

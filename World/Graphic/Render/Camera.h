@@ -47,6 +47,8 @@ public:
 
   void Update();
 
+  glm::vec3 GetRay(const glm::vec2 &pos);
+
 private:
 
   glm::mat4 mView;

@@ -47,6 +47,12 @@ glm::vec2 Mouse::GetMoved()
   return mMoved;
 }
 
+const glm::vec2 & Mouse::GetPos()
+{
+  std::lock_guard<std::mutex> lock(mMutex);
+  return mPos;
+}
+
 void Mouse::Update()
 {
   glm::ivec2 size;

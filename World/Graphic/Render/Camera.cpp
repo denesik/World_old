@@ -11,7 +11,7 @@ Camera::Camera(void)
 {
   mFov = 45.0f;
   mAspect = 1.0f;
-  mNear = 0.001f;
+  mNear = 0.0001f;
   mFar = 1000.0f;
   mProjection = glm::perspective(mFov, mAspect, mNear, mFar);
 
@@ -81,5 +81,12 @@ void Camera::Update()
 
   mView = glm::translate(glm::mat4_cast(mQuat), -mPos);
   mDirection = glm::mat3_cast(mQuat);
+}
+
+glm::vec3 Camera::GetRay(const glm::vec2 &pos)
+{
+  glm::vec3 near = glm::unProject(glm::vec3(pos.x, 600.0f - pos.y, 0.0f), mView, mProjection, glm::vec4(0, 0, 600.0, 600));
+  glm::vec3 far = glm::unProject(glm::vec3(pos.x, 600.0f - pos.y, 1.0f), mView, mProjection, glm::vec4(0, 0, 600.0, 600));
+  return glm::normalize(far - near);
 }
 

@@ -116,23 +116,20 @@ int Game::Run()
   while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
   {
     fps.Update();
-    auto pos = REGISTRY_GRAPHIC.GetCamera().GetPos();
     glm::ivec3 camPos = glm::round(REGISTRY_GRAPHIC.GetCamera().GetPos());
-    glm::ivec3 secPos = glm::round(REGISTRY_GRAPHIC.GetCamera().GetPos());
-    const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);
-    secPos.x >= 0 ? secPos.x += radius : secPos.x -= radius;
-    secPos.y >= 0 ? secPos.y += radius : secPos.y -= radius;
-    secPos.z >= 0 ? secPos.z += radius : secPos.z -= radius;
-    secPos /= static_cast<int32_t>(Sector::SECTOR_SIZE);
+    
+    auto &moved = REGISTRY_GRAPHIC.GetWindow().GetMouse().GetPos();
+    auto ray = REGISTRY_GRAPHIC.GetCamera().GetRay(moved);
+    ray *= 3;
 
     REGISTRY_GRAPHIC.GetWindow().SetTitle(
       std::to_string(fps.GetCount()) + std::string(" fps. pos: [x: ") +
       std::to_string(camPos.x) + std::string(" y: ") +
       std::to_string(camPos.y) + std::string(" z: ") +
       std::to_string(camPos.z) + std::string("] sec: [x: ") +
-      std::to_string(secPos.x) + std::string(" y: ") +
-      std::to_string(secPos.y) + std::string(" z: ") +
-      std::to_string(secPos.z) + std::string("]")
+      std::to_string(ray.x) + std::string(" y: ") +
+      std::to_string(ray.y) + std::string(" z: ") +
+      std::to_string(ray.z) + std::string("]")
       );
 
     auto lastTime = currTime;
@@ -174,7 +171,7 @@ void Game::Update(double dt)
   }
 
   auto moved = REGISTRY_GRAPHIC.GetWindow().GetMouse().GetMoved();
-  moved *= static_cast<float>(dt) * 0.04f;
+  moved *= static_cast<float>(dt) * 0.07f;
   REGISTRY_CORE.GetWorld().GetPlayer()->Rotate(glm::vec3(moved.y, 0.0f, moved.x));
   REGISTRY_GRAPHIC.GetCamera().Rotate(glm::vec3(moved.y, 0.0f, moved.x));
 
@@ -240,9 +237,10 @@ void Game::Update(double dt)
 
 void Game::Draw(double dt)
 {
-  REGISTRY_GRAPHIC.GetCamera().SetPos(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
-
+  REGISTRY_GRAPHIC.GetCamera().SetPos(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition() + glm::vec3{ 0.0f, 0.0f, 1.7f });
   REGISTRY_GRAPHIC.GetCamera().Update();
+
+
 
   GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));     // Очистка экрана
 
@@ -257,3 +255,10 @@ void Game::Draw(double dt)
   REGISTRY_CORE.GetWorld().Draw();
 }
 
+// glm::vec3 near = glm::unProject(glm::vec3(
+//   Mouse::getCursorPos().x, RESY - Mouse::getCursorPos().y, 0.f), 
+//   cam->getModel() * cam->getView(), 
+//   cam->getProjection(), 
+//   cam->getViewport()
+//   );
+// 

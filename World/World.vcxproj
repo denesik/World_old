@@ -56,6 +56,7 @@
     <ClCompile Include="lodepng\lodepng.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="tools\Bresenham3D.cpp" />
     <ClCompile Include="tools\StringIntern.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +104,7 @@
     <ClInclude Include="Graphic\Window\Window.h" />
     <ClInclude Include="lodepng\lodepng.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="tools\Bresenham3D.h" />
     <ClInclude Include="tools\StringIntern.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
