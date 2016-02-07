@@ -20,6 +20,8 @@ public:
 
   float IsMoveY();
 
+  glm::vec2 GetMoved();
+
   void Update();
 
 private:

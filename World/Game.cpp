@@ -173,10 +173,10 @@ void Game::Update(double dt)
     REGISTRY_GRAPHIC.GetCamera().Rotate({ -speedRot, 0.0f, 0.0f });
   }
 
-  float ay = REGISTRY_GRAPHIC.GetWindow().GetMouse().IsMoveX();
-  float ax = REGISTRY_GRAPHIC.GetWindow().GetMouse().IsMoveY();
-  REGISTRY_CORE.GetWorld().GetPlayer()->Rotate(glm::vec3(ax, 0.0f, ay) * static_cast<float>(dt));
-  REGISTRY_GRAPHIC.GetCamera().Rotate(glm::vec3(ax, 0.0f, ay) * static_cast<float>(dt));
+  auto moved = REGISTRY_GRAPHIC.GetWindow().GetMouse().GetMoved();
+  moved *= static_cast<float>(dt) * 0.04f;
+  REGISTRY_CORE.GetWorld().GetPlayer()->Rotate(glm::vec3(moved.y, 0.0f, moved.x));
+  REGISTRY_GRAPHIC.GetCamera().Rotate(glm::vec3(moved.y, 0.0f, moved.x));
 
   static float k = 1.0f;
   if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyPress(GLFW_KEY_9))
