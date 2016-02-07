@@ -32,6 +32,7 @@
 #include "Core/BlockStaticRenderAgent.h"
 #include "Core/agent_cast.h"
 #include "Core/Block.h"
+#include "tools/Bresenham3D.h"
 
 Game::Game()
 {
@@ -122,14 +123,26 @@ int Game::Run()
     auto ray = REGISTRY_GRAPHIC.GetCamera().GetRay(moved);
     ray *= 3;
 
+    auto points = Bresenham3D(camPos, camPos + glm::ivec3(glm::round(ray)));
+
+    glm::ivec3 block;
+    for (auto &p : points)
+    {
+      if (REGISTRY_CORE.GetWorld().GetBlock(p))
+      {
+        block = p;
+        break;
+      }
+    }
+
     REGISTRY_GRAPHIC.GetWindow().SetTitle(
       std::to_string(fps.GetCount()) + std::string(" fps. pos: [x: ") +
       std::to_string(camPos.x) + std::string(" y: ") +
       std::to_string(camPos.y) + std::string(" z: ") +
-      std::to_string(camPos.z) + std::string("] sec: [x: ") +
-      std::to_string(ray.x) + std::string(" y: ") +
-      std::to_string(ray.y) + std::string(" z: ") +
-      std::to_string(ray.z) + std::string("]")
+      std::to_string(camPos.z) + std::string("] block: [x: ") +
+      std::to_string(block.x) + std::string(" y: ") +
+      std::to_string(block.y) + std::string(" z: ") +
+      std::to_string(block.z) + std::string("]")
       );
 
     auto lastTime = currTime;
