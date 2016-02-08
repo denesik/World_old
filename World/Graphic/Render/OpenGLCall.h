@@ -7,21 +7,8 @@
 #define OpenGLCall_h__
 
 #include <GL/glew.h>
-#include "../../Log.h"
 
-static void CheckErrorsReal(const char *func, const char *file, long line)
-{
-  while (unsigned int openGLError = glGetError())   
-  {                                                 
-  LOG(error) << "GL Error." << std::endl         
-  << "[" << std::endl                             
-  << "  function: " << func << std::endl
-  << "  error: " << openGLError << std::endl      
-  << "  file: " << file << std::endl
-  << "  line: " << line << std::endl
-  << "]";                                         
-  };
-}
+static void CheckErrorsReal(const char *func, const char *file, long line);
 
 static void CheckErrorsFake(const char *, const char *, long)
 {

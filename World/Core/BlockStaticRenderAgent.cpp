@@ -3,11 +3,8 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "BlockStaticRenderAgent.h"
-#include "GameObject.h"
-#include "Sector.h"
-#include "MeshBlockGenerator.h"
-#include "..\Graphic\RegistryGraphic.h"
 #include "World.h"
+#include "..\Graphic\RegistryGraphic.h"
 
 
 BlockStaticRenderAgent::BlockStaticRenderAgent(GameObject *parent)

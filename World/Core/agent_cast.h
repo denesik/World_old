@@ -8,7 +8,6 @@
 
 #include "Agent.h"
 
-
 template<class T>
 T *agent_cast(Agent *agent)
 {

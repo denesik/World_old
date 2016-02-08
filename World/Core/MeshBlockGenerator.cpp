@@ -3,7 +3,6 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "MeshBlockGenerator.h"
-#include "..\Graphic\Render\RenderMeshGL1.h"
 #include "..\Graphic\RegistryGraphic.h"
 #include <type_traits>
 

@@ -7,13 +7,10 @@
 #define World_h__
 
 #include <unordered_map>
-#include <unordered_set>
 #include <glm/glm.hpp>
-#include "Sector.h"
 #include <memory>
-#include "Block.h"
-#include "RenderSector.h"
 #include <list>
+#include "Sector.h"
 #include "Player.h"
 
 namespace std

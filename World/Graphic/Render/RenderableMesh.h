@@ -7,7 +7,6 @@
 #define RenderableMesh_h__
 
 #include <memory>
-#include "IRenderMeshStrategy.h"
 #include "RenderMeshGL1.h"
 
 

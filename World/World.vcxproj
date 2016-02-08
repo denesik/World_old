@@ -43,6 +43,7 @@
     <ClCompile Include="Graphic\Render\Bitmap.cpp" />
     <ClCompile Include="Graphic\Render\Camera.cpp" />
     <ClCompile Include="Graphic\Render\Color.cpp" />
+    <ClCompile Include="Graphic\Render\OpenGLCall.cpp" />
     <ClCompile Include="Graphic\Render\StaticModel.cpp" />
     <ClCompile Include="Graphic\Render\DinamicModel.cpp" />
     <ClCompile Include="Graphic\Render\Render.cpp" />

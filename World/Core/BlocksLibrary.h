@@ -7,7 +7,6 @@
 #define BlocksLibrary_h__
 
 #include "Block.h"
-#include "..\tools\StringIntern.h"
 #include <unordered_map>
 
 

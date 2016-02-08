@@ -6,10 +6,8 @@
 #ifndef GameObject_h__
 #define GameObject_h__
 
-#include "Agent.h"
 #include <map>
 #include <memory>
-#include "GameObjectParams.h"
 #include "agent_cast.h"
 
 

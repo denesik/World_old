@@ -133,6 +133,9 @@
     <ClCompile Include="tools\Bresenham3D.cpp">
       <Filter>tools</Filter>
     </ClCompile>
+    <ClCompile Include="Graphic\Render\OpenGLCall.cpp">
+      <Filter>Graphic\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">

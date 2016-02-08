@@ -3,9 +3,10 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "PhysicAgent.h"
-#include "PositionAgent.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 #include "World.h"
+
 
 const StringIntern PhysicAgent::mPositionAgentName = StringIntern("PositionAgent");
 

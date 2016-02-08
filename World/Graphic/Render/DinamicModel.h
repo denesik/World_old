@@ -8,7 +8,6 @@
 
 #include "StaticModel.h"
 #include "RenderableMesh.h"
-#include "Vertex.h"
 
 
 

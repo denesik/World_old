@@ -11,7 +11,6 @@
 #include "Render/Render.h"
 #include "Window/Window.h"
 #include "Render/TextureManager.h"
-#include "Render/Camera.h"
 
 
 #define REGISTRY_GRAPHIC RegistryGraphic::Instatce()

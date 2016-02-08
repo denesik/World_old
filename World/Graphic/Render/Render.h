@@ -6,11 +6,8 @@
 #ifndef Render_h__
 #define Render_h__
 
-#include "Color.h"
-#include "Texture.h"
 #include "Camera.h"
 #include "Shader.h"
-#include "StaticModel.h"
 #include "DinamicModel.h"
 
 

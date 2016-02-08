@@ -8,7 +8,6 @@
 
 #include "GameObject.h"
 #include "StaticRenderAgent.h"
-#include "..\tools\StringIntern.h"
 
 using PBlock = std::shared_ptr<class Block>;
 

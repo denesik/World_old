@@ -4,7 +4,6 @@
 // ============================================================================
 #include "TextureManager.h"
 
-#include "Bitmap.h"
 #include <iostream>
 
 TextureManager::TextureManager(void)

@@ -7,7 +7,6 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <stdint.h>
-#include "StaticRenderAgent.h"
 #include "RegistryCore.h"
 #include "MapGen/PerlinNoise.h"
 #include "../Log.h"

@@ -3,7 +3,6 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "Creature.h"
-#include "agent_cast.h"
 #include "PhysicAgent.h"
 
 

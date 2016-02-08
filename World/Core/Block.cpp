@@ -1,5 +1,4 @@
 #include "Block.h"
-#include "StaticRenderAgent.h"
 #include <memory>
 #include "BlockStaticRenderAgent.h"
 

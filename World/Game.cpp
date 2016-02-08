@@ -5,33 +5,22 @@
 #include "Game.h"
 
 #include <gl/glew.h>
-#include "Graphic/Window/Window.h"
 #include <iostream>
 #include <sstream>
-#include "Graphic/Render/TextureManager.h"
-#include "Graphic/Render/Camera.h"
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Graphic/RegistryGraphic.h"
 
 #include <fstream>
 #include "FpsCounter.h"
-#include "Graphic/Render/Shader.h"
 #include <memory>
 #include "Log.h"
 #include "Graphic/Render/OpenGLCall.h"
 #include <vector>
-#include "Core/GameObject.h"
-#include "Core/StaticRenderAgent.h"
-#include "Core/Sector.h"
 #include "Core/RegistryCore.h"
-#include "Core/World.h"
-#include "Core/MeshBlockGenerator.h"
 #include <thread>
 #include <atomic>
 #include "Core/BlockStaticRenderAgent.h"
-#include "Core/agent_cast.h"
-#include "Core/Block.h"
 #include "tools/Bresenham3D.h"
 
 Game::Game()

@@ -8,7 +8,6 @@
 #include <memory>
 #include <glm/glm.hpp>
 #include "Bitmap.h"
-#include "Color.h"
 
 /// Описание текстурных слотов.
 enum TextureSlot

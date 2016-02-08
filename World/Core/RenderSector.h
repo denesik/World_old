@@ -7,7 +7,6 @@
 #define RenderSector_h__
 
 #include "..\Graphic\Render\DinamicModel.h"
-#include "..\Graphic\Render\RenderableMesh.h"
 #include <atomic>
 
 
