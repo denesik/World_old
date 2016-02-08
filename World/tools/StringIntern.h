@@ -11,7 +11,7 @@
 
 //using StringIntern = std::string;
 using StringIntern = boost::flyweight<std::string>;
- 
+
 StringIntern operator+(const StringIntern &a, const StringIntern &b);
 
 #endif // StringIntern_h__

@@ -63,7 +63,7 @@ void TextureManager::Compile()
   }
 }
 
-bool TextureManager::LoadToAtlas(unsigned int atlas, const std::initializer_list<std::string> &names)
+bool TextureManager::LoadToAtlas(size_t atlas, const std::initializer_list<std::string> &names)
 {
   // TODO: Удаление из атласа, если не смогли вставить.
   for (auto &name : names)

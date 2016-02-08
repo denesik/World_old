@@ -38,7 +38,7 @@ private:
 
   struct AtlasChunk
   {
-    unsigned int index; // Номер атласа.
+    size_t index; // Номер атласа.
     glm::uvec4 pos;     // Положение в атласе.
   };
 
@@ -57,7 +57,7 @@ private:
 
 private:
 
-  bool LoadToAtlas(unsigned int atlas, const std::initializer_list<std::string> &names);
+  bool LoadToAtlas(size_t atlas, const std::initializer_list<std::string> &names);
 
 };
 

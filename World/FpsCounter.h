@@ -22,7 +22,7 @@ public:
 
   void Update();
 
-  unsigned int GetCount();
+  size_t GetCount();
 
 };
 

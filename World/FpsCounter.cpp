@@ -36,7 +36,7 @@ void FpsCounter::Update()
   lastTime = currentTime;
 }
 
-unsigned int FpsCounter::GetCount()
+size_t FpsCounter::GetCount()
 {
   return fpsStack.size();
 }
