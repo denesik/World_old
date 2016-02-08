@@ -7,6 +7,7 @@
 #include <tuple>
 #include <utility>
 #include <GLFW\glfw3.h>
+#include "..\tools\CoordsConvert.h"
 
 
 
@@ -111,12 +112,7 @@ Sector *World::GetSector(const glm::ivec3 &position)
 
 PBlock World::GetBlock(const glm::ivec3 &position)
 {
-  auto secPos = position;
-  const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);
-  secPos.x >= 0 ? secPos.x += radius : secPos.x -= radius;
-  secPos.y >= 0 ? secPos.y += radius : secPos.y -= radius;
-  secPos.z >= 0 ? secPos.z += radius : secPos.z -= radius;
-  secPos /= static_cast<int32_t>(Sector::SECTOR_SIZE);
+  auto secPos = CoordWorldToSector(position);
   if (auto sector = GetSector(secPos))
   {
     return sector->GetBlock(position - secPos * static_cast<int32_t>(Sector::SECTOR_SIZE));
@@ -126,12 +122,7 @@ PBlock World::GetBlock(const glm::ivec3 &position)
 
 void World::SetBlock(const glm::ivec3 &pos, PBlock block)
 {
-  auto secPos = pos;
-  const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);
-  secPos.x >= 0 ? secPos.x += radius : secPos.x -= radius;
-  secPos.y >= 0 ? secPos.y += radius : secPos.y -= radius;
-  secPos.z >= 0 ? secPos.z += radius : secPos.z -= radius;
-  secPos /= static_cast<int32_t>(Sector::SECTOR_SIZE);
+  auto secPos = CoordWorldToSector(pos);
   if (auto sector = GetSector(secPos))
   {
     sector->SetBlock(pos - secPos * static_cast<int32_t>(Sector::SECTOR_SIZE), block);

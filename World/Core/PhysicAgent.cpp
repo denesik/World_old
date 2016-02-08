@@ -6,6 +6,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include "World.h"
+#include "../tools/CoordsConvert.h"
 
 
 const StringIntern PhysicAgent::mPositionAgentName = StringIntern("PositionAgent");
@@ -41,32 +42,40 @@ void PhysicAgent::Update(const GameObjectParams &params)
 
   auto pos = GetPos();
   auto newPos = pos;
-  pos.x += mDeltaPos.x;
-  if (!params.world->GetBlock(glm::round(pos)))
+
+  if (false)
   {
-    newPos = pos;
+    pos.x += mDeltaPos.x;
+    if (!params.world->GetBlock(CoordWorldToBlock(pos)))
+    {
+      newPos = pos;
+    }
+    else
+    {
+      pos.x -= mDeltaPos.x;
+    }
+    pos.y += mDeltaPos.y;
+    if (!params.world->GetBlock(CoordWorldToBlock(pos)))
+    {
+      newPos = pos;
+    }
+    else
+    {
+      pos.y -= mDeltaPos.y;
+    }
+    pos.z += mDeltaPos.z;
+    if (!params.world->GetBlock(CoordWorldToBlock(pos)))
+    {
+      newPos = pos;
+    }
+    else
+    {
+      pos.z -= mDeltaPos.z;
+    }
   }
   else
   {
-    pos.x -= mDeltaPos.x;
-  }
-  pos.y += mDeltaPos.y;
-  if (!params.world->GetBlock(glm::round(pos)))
-  {
-    newPos = pos;
-  }
-  else
-  {
-    pos.y -= mDeltaPos.y;
-  }
-  pos.z += mDeltaPos.z;
-  if (!params.world->GetBlock(glm::round(pos)))
-  {
-    newPos = pos;
-  }
-  else
-  {
-    pos.z -= mDeltaPos.z;
+    newPos += mDeltaPos;
   }
 
   SetPos(newPos);

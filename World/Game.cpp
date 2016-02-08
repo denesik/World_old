@@ -22,6 +22,7 @@
 #include <atomic>
 #include "Core/BlockStaticRenderAgent.h"
 #include "tools/Bresenham3D.h"
+#include "tools/CoordsConvert.h"
 
 Game::Game()
 {
@@ -82,7 +83,7 @@ int Game::Run()
 
   std::atomic<bool> close = false;
 
-  REGISTRY_CORE.GetWorld().GetPlayer()->SetPosition({ 0,0,10 });
+  REGISTRY_CORE.GetWorld().GetPlayer()->SetPosition({ 0,0,30 });
 
   std::thread thread([this, &close]
   {
@@ -117,11 +118,12 @@ int Game::Run()
     
     auto &moved = REGISTRY_GRAPHIC.GetWindow().GetMouse().GetPos();
     auto ray = REGISTRY_GRAPHIC.GetCamera().GetRay(moved);
-    ray *= 3;
+    ray *= 10;
 
     auto points = Bresenham3D(camPos, camPos + ray);
 
-    glm::ivec3 blockPos;
+    auto far = camPos + ray;
+    glm::vec3 blockPos;
     for (auto &p : points)
     {
       if (REGISTRY_CORE.GetWorld().GetBlock(p))
@@ -220,12 +222,7 @@ void Game::Update(double dt)
     REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, -speedMov, 0.0f });
   }
 
-  glm::ivec3 secPos = glm::round(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
-  const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);
-  secPos.x >= 0 ? secPos.x += radius : secPos.x -= radius;
-  secPos.y >= 0 ? secPos.y += radius : secPos.y -= radius;
-  secPos.z >= 0 ? secPos.z += radius : secPos.z -= radius;
-  secPos /= static_cast<int32_t>(Sector::SECTOR_SIZE);
+  glm::ivec3 secPos = CoordWorldToSector(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
   secPos.z = 0;
 
   glm::ivec3 offsets[8] =

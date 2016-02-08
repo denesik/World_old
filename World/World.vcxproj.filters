@@ -136,6 +136,9 @@
     <ClCompile Include="Graphic\Render\OpenGLCall.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
+    <ClCompile Include="tools\CoordsConvert.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">
@@ -268,6 +271,9 @@
       <Filter>Core\Agents</Filter>
     </ClInclude>
     <ClInclude Include="tools\Bresenham3D.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\CoordsConvert.h">
       <Filter>tools</Filter>
     </ClInclude>
   </ItemGroup>

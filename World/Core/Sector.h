@@ -14,10 +14,9 @@
 class Sector
 {
 public:
-  enum 
+  enum
   {
-    SECTOR_RADIUS = 15,
-    SECTOR_SIZE = SECTOR_RADIUS * 2 + 1,
+    SECTOR_SIZE = 31,
   };
 
 public:
@@ -27,11 +26,11 @@ public:
   const glm::ivec3 &GetSectorPosition() const;
 
   /// ¬ернуть блок в локальных координатах сектора.
-  PBlock GetBlock(const glm::ivec3 &pos);
+  PBlock GetBlock(const glm::uvec3 &pos);
 
   /// ”становить блок в заданную позицию.
   /// —уществующий блок будет удален.
-  void SetBlock(const glm::ivec3 &pos, PBlock block);
+  void SetBlock(const glm::uvec3 &pos, PBlock block);
 
   void Update(class World *world);
 
@@ -39,7 +38,7 @@ public:
 
 private:
   std::array<PBlock, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocks;
-  std::array<glm::ivec3, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocksPos;
+  std::array<glm::uvec3, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocksPos;
 
   glm::ivec3 mPos;
 

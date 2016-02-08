@@ -23,11 +23,10 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
   if (params.sector->GetRenderSector().IsNeedBuild())
   {
     const int32_t size = static_cast<int32_t>(Sector::SECTOR_SIZE);
-    const int32_t radius = static_cast<int32_t>(Sector::SECTOR_RADIUS);
 
     size_t sides = MeshBlockGenerator::ALL;
     auto pos = static_cast<glm::ivec3>(params.pos) - params.sector->GetSectorPosition() * size;
-    if (pos.x < radius)
+    if (pos.x < size - 1)
     {
       ++pos.x;
       if (params.sector->GetBlock(pos))
@@ -45,7 +44,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
         sides &= ~MeshBlockGenerator::RIGHT;
       }
     }
-    if (pos.x > -radius)
+    if (pos.x > 0)
     {
       --pos.x;
       if (params.sector->GetBlock(pos))
@@ -64,7 +63,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
       }
     }
 
-    if (pos.y < radius)
+    if (pos.y < size - 1)
     {
       ++pos.y;
       if (params.sector->GetBlock(pos))
@@ -82,7 +81,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
         sides &= ~MeshBlockGenerator::BACK;
       }
     }
-    if (pos.y > -radius)
+    if (pos.y > 0)
     {
       --pos.y;
       if (params.sector->GetBlock(pos))
@@ -101,7 +100,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
       }
     }
 
-    if (pos.z < radius)
+    if (pos.z < size - 1)
     {
       ++pos.z;
       if (params.sector->GetBlock(pos))
@@ -119,7 +118,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
         sides &= ~MeshBlockGenerator::TOP;
       }
     }
-    if (pos.z > -radius)
+    if (pos.z > 0)
     {
       --pos.z;
       if (params.sector->GetBlock(pos))

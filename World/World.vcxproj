@@ -58,6 +58,7 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tools\Bresenham3D.cpp" />
+    <ClCompile Include="tools\CoordsConvert.cpp" />
     <ClCompile Include="tools\StringIntern.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +107,7 @@
     <ClInclude Include="lodepng\lodepng.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="tools\Bresenham3D.h" />
+    <ClInclude Include="tools\CoordsConvert.h" />
     <ClInclude Include="tools\StringIntern.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -208,7 +210,10 @@
       <SDLCheck>true</SDLCheck>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FavorSizeOrSpeed>
+      </FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>No</GenerateDebugInformation>

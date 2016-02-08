@@ -19,15 +19,15 @@ Sector::Sector(const glm::ivec3 &position, RenderSector &renderSector)
   auto currentTime = glfwGetTime();
 
   {
-    glm::ivec3 pos;
+    glm::uvec3 pos;
     size_t index = 0;
-    for (pos.z = -SECTOR_RADIUS; pos.z <= SECTOR_RADIUS; ++pos.z)
+    for (pos.z = 0; pos.z < SECTOR_SIZE; ++pos.z)
     {
-      for (pos.y = -SECTOR_RADIUS; pos.y <= SECTOR_RADIUS; ++pos.y)
+      for (pos.y = 0; pos.y < SECTOR_SIZE; ++pos.y)
       {
-        for (pos.x = -SECTOR_RADIUS; pos.x <= SECTOR_RADIUS; ++pos.x)
+        for (pos.x = 0; pos.x < SECTOR_SIZE; ++pos.x)
         {
-          mBlocksPos[index++] = mPos * static_cast<int32_t>(SECTOR_SIZE) + pos;
+          mBlocksPos[index++] = pos;
         }
       }
     }
@@ -40,8 +40,8 @@ Sector::Sector(const glm::ivec3 &position, RenderSector &renderSector)
     const auto &pos = mBlocksPos[i];
     float tx = static_cast<float>(pos.x);
     float ty = static_cast<float>(pos.y);
-    float h = noise.Noise2(tx / 10.0f, ty / 10.0f);
-    int32_t zh = static_cast<int32_t>(glm::round(h * SECTOR_RADIUS));
+    float h = (noise.Noise2(tx / 10.0f, ty / 10.0f) + 1.0f) / 2.0f;
+    uint32_t zh = static_cast<uint32_t>(glm::round(h * (SECTOR_SIZE - 1)));
     if (pos.z <= zh)
     {
       mBlocks[i] = REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern(pos.x % 2 ? "BlockSand" : "BlockStone"));
@@ -66,16 +66,16 @@ const glm::ivec3 & Sector::GetSectorPosition() const
   return mPos;
 }
 
-PBlock Sector::GetBlock(const glm::ivec3 &pos)
+PBlock Sector::GetBlock(const glm::uvec3 &pos)
 {
   //assert(glm::clamp(pos, static_cast<int32_t>(-SECTOR_RADIUS), static_cast<int32_t>(SECTOR_RADIUS)) == pos);
 
-  return mBlocks[(pos.z + SECTOR_RADIUS) * SECTOR_SIZE * SECTOR_SIZE + (pos.y + SECTOR_RADIUS) * SECTOR_SIZE + pos.x + SECTOR_RADIUS];
+  return mBlocks[pos.z * SECTOR_SIZE * SECTOR_SIZE + pos.y * SECTOR_SIZE + pos.x];
 }
 
-void Sector::SetBlock(const glm::ivec3 &pos, PBlock block)
+void Sector::SetBlock(const glm::uvec3 &pos, PBlock block)
 {
-  mBlocks[(pos.z + SECTOR_RADIUS) * SECTOR_SIZE * SECTOR_SIZE + (pos.y + SECTOR_RADIUS) * SECTOR_SIZE + pos.x + SECTOR_RADIUS] = block;
+  mBlocks[pos.z * SECTOR_SIZE * SECTOR_SIZE + pos.y * SECTOR_SIZE + pos.x] = block;
 }
 
 void Sector::Update(class World *world)
@@ -87,7 +87,7 @@ void Sector::Update(class World *world)
 //   {
 //     if (mBlocks[i] && !mBlocks[i]->IsStatic())
 //     {
-//       params.pos = mBlocksPos[i];
+//       params.pos = mPos + static_cast<glm::ivec3>(mBlocksPos[i]);
 //       mBlocks[i]->Update(params);
 //     }
 //   }
@@ -98,7 +98,7 @@ void Sector::Update(class World *world)
     {
       if (mBlocks[i])
       {
-        params.pos = mBlocksPos[i];
+        params.pos = mPos * static_cast<int32_t>(SECTOR_SIZE) + static_cast<glm::ivec3>(mBlocksPos[i]);
         mBlocks[i]->UpdateGraphic(params);
       }
     }

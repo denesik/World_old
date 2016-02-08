@@ -8,11 +8,9 @@
 
 #include <GL/glew.h>
 
-static void CheckErrorsReal(const char *func, const char *file, long line);
+void CheckErrorsReal(const char *func, const char *file, long line);
 
-static void CheckErrorsFake(const char *, const char *, long)
-{
-}
+void CheckErrorsFake(const char *, const char *, long);
 
 typedef void CheckErrorsSignature(const char *, const char *, long);
 

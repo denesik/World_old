@@ -16,3 +16,8 @@ void CheckErrorsReal(const char *func, const char *file, long line)
       << "]";
   };
 }
+
+void CheckErrorsFake(const char *, const char *, long)
+{
+
+}
