@@ -15,6 +15,11 @@ Block::~Block()
 {
 }
 
+PGameObject Block::Clone()
+{
+  return MakeGameObject<Block>();
+}
+
 void Block::Update(GameObjectParams &params)
 {
   for (auto &agent : mAgents)

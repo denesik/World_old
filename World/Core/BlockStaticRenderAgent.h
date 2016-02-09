@@ -11,11 +11,16 @@
 #include "MeshBlockGenerator.h"
 
 
+
+using PBlockStaticRenderAgent = std::unique_ptr<class BlockStaticRenderAgent>;
+
 class BlockStaticRenderAgent : public StaticRenderAgent
 {
 public:
   BlockStaticRenderAgent(GameObject *parent);
   ~BlockStaticRenderAgent();
+
+  PAgent Clone() override;
 
   void Update(const GameObjectParams &params) override;
 

@@ -15,6 +15,8 @@ public:
   Player();
   ~Player();
 
+  PGameObject Clone() override;
+
   /// Повернуть камеру относительно текущей ориентации на заданный угол по трем осям.
   void Rotate(const glm::vec3 &degrees);
 

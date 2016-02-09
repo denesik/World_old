@@ -14,3 +14,4 @@ StaticRenderAgent::StaticRenderAgent(GameObject *parent)
 StaticRenderAgent::~StaticRenderAgent()
 {
 }
+

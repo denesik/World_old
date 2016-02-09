@@ -8,10 +8,20 @@
 
 #include <map>
 #include <memory>
-#include "agent_cast.h"
+#include <type_traits>
+#include "GameObjectParams.h"
+#include "Agent.h"
+#include "..\tools\StringIntern.h"
 
 
 using PGameObject = std::shared_ptr<class GameObject>;
+
+template<class T, class... Args>
+inline std::shared_ptr<T> MakeGameObject(Args&&... args)
+{
+  return std::make_shared<T>(std::forward<Args>(args)...);
+}
+
 
 class GameObject
 {
@@ -21,24 +31,26 @@ public:
 
   virtual void Update(GameObjectParams &params);
 
-  Agent *GetFromFullName(const StringIntern &name);
+  virtual PGameObject Clone() = 0;
 
-  template<class T>
-  T *GetFromFullName(const StringIntern &name)
-  {
-    return agent_cast<T>(GetFromFullName(name));
-  }
+  Agent *GetFromFullName(const StringIntern &name);
 
   const Agent *GetFromFullName(const StringIntern &name) const;
 
   template<class T>
+  T *GetFromFullName(const StringIntern &name)
+  {
+    return static_cast<T*>(GetFromFullName(name));
+  }
+
+  template<class T>
   const T *GetFromFullName(const StringIntern &name) const
   {
-    return agent_const_cast<T>(GetFromFullName(name));
+    return static_cast<const T*>(GetFromFullName(name));
   }
 
 protected:
-  std::map<StringIntern, std::unique_ptr<Agent>> mAgents;
+  std::map<StringIntern, PAgent> mAgents;
 
 };
 

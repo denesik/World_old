@@ -23,6 +23,8 @@ public:
   Block();
   ~Block();
 
+  PGameObject Clone() override;
+
   void Update(GameObjectParams &params) override;
 
   void UpdateGraphic(GameObjectParams &params);

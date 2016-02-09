@@ -22,6 +22,11 @@ Creature::~Creature()
 {
 }
 
+PGameObject Creature::Clone()
+{
+  return MakeGameObject<Creature>();
+}
+
 void Creature::Update(GameObjectParams &params)
 {
   params.pos = GetFromFullName<PositionAgent>(mPositionAgentName)->Get();

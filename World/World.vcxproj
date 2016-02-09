@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Agent.h" />
-    <ClInclude Include="Core\agent_cast.h" />
     <ClInclude Include="Core\Block.h" />
     <ClInclude Include="Core\BlocksLibrary.h" />
     <ClInclude Include="Core\BlockStaticRenderAgent.h" />

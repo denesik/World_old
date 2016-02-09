@@ -11,6 +11,8 @@
 
 
 
+using PStaticRenderAgent = std::unique_ptr<class StaticRenderAgent>;
+
 class StaticRenderAgent : public Agent
 {
 public:

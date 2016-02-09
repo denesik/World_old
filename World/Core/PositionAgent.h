@@ -9,11 +9,16 @@
 #include "Agent.h"
 
 
+
+using PPositionAgent = std::unique_ptr<class PositionAgent>;
+
 class PositionAgent : public Agent
 {
 public:
   PositionAgent(GameObject *parent);
   ~PositionAgent();
+
+  PAgent Clone() override;
 
   void Update(const GameObjectParams &params) override;
 

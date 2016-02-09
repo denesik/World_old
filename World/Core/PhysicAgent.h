@@ -11,11 +11,16 @@
 #include "GameObject.h"
 
 
+
+using PPhysicAgent = std::unique_ptr<class PhysicAgent>;
+
 class PhysicAgent : public Agent
 {
 public:
   PhysicAgent(GameObject *parent);
   ~PhysicAgent();
+
+  PAgent Clone() override;
 
   void Update(const GameObjectParams &params) override;
 

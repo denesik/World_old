@@ -16,6 +16,11 @@ PositionAgent::~PositionAgent()
 {
 }
 
+PAgent PositionAgent::Clone()
+{
+  return MakeAgent<PositionAgent>(*this);
+}
+
 void PositionAgent::Update(const GameObjectParams &params)
 {
 

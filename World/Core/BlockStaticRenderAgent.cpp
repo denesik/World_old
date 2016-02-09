@@ -18,6 +18,11 @@ BlockStaticRenderAgent::~BlockStaticRenderAgent()
 {
 }
 
+PAgent BlockStaticRenderAgent::Clone()
+{
+  return MakeAgent<BlockStaticRenderAgent>(*this);
+}
+
 void BlockStaticRenderAgent::Update(const GameObjectParams &params)
 {
   if (params.sector->GetRenderSector().IsNeedBuild())

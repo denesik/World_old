@@ -28,6 +28,11 @@ PhysicAgent::~PhysicAgent()
 {
 }
 
+PAgent PhysicAgent::Clone()
+{
+  return MakeAgent<PhysicAgent>(*this);
+}
+
 void PhysicAgent::Update(const GameObjectParams &params)
 {
   const auto &pitch = glm::angleAxis(mDir.x, glm::vec3(1, 0, 0));

@@ -17,6 +17,11 @@ Player::~Player()
 {
 }
 
+PGameObject Player::Clone()
+{
+  return MakeGameObject<Player>();
+}
+
 void Player::Rotate(const glm::vec3 &degrees)
 {
   GetFromFullName<PhysicAgent>(mPhysicAgentName)->Rotate(degrees);

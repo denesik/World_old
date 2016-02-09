@@ -255,9 +255,6 @@
     <ClInclude Include="Core\Creature.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\agent_cast.h">
-      <Filter>Core\Agents</Filter>
-    </ClInclude>
     <ClInclude Include="Core\StaticRenderAgent.h">
       <Filter>Core\Agents</Filter>
     </ClInclude>

@@ -29,7 +29,7 @@ Agent *GameObject::GetFromFullName(const StringIntern &name)
   auto it = mAgents.find(name);
   if (it != mAgents.end())
   {
-    return (*it).second.get();
+    return it->second.get();
   }
 
   return nullptr;
@@ -40,7 +40,7 @@ const Agent *GameObject::GetFromFullName(const StringIntern &name) const
   auto it = mAgents.find(name);
   if (it != mAgents.end())
   {
-    return (*it).second.get();
+    return it->second.get();
   }
 
   return nullptr;

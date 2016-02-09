@@ -16,6 +16,8 @@ public:
   Creature();
   ~Creature();
 
+  PGameObject Clone() override;
+
   void Update(GameObjectParams &params) override;
 
 
