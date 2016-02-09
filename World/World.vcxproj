@@ -58,7 +58,6 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tools\Bresenham3D.cpp" />
-    <ClCompile Include="tools\CoordsConvert.cpp" />
     <ClCompile Include="tools\StringIntern.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +65,7 @@
     <ClInclude Include="Core\Block.h" />
     <ClInclude Include="Core\BlocksLibrary.h" />
     <ClInclude Include="Core\BlockStaticRenderAgent.h" />
+    <ClInclude Include="Core\Config.h" />
     <ClInclude Include="Core\Creature.h" />
     <ClInclude Include="Core\GameObject.h" />
     <ClInclude Include="Core\GameObjectParams.h" />
@@ -106,7 +106,7 @@
     <ClInclude Include="lodepng\lodepng.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="tools\Bresenham3D.h" />
-    <ClInclude Include="tools\CoordsConvert.h" />
+    <ClInclude Include="tools\CoordSystem.h" />
     <ClInclude Include="tools\StringIntern.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -161,19 +161,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)..\3rdparty\msvc14_x86\boost;$(SolutionDir)..\3rdparty\msvc14_x86\glew;$(SolutionDir)..\3rdparty\msvc14_x86\glfw;$(SolutionDir)..\3rdparty\msvc14_x86\glm;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost\stage\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)..\3rdparty\msvc14_x86\boost;$(SolutionDir)..\3rdparty\msvc14_x86\glew;$(SolutionDir)..\3rdparty\msvc14_x86\glfw;$(SolutionDir)..\3rdparty\msvc14_x86\glm;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x86\boost\stage\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x86\glfw\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)..\3rdparty\msvc14_x64\boost;$(SolutionDir)..\3rdparty\msvc14_x64\glew;$(SolutionDir)..\3rdparty\msvc14_x64\glfw;$(SolutionDir)..\3rdparty\msvc14_x64\glm;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x64\boost\lib;$(SolutionDir)\..\3rdparty\msvc14_x64\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x64\glfw\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x64\boost\stage\lib;$(SolutionDir)\..\3rdparty\msvc14_x64\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x64\glfw\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)..\3rdparty\msvc14_x64\boost;$(SolutionDir)..\3rdparty\msvc14_x64\glew;$(SolutionDir)..\3rdparty\msvc14_x64\glfw;$(SolutionDir)..\3rdparty\msvc14_x64\glm;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x64\boost\lib;$(SolutionDir)\..\3rdparty\msvc14_x64\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x64\glfw\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\..\3rdparty\msvc14_x64\boost\stage\lib;$(SolutionDir)\..\3rdparty\msvc14_x64\glew\lib;$(SolutionDir)\..\3rdparty\msvc14_x64\glfw\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

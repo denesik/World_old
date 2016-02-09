@@ -10,27 +10,23 @@
 #include "Block.h"
 #include <glm/glm.hpp>
 #include "RenderSector.h"
+#include "../tools/CoordSystem.h"
+#include "Config.h"
 
 class Sector
 {
 public:
-  enum
-  {
-    SECTOR_SIZE = 31,
-  };
-
-public:
-  Sector(const glm::ivec3 &position, RenderSector &renderSector);
+  Sector(const SPos &position, RenderSector &renderSector);
   ~Sector();
 
-  const glm::ivec3 &GetSectorPosition() const;
+  const SPos &GetSectorPosition() const;
 
   /// ¬ернуть блок в локальных координатах сектора.
-  PBlock GetBlock(const glm::uvec3 &pos);
+  PBlock GetBlock(const SBPos &pos);
 
   /// ”становить блок в заданную позицию.
   /// —уществующий блок будет удален.
-  void SetBlock(const glm::uvec3 &pos, PBlock block);
+  void SetBlock(const SBPos &pos, PBlock block);
 
   void Update(class World *world);
 
@@ -38,9 +34,9 @@ public:
 
 private:
   std::array<PBlock, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocks;
-  std::array<glm::uvec3, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocksPos;
+  std::array<SBPos, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocksPos;
 
-  glm::ivec3 mPos;
+  SPos mPos;
 
   RenderSector &mRenderSector;
 };

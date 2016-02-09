@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include "GameObject.h"
+#include "../tools/CoordSystem.h"
 
 
 
@@ -30,9 +31,9 @@ public:
     return mDirection;
   }
 
-  void SetPos(const glm::vec3 &pos);
+  void SetPos(const WPos &pos);
 
-  const glm::vec3 &GetPos() const;
+  const WPos &GetPos() const;
 
   /// Повернуть камеру относительно текущей ориентации на заданный угол по трем осям.
   void Rotate(const glm::vec3 &degrees);

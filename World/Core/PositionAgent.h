@@ -7,6 +7,7 @@
 #define PositionAgent_h__
 
 #include "Agent.h"
+#include "..\tools\CoordSystem.h"
 
 
 
@@ -23,23 +24,23 @@ public:
 
   void Update(const GameObjectParams &params) override;
 
-  inline void Set(const glm::vec3 &pos) noexcept
+  inline void Set(const WPos &pos) noexcept
   {
     mPos = pos;
   }
 
-  inline const glm::vec3 &Get() const noexcept
+  inline const WPos &Get() const noexcept
   {
     return mPos;
   }
 
-  inline glm::vec3 &Get() noexcept
+  inline WPos &Get() noexcept
   {
     return mPos;
   }
 
 private:
-  glm::vec3 mPos;
+  WPos mPos;
 
 };
 

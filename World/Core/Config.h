@@ -3,13 +3,13 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#ifndef CoordsConvert_h__
-#define CoordsConvert_h__
+#ifndef Config_h__
+#define Config_h__
 
-#include <glm/glm.hpp>
+enum
+{
+  SECTOR_SIZE = 31,
+};
 
-glm::ivec3 CoordWorldToSector(const glm::vec3 &pos);
+#endif // Config_h__
 
-glm::ivec3 CoordWorldToBlock(const glm::vec3 &pos);
-
-#endif // CoordsConvert_h__

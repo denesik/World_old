@@ -12,8 +12,8 @@
 RenderSector::RenderSector()
 {
   mModel.GetMesh() = std::make_shared<std::remove_reference_t<decltype(mModel.GetMesh())>::element_type>();
-  mModel.GetMesh()->Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE, 
-                           36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
+  mModel.GetMesh()->Reserve(24 * SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE, 
+                           36 * SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE);
 }
 
 
@@ -69,8 +69,8 @@ void RenderSector::Update()
     // Если буфер компилируется, не трогаем сектор.
     if (!mRebuildBuffers)
     {
-      mModel.GetMesh()->Reserve(24 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE,
-        36 * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE * Sector::SECTOR_SIZE);
+      mModel.GetMesh()->Reserve(24 * SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE,
+        36 * SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE);
 
       mIsNeedBuild = true;
       mIsChanged = false;

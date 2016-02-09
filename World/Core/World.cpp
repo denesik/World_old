@@ -7,7 +7,7 @@
 #include <tuple>
 #include <utility>
 #include <GLFW\glfw3.h>
-#include "..\tools\CoordsConvert.h"
+#include "..\tools\CoordSystem.h"
 
 
 
@@ -21,7 +21,7 @@ World::~World()
 {
 }
 
-void World::LoadSector(const glm::ivec3 &position)
+void World::LoadSector(const SPos &position)
 {
   if (position != mLastLoadPos)
   {
@@ -35,7 +35,7 @@ void World::Update()
   mPlayer->Update(GameObjectParams{ this, nullptr, {} });
 
   bool load = false;
-  glm::ivec3 position;
+  SPos position;
   while (!mListLoad.empty())
   {
     auto it = mSectors.find(mListLoad.front());
@@ -99,7 +99,7 @@ void World::Draw()
   }
 }
 
-Sector *World::GetSector(const glm::ivec3 &position)
+Sector *World::GetSector(const SPos &position)
 {
   auto it = mSectors.find(position);
   if (it != mSectors.end())
@@ -110,22 +110,22 @@ Sector *World::GetSector(const glm::ivec3 &position)
   return nullptr;
 }
 
-PBlock World::GetBlock(const glm::ivec3 &position)
+PBlock World::GetBlock(const WBPos &position)
 {
-  auto secPos = CoordWorldToSector(position);
+  auto secPos = cs::BlockToSector(position);
   if (auto sector = GetSector(secPos))
   {
-    return sector->GetBlock(position - secPos * static_cast<int32_t>(Sector::SECTOR_SIZE));
+    return sector->GetBlock(position - secPos * static_cast<int32_t>(SECTOR_SIZE));
   }
   return nullptr;
 }
 
-void World::SetBlock(const glm::ivec3 &pos, PBlock block)
+void World::SetBlock(const WBPos &pos, PBlock block)
 {
-  auto secPos = CoordWorldToSector(pos);
+  auto secPos = cs::BlockToSector(pos);
   if (auto sector = GetSector(secPos))
   {
-    sector->SetBlock(pos - secPos * static_cast<int32_t>(Sector::SECTOR_SIZE), block);
+    sector->SetBlock(pos - secPos * static_cast<int32_t>(SECTOR_SIZE), block);
     sector->GetRenderSector().Changed();
   }
 }

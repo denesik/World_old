@@ -16,9 +16,9 @@
 namespace std
 {
   template <>
-  struct hash<glm::ivec3>
+  struct hash<SPos>
   {
-    std::size_t operator()(glm::ivec3 const& v) const
+    std::size_t operator()(SPos const& v) const
     {
       std::size_t h1 = std::hash<int32_t>()(v.x);
       std::size_t h2 = std::hash<int32_t>()(v.y);
@@ -34,29 +34,29 @@ public:
   World();
   ~World();
 
-  void LoadSector(const glm::ivec3 &position);
+  void LoadSector(const SPos &position);
 
   void Update();
 
   void Draw();
 
   /// Получить сектор по позиции сектора.
-  Sector *GetSector(const glm::ivec3 &position);
+  Sector *GetSector(const SPos &position);
 
-  PBlock GetBlock(const glm::ivec3 &position);
+  PBlock GetBlock(const WBPos &position);
 
   /// Установить блок в заданную позицию.
   /// Существующий блок будет удален.
-  void SetBlock(const glm::ivec3 &pos, PBlock block);
+  void SetBlock(const WBPos &pos, PBlock block);
 
   Player *GetPlayer();
 
 private:
-  std::unordered_map<glm::ivec3, Sector> mSectors;
-  std::unordered_map<glm::ivec3, RenderSector> mRenderSectors;
+  std::unordered_map<SPos, Sector> mSectors;
+  std::unordered_map<SPos, RenderSector> mRenderSectors;
 
-  glm::ivec3 mLastLoadPos;
-  std::list<glm::ivec3> mListLoad;
+  SPos mLastLoadPos;
+  std::list<SPos> mListLoad;
 
   Sector *mCurrentSector;
 

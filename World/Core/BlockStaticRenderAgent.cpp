@@ -5,6 +5,7 @@
 #include "BlockStaticRenderAgent.h"
 #include "World.h"
 #include "..\Graphic\RegistryGraphic.h"
+#include "Config.h"
 
 
 BlockStaticRenderAgent::BlockStaticRenderAgent(GameObject *parent, const std::string &name)
@@ -33,10 +34,10 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
 {
   if (params.sector->GetRenderSector().IsNeedBuild())
   {
-    const int32_t size = static_cast<int32_t>(Sector::SECTOR_SIZE);
+    const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
 
     size_t sides = MeshBlockGenerator::ALL;
-    auto pos = static_cast<glm::ivec3>(params.pos) - params.sector->GetSectorPosition() * size;
+    auto pos = static_cast<WBPos>(params.pos) - params.sector->GetSectorPosition() * size;
     if (pos.x < size - 1)
     {
       ++pos.x;
@@ -48,7 +49,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
     }
     else
     {
-      auto pos = static_cast<glm::ivec3>(params.pos);
+      auto pos = static_cast<WBPos>(params.pos);
       ++pos.x;
       if (params.world->GetBlock(pos))
       {
@@ -66,7 +67,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
     }
     else
     {
-      auto pos = static_cast<glm::ivec3>(params.pos);
+      auto pos = static_cast<WBPos>(params.pos);
       --pos.x;
       if (params.world->GetBlock(pos))
       {
@@ -85,7 +86,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
     }
     else
     {
-      auto pos = static_cast<glm::ivec3>(params.pos);
+      auto pos = static_cast<WBPos>(params.pos);
       ++pos.y;
       if (params.world->GetBlock(pos))
       {
@@ -103,7 +104,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
     }
     else
     {
-      auto pos = static_cast<glm::ivec3>(params.pos);
+      auto pos = static_cast<WBPos>(params.pos);
       --pos.y;
       if (params.world->GetBlock(pos))
       {
@@ -122,7 +123,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
     }
     else
     {
-      auto pos = static_cast<glm::ivec3>(params.pos);
+      auto pos = static_cast<WBPos>(params.pos);
       ++pos.z;
       if (params.world->GetBlock(pos))
       {
@@ -140,7 +141,7 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
     }
     else
     {
-      auto pos = static_cast<glm::ivec3>(params.pos);
+      auto pos = static_cast<WBPos>(params.pos);
       --pos.z;
       if (params.world->GetBlock(pos))
       {

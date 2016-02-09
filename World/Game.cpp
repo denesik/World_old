@@ -22,7 +22,7 @@
 #include <atomic>
 #include "Core/BlockStaticRenderAgent.h"
 #include "tools/Bresenham3D.h"
-#include "tools/CoordsConvert.h"
+#include "tools/CoordSystem.h"
 
 Game::Game()
 {
@@ -222,10 +222,10 @@ void Game::Update(double dt)
     REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, -speedMov, 0.0f });
   }
 
-  glm::ivec3 secPos = CoordWorldToSector(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
+  SPos secPos = cs::WorldToSector(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
   secPos.z = 0;
 
-  glm::ivec3 offsets[8] =
+  SPos offsets[8] =
   {
     { -1,-1,0 },
     { -1,0,0 },

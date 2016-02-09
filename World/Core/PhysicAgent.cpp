@@ -6,7 +6,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include "World.h"
-#include "../tools/CoordsConvert.h"
+#include "../tools/CoordSystem.h"
 
 
 const StringIntern PhysicAgent::mPositionAgentName = StringIntern("PositionAgent");
@@ -57,7 +57,7 @@ void PhysicAgent::Update(const GameObjectParams &params)
   if (false)
   {
     pos.x += mDeltaPos.x;
-    if (!params.world->GetBlock(CoordWorldToBlock(pos)))
+    if (!params.world->GetBlock(cs::WorldToBlock(pos)))
     {
       newPos = pos;
     }
@@ -66,7 +66,7 @@ void PhysicAgent::Update(const GameObjectParams &params)
       pos.x -= mDeltaPos.x;
     }
     pos.y += mDeltaPos.y;
-    if (!params.world->GetBlock(CoordWorldToBlock(pos)))
+    if (!params.world->GetBlock(cs::WorldToBlock(pos)))
     {
       newPos = pos;
     }
@@ -75,7 +75,7 @@ void PhysicAgent::Update(const GameObjectParams &params)
       pos.y -= mDeltaPos.y;
     }
     pos.z += mDeltaPos.z;
-    if (!params.world->GetBlock(CoordWorldToBlock(pos)))
+    if (!params.world->GetBlock(cs::WorldToBlock(pos)))
     {
       newPos = pos;
     }
@@ -93,12 +93,12 @@ void PhysicAgent::Update(const GameObjectParams &params)
   mDeltaPos = {};
 }
 
-void PhysicAgent::SetPos(const glm::vec3 &pos)
+void PhysicAgent::SetPos(const WPos &pos)
 {
   mParent->GetFromFullName<PositionAgent>(mPositionAgentName)->Set(pos);
 }
 
-const glm::vec3 &PhysicAgent::GetPos() const
+const WPos &PhysicAgent::GetPos() const
 {
   return mParent->GetFromFullName<PositionAgent>(mPositionAgentName)->Get();
 }
