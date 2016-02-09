@@ -54,7 +54,7 @@ void PhysicAgent::Update(const GameObjectParams &params)
   auto pos = GetPos();
   auto newPos = pos;
 
-  if (false)
+  if (true)
   {
     pos.x += mDeltaPos.x;
     if (!params.world->GetBlock(cs::WorldToBlock(pos)))

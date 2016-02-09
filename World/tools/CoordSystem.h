@@ -22,32 +22,8 @@ namespace cs
   {
     inline float move(float val)
     {
-      return val + static_cast<int32_t>(1.0f - (static_cast<int32_t>(val) - val));
+      return val + static_cast<int32_t> (1.0f - (static_cast<int32_t> (val) - val));
     }
-  }
-
-  inline SPos WorldToSector(const WPos &pos)
-  {
-    const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
-    SPos secPos;
-
-    secPos.x = (pos.x >= 0) ? static_cast<int32_t>(pos.x) / size : static_cast<int32_t>(detail::move(pos.x)) / size - 1;
-    secPos.y = (pos.y >= 0) ? static_cast<int32_t>(pos.y) / size : static_cast<int32_t>(detail::move(pos.y)) / size - 1;
-    secPos.z = (pos.z >= 0) ? static_cast<int32_t>(pos.z) / size : static_cast<int32_t>(detail::move(pos.z)) / size - 1;
-
-    return secPos;
-  }
-
-  inline SPos BlockToSector(const WBPos &pos)
-  {
-    const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
-    SPos secPos;
-
-    secPos.x = (pos.x >= 0) ? static_cast<int32_t>(pos.x) / size : static_cast<int32_t>(pos.x) / size - 1;
-    secPos.y = (pos.y >= 0) ? static_cast<int32_t>(pos.y) / size : static_cast<int32_t>(pos.y) / size - 1;
-    secPos.z = (pos.z >= 0) ? static_cast<int32_t>(pos.z) / size : static_cast<int32_t>(pos.z) / size - 1;
-
-    return secPos;
   }
 
   inline WBPos WorldToBlock(const WPos &pos)
@@ -60,6 +36,47 @@ namespace cs
     bpos.z = (pos.z >= 0) ? static_cast<vtype>(pos.z) : static_cast<vtype>(detail::move(pos.z)) - vtype(1);
 
     return bpos;
+  }
+
+  inline SPos WorldToSector(const WPos &pos)
+  {
+    const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
+    SPos secPos;
+    using vtype = decltype(secPos)::value_type;
+
+    secPos.x = (pos.x >= 0) ? static_cast<int32_t>(pos.x) / size : static_cast<int32_t>(detail::move(pos.x)) / size - vtype(1);
+    secPos.y = (pos.y >= 0) ? static_cast<int32_t>(pos.y) / size : static_cast<int32_t>(detail::move(pos.y)) / size - vtype(1);
+    secPos.z = (pos.z >= 0) ? static_cast<int32_t>(pos.z) / size : static_cast<int32_t>(detail::move(pos.z)) / size - vtype(1);
+
+    return secPos;
+  }
+
+  inline SPos BlockToSector(const WBPos &pos)
+  {
+    const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
+    SPos secPos;
+    using vtype = decltype(secPos)::value_type;
+
+    secPos.x = (pos.x >= 0) ? static_cast<int32_t>(pos.x) / size : static_cast<int32_t>(pos.x) / size - vtype(1);
+    secPos.y = (pos.y >= 0) ? static_cast<int32_t>(pos.y) / size : static_cast<int32_t>(pos.y) / size - vtype(1);
+    secPos.z = (pos.z >= 0) ? static_cast<int32_t>(pos.z) / size : static_cast<int32_t>(pos.z) / size - vtype(1);
+
+    return secPos;
+  }
+
+  inline SPos BlockToSector(const WPos &pos)
+  {
+    const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
+    SPos secPos;
+    using vtype = decltype(secPos)::value_type;
+
+    WBPos bpos = WorldToBlock(pos);
+
+    secPos.x = (bpos.x >= 0) ? static_cast<int32_t>(bpos.x) / size : static_cast<int32_t>(bpos.x) / size - vtype(1);
+    secPos.y = (bpos.y >= 0) ? static_cast<int32_t>(bpos.y) / size : static_cast<int32_t>(bpos.y) / size - vtype(1);
+    secPos.z = (bpos.z >= 0) ? static_cast<int32_t>(bpos.z) / size : static_cast<int32_t>(bpos.z) / size - vtype(1);
+
+    return secPos;
   }
 }
 
