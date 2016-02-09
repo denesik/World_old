@@ -15,10 +15,11 @@ using PPositionAgent = std::unique_ptr<class PositionAgent>;
 class PositionAgent : public Agent
 {
 public:
-  PositionAgent(GameObject *parent);
+  PositionAgent(GameObject *parent, const std::string &name = "");
+  PositionAgent(const PositionAgent &object, GameObject *parent, const std::string &name = "");
   ~PositionAgent();
 
-  PAgent Clone() override;
+  PAgent Clone(GameObject *parent, const std::string &name = "") override;
 
   void Update(const GameObjectParams &params) override;
 

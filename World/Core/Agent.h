@@ -23,6 +23,11 @@ inline std::unique_ptr<T> MakeAgent(Args&&... args)
   return std::make_unique<T>(std::forward<Args>(args)...);
 }
 
+/// Агент.
+/// Тип агента задается потомками на этапе компиляции и не меняется. Аналогичен типу объекта.
+/// Имя агента задается потомками в конструкторе. Может использоваться для идентификации
+/// экземпляров агентов. Также может отсутствовать.
+/// У агентов, которые обязательно присутствуют в игровом объекте, имя должно отсутствовать.
 class Agent
 {
 public:
@@ -30,7 +35,7 @@ public:
   Agent(GameObject *parent, const std::string &type, const std::string &name = "");
   virtual ~Agent();
 
-  virtual PAgent Clone() = 0;
+  virtual PAgent Clone(GameObject *parent, const std::string &name = "") = 0;
 
   virtual void Update(const GameObjectParams &params) = 0;
 

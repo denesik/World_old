@@ -7,20 +7,26 @@
 #include "..\Graphic\RegistryGraphic.h"
 
 
-BlockStaticRenderAgent::BlockStaticRenderAgent(GameObject *parent)
-  : StaticRenderAgent(parent)
+BlockStaticRenderAgent::BlockStaticRenderAgent(GameObject *parent, const std::string &name)
+  : StaticRenderAgent(parent, name)
 {
   mModel.SetTexture(std::get<0>(REGISTRY_GRAPHIC.GetTextureManager().GetTexture("Textures/stone.png")));
 }
 
 
+BlockStaticRenderAgent::BlockStaticRenderAgent(const BlockStaticRenderAgent &object, GameObject *parent, const std::string &name)
+  : StaticRenderAgent(parent, name)
+{
+
+}
+
 BlockStaticRenderAgent::~BlockStaticRenderAgent()
 {
 }
 
-PAgent BlockStaticRenderAgent::Clone()
+PAgent BlockStaticRenderAgent::Clone(GameObject *parent, const std::string &name)
 {
-  return MakeAgent<BlockStaticRenderAgent>(*this);
+  return MakeAgent<BlockStaticRenderAgent>(*this, parent, name);
 }
 
 void BlockStaticRenderAgent::Update(const GameObjectParams &params)

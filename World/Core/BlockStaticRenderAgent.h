@@ -17,10 +17,11 @@ using PBlockStaticRenderAgent = std::unique_ptr<class BlockStaticRenderAgent>;
 class BlockStaticRenderAgent : public StaticRenderAgent
 {
 public:
-  BlockStaticRenderAgent(GameObject *parent);
+  BlockStaticRenderAgent(GameObject *parent, const std::string &name = "");
+  BlockStaticRenderAgent(const BlockStaticRenderAgent &object, GameObject *parent, const std::string &name = "");
   ~BlockStaticRenderAgent();
 
-  PAgent Clone() override;
+  PAgent Clone(GameObject *parent, const std::string &name = "") override;
 
   void Update(const GameObjectParams &params) override;
 

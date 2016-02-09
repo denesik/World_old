@@ -16,7 +16,7 @@ using PStaticRenderAgent = std::unique_ptr<class StaticRenderAgent>;
 class StaticRenderAgent : public Agent
 {
 public:
-  StaticRenderAgent(GameObject *parent);
+  StaticRenderAgent(GameObject *parent, const std::string &name = "");
   ~StaticRenderAgent();
 };
 

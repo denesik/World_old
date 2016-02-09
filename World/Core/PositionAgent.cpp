@@ -6,19 +6,25 @@
 
 
 
-PositionAgent::PositionAgent(GameObject *parent)
-  : Agent(parent, "PositionAgent")
+PositionAgent::PositionAgent(GameObject *parent, const std::string &name)
+  : Agent(parent, "PositionAgent", name)
 {
 }
 
+
+PositionAgent::PositionAgent(const PositionAgent &object, GameObject *parent, const std::string &name)
+  : Agent(parent, "PositionAgent", name)
+{
+
+}
 
 PositionAgent::~PositionAgent()
 {
 }
 
-PAgent PositionAgent::Clone()
+PAgent PositionAgent::Clone(GameObject *parent, const std::string &name)
 {
-  return MakeAgent<PositionAgent>(*this);
+  return MakeAgent<PositionAgent>(*this, parent, name);
 }
 
 void PositionAgent::Update(const GameObjectParams &params)

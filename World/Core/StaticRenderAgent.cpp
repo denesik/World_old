@@ -4,8 +4,8 @@
 // ============================================================================
 #include "StaticRenderAgent.h"
 
-StaticRenderAgent::StaticRenderAgent(GameObject *parent)
-  : Agent(parent, "StaticRenderAgent")
+StaticRenderAgent::StaticRenderAgent(GameObject *parent, const std::string &name)
+  : Agent(parent, "StaticRenderAgent", name)
 {
   
 }

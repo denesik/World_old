@@ -17,10 +17,11 @@ using PPhysicAgent = std::unique_ptr<class PhysicAgent>;
 class PhysicAgent : public Agent
 {
 public:
-  PhysicAgent(GameObject *parent);
+  PhysicAgent(GameObject *parent, const std::string &name = "");
+  PhysicAgent(const PhysicAgent &object, GameObject *parent, const std::string &name = "");
   ~PhysicAgent();
 
-  PAgent Clone() override;
+  PAgent Clone(GameObject *parent, const std::string &name = "") override;
 
   void Update(const GameObjectParams &params) override;
 

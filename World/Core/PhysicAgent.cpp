@@ -12,8 +12,8 @@
 const StringIntern PhysicAgent::mPositionAgentName = StringIntern("PositionAgent");
 
 
-PhysicAgent::PhysicAgent(GameObject *parent)
-  : Agent(parent, "PhysicAgent")
+PhysicAgent::PhysicAgent(GameObject *parent, const std::string &name)
+  : Agent(parent, "PhysicAgent", name)
 {
   mQuat = glm::quat_cast(glm::lookAt
     (
@@ -24,13 +24,19 @@ PhysicAgent::PhysicAgent(GameObject *parent)
 }
 
 
+PhysicAgent::PhysicAgent(const PhysicAgent &object, GameObject *parent, const std::string &name)
+  : Agent(parent, "PhysicAgent", name)
+{
+
+}
+
 PhysicAgent::~PhysicAgent()
 {
 }
 
-PAgent PhysicAgent::Clone()
+PAgent PhysicAgent::Clone(GameObject *parent, const std::string &name)
 {
-  return MakeAgent<PhysicAgent>(*this);
+  return MakeAgent<PhysicAgent>(*this, parent, name);
 }
 
 void PhysicAgent::Update(const GameObjectParams &params)
