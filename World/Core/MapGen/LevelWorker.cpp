@@ -11,11 +11,10 @@ LevelWorker::LevelWorker()
 {
 }
 
-std::shared_ptr<Sector> LevelWorker::GetSector(const SPos &vp)
+std::shared_ptr<Sector> LevelWorker::GetSector(const SPos &v)
 {
-  SPos v = vp;
-  v.z = 0;
   std::lock_guard<std::mutex> scope(async_process);
+  last = v;
 
 	auto f = ready.find(v);
 	if (f != ready.end())
@@ -70,6 +69,7 @@ std::shared_ptr<Sector> LevelWorker::Generate(const SPos &spos)
 			s.mBlocks[i] = nullptr;
 		}
 	}
+  psec->mRenderSector.Changed();
 
 	LOG(trace) << "SectorGen: " << glfwGetTime() - currentTime << " blocks count: " << blocksCount;
   return psec;
@@ -80,11 +80,14 @@ void LevelWorker::Process()
   async_process.lock();
 	if (!requested.empty())
 	{
-    auto r = requested.begin();
+    SPos f = last;
+    auto r = requested.find(last);
+    if(r == requested.end())
+      r = requested.begin();
+
     async_process.unlock();
 
     ready[*r] = (Generate(*r));
-    std::this_thread::sleep_for(std::chrono::seconds(0));
 
     async_process.lock();
     requested.erase(r);

@@ -116,7 +116,7 @@ int Game::Run()
       auto lastTime = currTime;
       currTime = glfwGetTime();
       Update(currTime - lastTime);
-      std::this_thread::sleep_for(std::chrono::milliseconds(1));
+      std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
   });
 
@@ -135,18 +135,18 @@ int Game::Run()
 
     auto far = camPos + ray;
     glm::vec3 blockPos;
-    for (auto &p : points)
-    {
-      if (REGISTRY_CORE.GetWorld().GetBlock(p))
-      {
-        blockPos = p;
-        if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyPress(GLFW_KEY_SPACE))
-        {
-          REGISTRY_CORE.GetWorld().SetBlock(p, REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern("BlockBrick")));
-        }
-        break;
-      }
-    }
+    //for (auto &p : points)
+    //{
+    //  if (REGISTRY_CORE.GetWorld().GetBlock(p))
+    //  {
+    //    blockPos = p;
+    //    if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyPress(GLFW_KEY_SPACE))
+    //    {
+    //      REGISTRY_CORE.GetWorld().SetBlock(p, REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern("BlockBrick")));
+    //    }
+    //    break;
+    //  }
+    //}
 
     REGISTRY_GRAPHIC.GetWindow().SetTitle(
       std::to_string(fps.GetCount()) + std::string(" fps. pos: [x: ") +

@@ -30,6 +30,7 @@ public:
   std::mutex async_process;
 	std::unordered_map<SPos, std::shared_ptr<Sector>> ready;
 	std::unordered_set<SPos> requested;
+  SPos last;
 
 	std::shared_ptr<Sector> GetSector(const SPos &v);
 	void Process();

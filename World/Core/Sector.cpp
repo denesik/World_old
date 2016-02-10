@@ -28,7 +28,6 @@ const SPos & Sector::GetSectorPosition() const
 PBlock Sector::GetBlock(const SBPos &pos)
 {
   //assert(glm::clamp(pos, static_cast<int32_t>(-SECTOR_RADIUS), static_cast<int32_t>(SECTOR_RADIUS)) == pos);
-
   return mBlocks[pos.z * SECTOR_SIZE * SECTOR_SIZE + pos.y * SECTOR_SIZE + pos.x];
 }
 
