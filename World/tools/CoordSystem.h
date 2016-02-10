@@ -80,4 +80,19 @@ namespace cs
   }
 }
 
+namespace std
+{
+  template <>
+  struct hash<SPos>
+  {
+    std::size_t operator()(SPos const& v) const
+    {
+      std::size_t h1 = std::hash<int32_t>()(v.x);
+      std::size_t h2 = std::hash<int32_t>()(v.y);
+      std::size_t h3 = std::hash<int32_t>()(v.z);
+      return ((h1 ^ (h2 << 1)) >> 1) ^ (h3 << 1);
+    }
+  };
+}
+
 #endif // CoordsConvert_h__

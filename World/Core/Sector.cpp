@@ -8,52 +8,11 @@
 #include <glm/glm.hpp>
 #include <stdint.h>
 #include "RegistryCore.h"
-#include "MapGen/PerlinNoise.h"
 #include "../Log.h"
 
-static PerlinNoise noise(0);
-
-Sector::Sector(const SPos &position, RenderSector &renderSector)
-  : mPos(position), mRenderSector(renderSector)
+Sector::Sector(const SPos &position)
+  : mPos(position)
 {
-  auto currentTime = glfwGetTime();
-
-  {
-    SBPos pos;
-    size_t index = 0;
-    for (pos.z = 0; pos.z < SECTOR_SIZE; ++pos.z)
-    {
-      for (pos.y = 0; pos.y < SECTOR_SIZE; ++pos.y)
-      {
-        for (pos.x = 0; pos.x < SECTOR_SIZE; ++pos.x)
-        {
-          mBlocksPos[index++] = pos;
-        }
-      }
-    }
-  }
-
-  size_t blocksCount = 0;
-
-  for (size_t i = 0; i < mBlocks.size(); ++i)
-  {
-    const auto &pos = mBlocksPos[i];
-    float tx = static_cast<float>(pos.x);
-    float ty = static_cast<float>(pos.y);
-    float h = (noise.Noise2(tx / 10.0f, ty / 10.0f) + 1.0f) / 2.0f;
-    int32_t zh = static_cast<int32_t>(glm::round(h * (SECTOR_SIZE - 1)));
-    if (pos.z <= zh)
-    {
-      mBlocks[i] = REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern(pos.x % 2 ? "BlockSand" : "BlockStone"));
-      ++blocksCount;
-    }
-    else
-    {
-      mBlocks[i] = nullptr;
-    }
-  }
-
-  LOG(info) << "SectorGen: " << glfwGetTime() - currentTime << " blocks count: " << blocksCount;
 }
 
 
@@ -102,7 +61,7 @@ void Sector::Update(class World *world)
         mBlocks[i]->UpdateGraphic(params);
       }
     }
-    LOG(info) << "SectorBuild: " << glfwGetTime() - currentTime;
+    LOG(trace) << "SectorBuild: " << glfwGetTime() - currentTime;
   }
   mRenderSector.Update();
 }

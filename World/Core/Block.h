@@ -9,7 +9,7 @@
 #include "GameObject.h"
 #include "StaticRenderAgent.h"
 
-using PBlock = std::shared_ptr<class Block>;
+typedef std::shared_ptr<class Block> PBlock;
 
 /// Блок. Может быть статическим или динамическим.
 /// У статического блока есть статический рендер агент.

@@ -10,6 +10,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Graphic/RegistryGraphic.h"
+#include <boost/thread/thread.hpp>
 
 #include <fstream>
 #include "FpsCounter.h"
@@ -23,6 +24,7 @@
 #include "Core/BlockStaticRenderAgent.h"
 #include "tools/Bresenham3D.h"
 #include "tools/CoordSystem.h"
+#include "Core\MapGen\LevelWorker.h"
 
 Game::Game()
 {
@@ -85,18 +87,27 @@ int Game::Run()
 
   REGISTRY_CORE.GetWorld().GetPlayer()->SetPosition({ 0,0,30 });
 
-  std::thread thread([this, &close]
-  {
-    REGISTRY_CORE.GetWorld().LoadSector({ 0,0,0 });
+  boost::thread th([]() {
+    while (true)
+    {
+      LevelWorker::instance().Process();
+      std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    }
+  });
+  th.detach();
 
-    REGISTRY_CORE.GetWorld().LoadSector({ -1,-1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 0,-1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 1,-1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ -1,0,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 1,0,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ -1,1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 0,1,0 });
-    REGISTRY_CORE.GetWorld().LoadSector({ 1,1,0 });
+  boost::thread thread([this, &close]
+  {
+    REGISTRY_CORE.GetWorld().GetSector({ 0,0,0 });
+
+    REGISTRY_CORE.GetWorld().GetSector({ -1,-1,0 });
+    REGISTRY_CORE.GetWorld().GetSector({ 0,-1,0 });
+    REGISTRY_CORE.GetWorld().GetSector({ 1,-1,0 });
+    REGISTRY_CORE.GetWorld().GetSector({ -1,0,0 });
+    REGISTRY_CORE.GetWorld().GetSector({ 1,0,0 });
+    REGISTRY_CORE.GetWorld().GetSector({ -1,1,0 });
+    REGISTRY_CORE.GetWorld().GetSector({ 0,1,0 });
+    REGISTRY_CORE.GetWorld().GetSector({ 1,1,0 });
 
 
     auto currTime = glfwGetTime();
@@ -238,7 +249,7 @@ void Game::Update(double dt)
   };
   for (auto i : offsets)
   {
-    REGISTRY_CORE.GetWorld().LoadSector(secPos + i);
+    REGISTRY_CORE.GetWorld().GetSector(secPos + i);
   }
 
   REGISTRY_CORE.GetWorld().Update();

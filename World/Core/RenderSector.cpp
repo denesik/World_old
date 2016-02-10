@@ -89,7 +89,7 @@ void RenderSector::Draw()
     auto currentTime = glfwGetTime();
     mModel.GetMesh()->Compile();
     mModel.GetMesh()->Release();
-    LOG(info) << "ListGen: " << glfwGetTime() - currentTime;
+    LOG(trace) << "ListGen: " << glfwGetTime() - currentTime;
     mRebuildBuffers = false;
   }
 
