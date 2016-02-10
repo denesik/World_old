@@ -8,7 +8,7 @@
 
 enum
 {
-  SECTOR_SIZE = 31,
+  SECTOR_SIZE = 32,
 };
 
 #endif // Config_h__

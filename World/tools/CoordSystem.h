@@ -20,63 +20,83 @@ namespace cs
 {
   namespace detail
   {
+    template<class T>
     inline float move(float val)
     {
-      return val + static_cast<int32_t> (1.0f - (static_cast<int32_t> (val) - val));
+      return val + static_cast<T> (1.0f - (static_cast<T> (val) - val));
     }
   }
 
-  inline WBPos WorldToBlock(const WPos &pos)
+  /// ћировые координаты в координаты блока в мире.
+  inline WBPos WtoWB(const WPos &pos)
   {
-    WBPos bpos;
-    using vtype = decltype(bpos)::value_type;
+    WBPos wbpos;
+    typedef decltype(wbpos)::value_type vtype;
 
-    bpos.x = (pos.x >= 0) ? static_cast<vtype>(pos.x) : static_cast<vtype>(detail::move(pos.x)) - vtype(1);
-    bpos.y = (pos.y >= 0) ? static_cast<vtype>(pos.y) : static_cast<vtype>(detail::move(pos.y)) - vtype(1);
-    bpos.z = (pos.z >= 0) ? static_cast<vtype>(pos.z) : static_cast<vtype>(detail::move(pos.z)) - vtype(1);
+    wbpos.x = (pos.x >= 0) ? static_cast<vtype>(pos.x) : static_cast<vtype>(detail::move<vtype>(pos.x)) - vtype(1);
+    wbpos.y = (pos.y >= 0) ? static_cast<vtype>(pos.y) : static_cast<vtype>(detail::move<vtype>(pos.y)) - vtype(1);
+    wbpos.z = (pos.z >= 0) ? static_cast<vtype>(pos.z) : static_cast<vtype>(detail::move<vtype>(pos.z)) - vtype(1);
 
-    return bpos;
+    return wbpos;
   }
 
-  inline SPos WorldToSector(const WPos &pos)
+  ///  оординаты блока в мире в координаты сектора.
+  inline SPos WBtoS(const WBPos &pos)
   {
-    const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
-    SPos secPos;
-    using vtype = decltype(secPos)::value_type;
+    SPos spos;
+    typedef decltype(spos)::value_type vtype;
+    const vtype size = static_cast<vtype>(SECTOR_SIZE);
 
-    secPos.x = (pos.x >= 0) ? static_cast<int32_t>(pos.x) / size : static_cast<int32_t>(detail::move(pos.x)) / size - vtype(1);
-    secPos.y = (pos.y >= 0) ? static_cast<int32_t>(pos.y) / size : static_cast<int32_t>(detail::move(pos.y)) / size - vtype(1);
-    secPos.z = (pos.z >= 0) ? static_cast<int32_t>(pos.z) / size : static_cast<int32_t>(detail::move(pos.z)) / size - vtype(1);
+    spos.x = (pos.x >= 0) ? static_cast<vtype>(pos.x) / size : (static_cast<vtype>(pos.x) - size + vtype(1)) / size;
+    spos.y = (pos.y >= 0) ? static_cast<vtype>(pos.y) / size : (static_cast<vtype>(pos.y) - size + vtype(1)) / size;
+    spos.z = (pos.z >= 0) ? static_cast<vtype>(pos.z) / size : (static_cast<vtype>(pos.z) - size + vtype(1)) / size;
 
-    return secPos;
+    return spos;
   }
 
-  inline SPos BlockToSector(const WBPos &pos)
+  /// ћировые координаты в координаты сектора.
+  inline SPos WtoS(const WPos &pos)
   {
-    const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
-    SPos secPos;
-    using vtype = decltype(secPos)::value_type;
-
-    secPos.x = (pos.x >= 0) ? static_cast<int32_t>(pos.x) / size : static_cast<int32_t>(pos.x) / size - vtype(1);
-    secPos.y = (pos.y >= 0) ? static_cast<int32_t>(pos.y) / size : static_cast<int32_t>(pos.y) / size - vtype(1);
-    secPos.z = (pos.z >= 0) ? static_cast<int32_t>(pos.z) / size : static_cast<int32_t>(pos.z) / size - vtype(1);
-
-    return secPos;
+    return WBtoS(WtoWB(pos));
   }
 
-  inline SPos BlockToSector(const WPos &pos)
+  /// ћировые координаты в координаты блока в секторе.
+  inline SBPos WtoSB(const WPos &pos)
   {
-    const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
-    SPos secPos;
-    using vtype = decltype(secPos)::value_type;
+    auto wbpos = WtoWB(pos);
+    auto spos = WBtoS(wbpos);
+    typedef decltype(spos)::value_type vtype;
+    const vtype size = static_cast<vtype>(SECTOR_SIZE);
 
-    WBPos bpos = WorldToBlock(pos);
+    return wbpos - spos * size;
+  }
 
-    secPos.x = (bpos.x >= 0) ? static_cast<int32_t>(bpos.x) / size : static_cast<int32_t>(bpos.x) / size - vtype(1);
-    secPos.y = (bpos.y >= 0) ? static_cast<int32_t>(bpos.y) / size : static_cast<int32_t>(bpos.y) / size - vtype(1);
-    secPos.z = (bpos.z >= 0) ? static_cast<int32_t>(bpos.z) / size : static_cast<int32_t>(bpos.z) / size - vtype(1);
+  /// ћировые координаты в координаты блока в секторе.
+  inline SBPos WtoSB(const WPos &pos, const SPos &spos)
+  {
+    typedef SBPos::value_type vtype;
+    const vtype size = static_cast<vtype>(SECTOR_SIZE);
 
-    return secPos;
+    return WtoWB(pos) - spos * size;
+  }
+
+  ///  оординаты блока в мире в координаты блока в секторе.
+  inline SBPos WBtoSB(const WBPos &pos)
+  {
+    auto spos = WBtoS(pos);
+    typedef decltype(spos)::value_type vtype;
+    const vtype size = static_cast<vtype>(SECTOR_SIZE);
+
+    return pos - spos * size;
+  }
+
+  ///  оординаты блока в мире в координаты блока в секторе.
+  inline SBPos WBtoSB(const WBPos &pos, const SPos &spos)
+  {
+    typedef SBPos::value_type vtype;
+    const vtype size = static_cast<vtype>(SECTOR_SIZE);
+
+    return pos - spos * size;
   }
 }
 

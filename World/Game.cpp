@@ -87,14 +87,13 @@ int Game::Run()
 
   REGISTRY_CORE.GetWorld().GetPlayer()->SetPosition({ 0,0,30 });
 
-  boost::thread th([]() {
-    while (true)
+  boost::thread th([&close]() {
+    while (!close)
     {
       LevelWorker::instance().Process();
       std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
   });
-  th.detach();
 
   boost::thread thread([this, &close]
   {
@@ -167,6 +166,7 @@ int Game::Run()
 
   close = true;
   thread.join();
+  th.join();
 
   return 0;
 }
@@ -233,7 +233,7 @@ void Game::Update(double dt)
     REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, -speedMov, 0.0f });
   }
 
-  SPos secPos = cs::WorldToSector(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
+  SPos secPos = cs::WtoS(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
   secPos.z = 0;
 
   SPos offsets[8] =

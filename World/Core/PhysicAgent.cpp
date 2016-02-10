@@ -57,7 +57,7 @@ void PhysicAgent::Update(const GameObjectParams &params)
   if (true)
   {
     pos.x += mDeltaPos.x;
-    if (!params.world->GetBlock(cs::WorldToBlock(pos)))
+    if (!params.world->GetBlock(cs::WtoWB(pos)))
     {
       newPos = pos;
     }
@@ -66,7 +66,7 @@ void PhysicAgent::Update(const GameObjectParams &params)
       pos.x -= mDeltaPos.x;
     }
     pos.y += mDeltaPos.y;
-    if (!params.world->GetBlock(cs::WorldToBlock(pos)))
+    if (!params.world->GetBlock(cs::WtoWB(pos)))
     {
       newPos = pos;
     }
@@ -75,7 +75,7 @@ void PhysicAgent::Update(const GameObjectParams &params)
       pos.y -= mDeltaPos.y;
     }
     pos.z += mDeltaPos.z;
-    if (!params.world->GetBlock(cs::WorldToBlock(pos)))
+    if (!params.world->GetBlock(cs::WtoWB(pos)))
     {
       newPos = pos;
     }

@@ -23,8 +23,9 @@ public:
 
   void Draw();
 
-  /// Получить сектор по позиции сектора.
-  std::shared_ptr<Sector> GetSector(const SPos &position);
+  /// Получить сектор. Если сектор не загружен, будет произведена попытка 
+  /// загрузить сектор из загрузчика секторов.
+  void GetSector(const SPos &position);
 
   PBlock GetBlock(const WBPos &position);
 
@@ -40,6 +41,11 @@ private:
   Sector *mCurrentSector;
 
   std::unique_ptr<Player> mPlayer;
+
+private:
+  /// Найти сектор по позиции сектора.
+  std::shared_ptr<Sector> FindSector(const SPos &position);
+
 };
 
 

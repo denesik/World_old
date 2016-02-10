@@ -40,7 +40,19 @@ void World::Draw()
   }
 }
 
-std::shared_ptr<Sector> World::GetSector(const SPos &position)
+void World::GetSector(const SPos &position)
+{
+  auto it = mSectors.find(position);
+  if (it == mSectors.end())
+  {
+    if (auto psec = LevelWorker::instance().GetSector(position))
+    {
+      mSectors[position] = psec;
+    }
+  }
+}
+
+std::shared_ptr<Sector> World::FindSector(const SPos &position)
 {
   auto it = mSectors.find(position);
   if (it != mSectors.end())
@@ -48,30 +60,26 @@ std::shared_ptr<Sector> World::GetSector(const SPos &position)
     return it->second;
   }
 
-  auto psec = LevelWorker::instance().GetSector(position);
-  if (psec)
-    mSectors[position] = psec;
-
-  return psec;
+  return nullptr;
 }
 
-PBlock World::GetBlock(const WBPos &position)
+PBlock World::GetBlock(const WBPos &wbpos)
 {
-  auto secPos = cs::BlockToSector(position);
-  if (auto sector = GetSector(secPos))
+  auto spos = cs::WBtoS(wbpos);
+  if (auto sector = FindSector(spos))
   {
-    return sector->GetBlock(position - secPos * static_cast<int32_t>(SECTOR_SIZE));
+    return sector->GetBlock(cs::WBtoSB(wbpos, spos));
   }
 
   return nullptr;
 }
 
-void World::SetBlock(const WBPos &pos, PBlock block)
+void World::SetBlock(const WBPos &wbpos, PBlock block)
 {
-  auto secPos = cs::BlockToSector(pos);
-  if (auto sector = GetSector(secPos))
+  auto spos = cs::WBtoS(wbpos);
+  if (auto sector = FindSector(spos))
   {
-    sector->SetBlock(pos - secPos * static_cast<int32_t>(SECTOR_SIZE), block);
+    sector->SetBlock(cs::WBtoSB(wbpos, spos), block);
     sector->GetRenderSector().Changed();
   }
 }
