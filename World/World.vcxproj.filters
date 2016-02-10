@@ -136,6 +136,9 @@
     <ClCompile Include="Graphic\Render\OpenGLCall.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Core\MapGen\LevelWorker.cpp">
+      <Filter>Core\MapGen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic\RegistryGraphic.h">
@@ -272,6 +275,12 @@
     </ClInclude>
     <ClInclude Include="Core\Config.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorImage.h">
+      <Filter>Graphic\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\MapGen\LevelWorker.h">
+      <Filter>Core\MapGen</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

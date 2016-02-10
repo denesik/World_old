@@ -7,16 +7,17 @@
 #define Sector_h__
 
 #include <array>
-#include "Block.h"
 #include <glm/glm.hpp>
-#include "RenderSector.h"
+
 #include "../tools/CoordSystem.h"
+#include "Block.h"
 #include "Config.h"
+#include "RenderSector.h"
 
 class Sector
 {
 public:
-  Sector(const SPos &position, RenderSector &renderSector);
+  Sector(const SPos &position);
   ~Sector();
 
   const SPos &GetSectorPosition() const;
@@ -33,12 +34,14 @@ public:
   RenderSector &GetRenderSector();
 
 private:
+
+  friend class LevelWorker;
   std::array<PBlock, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocks;
   std::array<SBPos, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocksPos;
 
   SPos mPos;
 
-  RenderSector &mRenderSector;
+  RenderSector mRenderSector;
 };
 
 

@@ -10,6 +10,7 @@
 #include <vector>
 class World;
 
+///???
 class SectorLoader
 {
 public:

@@ -7,6 +7,7 @@
 #include <GLFW\glfw3.h>
 #include <iostream>
 
+
 SectorLoader::SectorLoader(World &world, const glm::ivec3 &pos, unsigned int radius)
   : mWorld(world), mPos(pos)
 {
@@ -54,7 +55,7 @@ void SectorLoader::SetPos(const glm::ivec3 &pos)
   // Загружаем нужные сектора.
   for (const auto &site : mSite)
   {
-    mWorld.LoadSector(mPos + site);
+    mWorld.GetSector(mPos + site);
   }
 
   std::cout << "MapGen. Count: " << mSite.size() << " time: " << glfwGetTime() - currentTime << std::endl;
