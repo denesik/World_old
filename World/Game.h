@@ -5,6 +5,13 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <memory>
+#include "Graphic\Window\Window.h"
+#include "Graphic\Render\Camera.h"
+#include "Graphic\Render\Render.h"
+#include "Core\World.h"
+
+
 class Game
 {
 public:
@@ -22,6 +29,11 @@ public:
 private:
 
   bool Initialized = false;
+
+  std::unique_ptr<Window> mWindow;
+  std::unique_ptr<Render> mRender;
+  Camera mCamera;
+  std::unique_ptr<World> mWorld;
 
 };
 

@@ -28,8 +28,18 @@
 
 Game::Game()
 {
+  Window::WindowSystemInitialize();
+
   try
   {
+    mWindow = std::make_unique<Window>(glm::uvec2(600, 600));
+    mWindow->SetCurrentContext();
+
+    Render::Initialize();
+    mRender = std::make_unique<Render>();
+
+    LOG(info) << "Render created. Version: " << mRender->GetVersion().major << "." << mRender->GetVersion().minor;
+
     REGISTRY_GRAPHIC;
     Initialized = true;
   }
@@ -40,11 +50,15 @@ Game::Game()
   }
 
   //GL_CALL(glViewport(0, 0, REGISTRY_GRAPHIC.GetWindow().GetSize().x, REGISTRY_GRAPHIC.GetWindow().GetSize().y)); 
+
+  mWorld = std::make_unique<World>();
 }
 
 Game::~Game()
 {
-
+  mRender.reset();
+  mWindow.reset();
+  Window::WindowSystemFinally();
 }
 
 
@@ -56,7 +70,7 @@ int Game::Run()
     return -1;
   }
 
-  REGISTRY_GRAPHIC.GetCamera().Resize(REGISTRY_GRAPHIC.GetWindow().GetSize());
+  mCamera.Resize(mWindow->GetSize());
 
   REGISTRY_GRAPHIC.GetTextureManager().LoadTexture({ "Textures/stone.png", "Textures/sand.png", "Textures/brick.png" });
   REGISTRY_GRAPHIC.GetTextureManager().Compile();
@@ -85,28 +99,34 @@ int Game::Run()
 
   std::atomic<bool> close = false;
 
-  REGISTRY_CORE.GetWorld().GetPlayer()->SetPosition({ 0,0,30 });
+  mWorld->GetPlayer()->SetPosition({ 0,0,30 });
 
   boost::thread th([&close]() {
     while (!close)
     {
       LevelWorker::instance().Process();
-      std::this_thread::sleep_for(std::chrono::milliseconds(50));
+      std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
   });
 
   boost::thread thread([this, &close]
   {
-    REGISTRY_CORE.GetWorld().GetSector({ 0,0,0 });
-
-    REGISTRY_CORE.GetWorld().GetSector({ -1,-1,0 });
-    REGISTRY_CORE.GetWorld().GetSector({ 0,-1,0 });
-    REGISTRY_CORE.GetWorld().GetSector({ 1,-1,0 });
-    REGISTRY_CORE.GetWorld().GetSector({ -1,0,0 });
-    REGISTRY_CORE.GetWorld().GetSector({ 1,0,0 });
-    REGISTRY_CORE.GetWorld().GetSector({ -1,1,0 });
-    REGISTRY_CORE.GetWorld().GetSector({ 0,1,0 });
-    REGISTRY_CORE.GetWorld().GetSector({ 1,1,0 });
+    SPos offsets[] =
+    {
+      { -1,-1,0 },
+      { -1,0,0 },
+      { -1,1,0 },
+      { 0,-1,0 },
+      { 0,0,0 },
+      { 0,1,0 },
+      { 1,-1,0 },
+      { 1,0,0 },
+      { 1,1,0 },
+    };
+    for (auto i : offsets)
+    {
+      mWorld->GetSector(i);
+    }
 
 
     auto currTime = glfwGetTime();
@@ -115,19 +135,19 @@ int Game::Run()
       auto lastTime = currTime;
       currTime = glfwGetTime();
       Update(currTime - lastTime);
-      std::this_thread::sleep_for(std::chrono::milliseconds(50));
+      std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
   });
 
   FpsCounter fps;
   auto currTime = glfwGetTime();
-  while (!REGISTRY_GRAPHIC.GetWindow().WindowShouldClose())
+  while (!mWindow->WindowShouldClose())
   {
     fps.Update();
-    glm::vec3 camPos = REGISTRY_GRAPHIC.GetCamera().GetPos();
+    glm::vec3 camPos = mCamera.GetPos();
     
-    auto &moved = REGISTRY_GRAPHIC.GetWindow().GetMouse().GetPos();
-    auto ray = REGISTRY_GRAPHIC.GetCamera().GetRay(moved);
+    auto &moved = mWindow->GetMouse().GetPos();
+    auto ray = mCamera.GetRay(moved);
     ray *= 10;
 
     auto points = Bresenham3D(camPos, camPos + ray);
@@ -147,7 +167,7 @@ int Game::Run()
     //  }
     //}
 
-    REGISTRY_GRAPHIC.GetWindow().SetTitle(
+    mWindow->SetTitle(
       std::to_string(fps.GetCount()) + std::string(" fps. pos: [x: ") +
       std::to_string(camPos.x) + std::string(" y: ") +
       std::to_string(camPos.y) + std::string(" z: ") +
@@ -161,7 +181,7 @@ int Game::Run()
     currTime = glfwGetTime();
     Draw(currTime - lastTime);
 
-    REGISTRY_GRAPHIC.GetWindow().Update();
+    mWindow->Update();
   }
 
   close = true;
@@ -175,38 +195,38 @@ void Game::Update(double dt)
 {
   float speedRot = static_cast<float>(3.0 * dt);
 
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
+  if (mWindow->GetKeyboard().IsKeyDown(GLFW_KEY_LEFT))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ 0.0f, 0.0f, -speedRot });
-    REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, -speedRot });
+    mWorld->GetPlayer()->Rotate({ 0.0f, 0.0f, -speedRot });
+    mCamera.Rotate({ 0.0f, 0.0f, -speedRot });
   }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_RIGHT))
+  if (mWindow->GetKeyboard().IsKeyDown(GLFW_KEY_RIGHT))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ 0.0f, 0.0f, speedRot });
-    REGISTRY_GRAPHIC.GetCamera().Rotate({ 0.0f, 0.0f, speedRot });
+    mWorld->GetPlayer()->Rotate({ 0.0f, 0.0f, speedRot });
+    mCamera.Rotate({ 0.0f, 0.0f, speedRot });
   }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_DOWN))
+  if (mWindow->GetKeyboard().IsKeyDown(GLFW_KEY_DOWN))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ speedRot, 0.0f, 0.0f });
-    REGISTRY_GRAPHIC.GetCamera().Rotate({ speedRot, 0.0f, 0.0f });
+    mWorld->GetPlayer()->Rotate({ speedRot, 0.0f, 0.0f });
+    mCamera.Rotate({ speedRot, 0.0f, 0.0f });
   }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_UP))
+  if (mWindow->GetKeyboard().IsKeyDown(GLFW_KEY_UP))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Rotate({ -speedRot, 0.0f, 0.0f });
-    REGISTRY_GRAPHIC.GetCamera().Rotate({ -speedRot, 0.0f, 0.0f });
+    mWorld->GetPlayer()->Rotate({ -speedRot, 0.0f, 0.0f });
+    mCamera.Rotate({ -speedRot, 0.0f, 0.0f });
   }
 
-  auto moved = REGISTRY_GRAPHIC.GetWindow().GetMouse().GetMoved();
+  auto moved = mWindow->GetMouse().GetMoved();
   moved *= static_cast<float>(dt) * 0.07f;
-  REGISTRY_CORE.GetWorld().GetPlayer()->Rotate(glm::vec3(moved.y, 0.0f, moved.x));
-  REGISTRY_GRAPHIC.GetCamera().Rotate(glm::vec3(moved.y, 0.0f, moved.x));
+  mWorld->GetPlayer()->Rotate(glm::vec3(moved.y, 0.0f, moved.x));
+  mCamera.Rotate(glm::vec3(moved.y, 0.0f, moved.x));
 
   static float k = 1.0f;
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyPress(GLFW_KEY_9))
+  if (mWindow->GetKeyboard().IsKeyPress(GLFW_KEY_9))
   {
     k += 1.0f;
   }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyPress(GLFW_KEY_0))
+  if (mWindow->GetKeyboard().IsKeyPress(GLFW_KEY_0))
   {
     k -= 1.0f;
   }
@@ -216,24 +236,24 @@ void Game::Update(double dt)
   }
   float speedMov = static_cast<float>(15.0 * dt) * k;
 
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_D))
+  if (mWindow->GetKeyboard().IsKeyDown(GLFW_KEY_D))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ speedMov, 0.0f, 0.0f });
+    mWorld->GetPlayer()->Move({ speedMov, 0.0f, 0.0f });
   }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_A))
+  if (mWindow->GetKeyboard().IsKeyDown(GLFW_KEY_A))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ -speedMov, 0.0f, 0.0f });
+    mWorld->GetPlayer()->Move({ -speedMov, 0.0f, 0.0f });
   }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_W))
+  if (mWindow->GetKeyboard().IsKeyDown(GLFW_KEY_W))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, speedMov, 0.0f });
+    mWorld->GetPlayer()->Move({ 0.0f, speedMov, 0.0f });
   }
-  if (REGISTRY_GRAPHIC.GetWindow().GetKeyboard().IsKeyDown(GLFW_KEY_S))
+  if (mWindow->GetKeyboard().IsKeyDown(GLFW_KEY_S))
   {
-    REGISTRY_CORE.GetWorld().GetPlayer()->Move({ 0.0f, -speedMov, 0.0f });
+    mWorld->GetPlayer()->Move({ 0.0f, -speedMov, 0.0f });
   }
 
-  SPos secPos = cs::WtoS(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition());
+  SPos secPos = cs::WtoS(mWorld->GetPlayer()->GetPosition());
   secPos.z = 0;
 
   SPos offsets[8] =
@@ -249,30 +269,30 @@ void Game::Update(double dt)
   };
   for (auto i : offsets)
   {
-    REGISTRY_CORE.GetWorld().GetSector(secPos + i);
+    mWorld->GetSector(secPos + i);
   }
 
-  REGISTRY_CORE.GetWorld().Update();
+  mWorld->Update();
 }
 
 
 void Game::Draw(double dt)
 {
-  REGISTRY_GRAPHIC.GetCamera().SetPos(REGISTRY_CORE.GetWorld().GetPlayer()->GetPosition() + glm::vec3{ 0.0f, 0.0f, 1.7f });
-  REGISTRY_GRAPHIC.GetCamera().Update();
+  mCamera.SetPos(mWorld->GetPlayer()->GetPosition() + glm::vec3{ 0.0f, 0.0f, 1.7f });
+  mCamera.Update();
 
 
 
   GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));     // Очистка экрана
 
   glMatrixMode(GL_PROJECTION);
-  glLoadMatrixf(glm::value_ptr(REGISTRY_GRAPHIC.GetCamera().GetProject()));
+  glLoadMatrixf(glm::value_ptr(mCamera.GetProject()));
 
   glMatrixMode(GL_MODELVIEW);
   GL_CALL(glLoadIdentity());                               // Сброс просмотра
-  glLoadMatrixf(glm::value_ptr(REGISTRY_GRAPHIC.GetCamera().GetView()));
+  glLoadMatrixf(glm::value_ptr(mCamera.GetView()));
   //GL_CALL(glTranslatef(0.5f, 0.5f, 0.5f));
 
-  REGISTRY_CORE.GetWorld().Draw();
+  mWorld->Draw(*mRender);
 }
 

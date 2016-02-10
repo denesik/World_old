@@ -8,6 +8,7 @@
 
 #include "..\Graphic\Render\DinamicModel.h"
 #include <atomic>
+#include "..\Graphic\Render\Render.h"
 
 
 /// Рисует сектор.
@@ -30,7 +31,7 @@ public:
 
   void Update();
 
-  void Draw();
+  void Draw(Render &render);
 
 private:
   DinamicModel mModel;

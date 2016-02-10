@@ -64,7 +64,7 @@ void LogInit(bool consoleLogEnabled, bool fileLogEnabled)
 
   boost::log::core::get()->set_filter
     (
-      boost::log::trivial::severity >= boost::log::trivial::info
+      boost::log::trivial::severity >= boost::log::trivial::trace
     );
 
   boost::log::add_common_attributes();

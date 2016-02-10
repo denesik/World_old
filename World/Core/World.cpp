@@ -32,11 +32,11 @@ void World::Update()
   }
 }
 
-void World::Draw()
+void World::Draw(Render &render)
 {
   for (auto &sector : mSectors)
   {
-    sector.second->GetRenderSector().Draw();
+    sector.second->GetRenderSector().Draw(render);
   }
 }
 

@@ -12,6 +12,7 @@
 #include <list>
 #include "Sector.h"
 #include "Player.h"
+#include "../Graphic/Render/Render.h"
 
 class World
 {
@@ -21,7 +22,7 @@ public:
 
   void Update();
 
-  void Draw();
+  void Draw(Render &render);
 
   /// ѕолучить сектор. ≈сли сектор не загружен, будет произведена попытка 
   /// загрузить сектор из загрузчика секторов.

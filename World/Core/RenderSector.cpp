@@ -6,6 +6,7 @@
 #include "..\Graphic\RegistryGraphic.h"
 #include "..\Log.h"
 #include "Sector.h"
+#include <GLFW\glfw3.h>
 
 
 
@@ -78,7 +79,7 @@ void RenderSector::Update()
   }
 }
 
-void RenderSector::Draw()
+void RenderSector::Draw(Render &render)
 {
   // Рисуем сектор.
   // Если сектор был изменен, ставим флаг, что сектор должен быть перестроен.
@@ -93,5 +94,5 @@ void RenderSector::Draw()
     mRebuildBuffers = false;
   }
 
-  REGISTRY_GRAPHIC.GetRender().Draw(mModel);
+  render.Draw(mModel);
 }
