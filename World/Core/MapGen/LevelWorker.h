@@ -27,15 +27,15 @@ public:
 		return *lw;
 	}
 
-  std::mutex async_process;
-	std::unordered_map<SPos, std::shared_ptr<Sector>> ready;
-	std::unordered_set<SPos> requested;
-  SPos last;
-
 	std::shared_ptr<Sector> GetSector(const SPos &v);
 	void Process();
 
 private:
   std::shared_ptr<Sector> Generate(const SPos &spos);
+  SPos mLast; //replace with queue
+  
+  std::mutex async_process;
+	std::unordered_map<SPos, std::shared_ptr<Sector>> ready;
+	std::unordered_set<SPos> requested;
 };
 #endif //LevelWorker_h_
