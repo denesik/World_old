@@ -79,9 +79,6 @@
     <ClCompile Include="tools\Bresenham3D.cpp">
       <Filter>tools</Filter>
     </ClCompile>
-    <ClCompile Include="Core\MapGen\LevelWorker.cpp">
-      <Filter>Core\MapGen</Filter>
-    </ClCompile>
     <ClCompile Include="Core\DB.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -132,6 +129,9 @@
     </ClCompile>
     <ClCompile Include="Render\RenderMeshDList.cpp">
       <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\MapGen\WorldWorker.cpp">
+      <Filter>Core\MapGen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -198,9 +198,6 @@
     <ClInclude Include="Core\Config.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\MapGen\LevelWorker.h">
-      <Filter>Core\MapGen</Filter>
-    </ClInclude>
     <ClInclude Include="Core\DB.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -266,6 +263,12 @@
     </ClInclude>
     <ClInclude Include="Render\RenderMeshDList.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\MapGen\WorldWorker.h">
+      <Filter>Core\MapGen</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\JsonLoad.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
