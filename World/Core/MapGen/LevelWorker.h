@@ -33,8 +33,8 @@ private:
   std::shared_ptr<Sector> Generate(const SPos &spos);
   SPos mLast; //replace with queue
   
-  std::mutex async_process;
-	std::unordered_map<SPos, std::shared_ptr<Sector>> ready;
-	std::unordered_set<SPos> requested;
+  std::mutex mQueueMutex;
+	std::unordered_map<SPos, std::shared_ptr<Sector>> mReady;
+	std::unordered_set<SPos> mRequested;
 };
 #endif //LevelWorker_h_
