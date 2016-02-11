@@ -7,7 +7,7 @@
 #define RenderableMesh_h__
 
 #include <memory>
-#include "RenderMeshGL1.h"
+#include "RenderMeshDList.h"
 
 
 template<class V>
@@ -23,7 +23,7 @@ class RenderableMesh : public Mesh<V>
 public:
   inline RenderableMesh()
   {
-    mRenderMesh = std::make_unique<RenderMeshGL1>();
+    mRenderMesh = std::make_unique<RenderMeshDList>();
 
     mRenderMesh->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
     mRenderMesh->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });

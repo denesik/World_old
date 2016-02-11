@@ -9,11 +9,12 @@
 #include "IRenderMeshStrategy.h"
 #include <array>
 
-class RenderMeshGL1 : public IRenderMeshStrategy
+/// Стратегия рисования меша с помощью дисплейных списков.
+class RenderMeshDList : public IRenderMeshStrategy
 {
 public:
-  RenderMeshGL1();
-  virtual ~RenderMeshGL1();
+  RenderMeshDList();
+  virtual ~RenderMeshDList();
 
 public:
   void SetAttribute(AttributeType type, Attribute attribute) override;

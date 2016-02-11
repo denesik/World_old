@@ -48,7 +48,7 @@
     <ClCompile Include="Render\DinamicModel.cpp" />
     <ClCompile Include="Render\OpenGLCall.cpp" />
     <ClCompile Include="Render\Render.cpp" />
-    <ClCompile Include="Render\RenderMeshGL1.cpp" />
+    <ClCompile Include="Render\RenderMeshDList.cpp" />
     <ClCompile Include="Render\Shader.cpp" />
     <ClCompile Include="Render\StaticModel.cpp" />
     <ClCompile Include="Render\Texture.cpp" />
@@ -93,7 +93,7 @@
     <ClInclude Include="Render\OpenGLCall.h" />
     <ClInclude Include="Render\Render.h" />
     <ClInclude Include="Render\RenderableMesh.h" />
-    <ClInclude Include="Render\RenderMeshGL1.h" />
+    <ClInclude Include="Render\RenderMeshDList.h" />
     <ClInclude Include="Render\Shader.h" />
     <ClInclude Include="Render\StaticModel.h" />
     <ClInclude Include="Render\Texture.h" />

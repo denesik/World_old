@@ -2,13 +2,13 @@
 // ==                   Copyright (c) 2015, Smirnov Denis                    ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#include "RenderMeshGL1.h"
+#include "RenderMeshDList.h"
 
 #include <assert.h>
 #include <gl/glew.h>
 #include "OpenGLCall.h"
 
-RenderMeshGL1::RenderMeshGL1()
+RenderMeshDList::RenderMeshDList()
 {
   for (auto &i : mAttributeState)
   {
@@ -17,17 +17,17 @@ RenderMeshGL1::RenderMeshGL1()
 }
 
 
-RenderMeshGL1::~RenderMeshGL1()
+RenderMeshDList::~RenderMeshDList()
 {
   GL_CALL(glDeleteLists(mList, 1));
 }
 
-void RenderMeshGL1::SetAttribute(AttributeType type, Attribute attribute)
+void RenderMeshDList::SetAttribute(AttributeType type, Attribute attribute)
 {
   mAttributeState[type] = attribute;
 }
 
-void RenderMeshGL1::Compile(const float *vertex, size_t vertexCount, size_t vertexSize, const size_t *index, size_t indexCount)
+void RenderMeshDList::Compile(const float *vertex, size_t vertexCount, size_t vertexSize, const size_t *index, size_t indexCount)
 {
   assert(vertex && "vertex pointer is null");
   assert(index && "index pointer is null");
@@ -57,7 +57,7 @@ void RenderMeshGL1::Compile(const float *vertex, size_t vertexCount, size_t vert
   GL_CALL(glEndList());
 }
 
-void RenderMeshGL1::Draw() const
+void RenderMeshDList::Draw() const
 {
   if (mCreated)
   {

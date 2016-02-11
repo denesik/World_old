@@ -106,9 +106,6 @@
     <ClCompile Include="Render\Render.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="Render\RenderMeshGL1.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
     <ClCompile Include="Render\Shader.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -132,6 +129,9 @@
     </ClCompile>
     <ClCompile Include="lodepng\lodepng.cpp">
       <Filter>lodepng</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\RenderMeshDList.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,9 +234,6 @@
     <ClInclude Include="Render\RenderableMesh.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="Render\RenderMeshGL1.h">
-      <Filter>Render</Filter>
-    </ClInclude>
     <ClInclude Include="Render\Shader.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -266,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="lodepng\lodepng.h">
       <Filter>lodepng</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\RenderMeshDList.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
