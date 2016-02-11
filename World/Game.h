@@ -6,9 +6,9 @@
 #define GAME_H
 
 #include <memory>
-#include "Graphic\Window\Window.h"
-#include "Graphic\Render\Camera.h"
-#include "Graphic\Render\Render.h"
+#include "Window\Window.h"
+#include "Render\Camera.h"
+#include "Render\Render.h"
 #include "Core\World.h"
 
 

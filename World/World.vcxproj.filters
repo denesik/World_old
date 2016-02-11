@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Graphic">
-      <UniqueIdentifier>{eca4cb86-9387-4261-af83-51321fe852c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphic\Render">
-      <UniqueIdentifier>{9ed7be15-e82d-4140-87de-ea37b9e91c70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphic\Window">
-      <UniqueIdentifier>{45b94841-6599-4c91-9413-e5753e4a6c3e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{460c9574-cd3f-4954-95ad-03c59b19ec00}</UniqueIdentifier>
     </Filter>
@@ -22,51 +13,21 @@
     <Filter Include="Core\Agents">
       <UniqueIdentifier>{ceb7abd4-d9b3-4d64-91bf-4efd67815e5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{cc0a8f1c-3e24-4f58-94d5-aaf0599aa53d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{24067ff2-83f3-44f5-8544-3e03654695a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lodepng">
+      <UniqueIdentifier>{a032ce15-3102-4c85-951b-897c1582c372}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Graphic\Render\Atlas.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\Bitmap.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\Camera.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\Color.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\Render.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\Shader.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\Texture.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\TextureManager.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Window\Keyboard.cpp">
-      <Filter>Graphic\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Window\Mouse.cpp">
-      <Filter>Graphic\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Window\Window.cpp">
-      <Filter>Graphic\Window</Filter>
-    </ClCompile>
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="lodepng\lodepng.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Log.cpp" />
-    <ClCompile Include="Graphic\Render\RenderMeshGL1.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Core\GameObject.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -88,14 +49,8 @@
     <ClCompile Include="Core\RenderSector.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Graphic\Render\StaticModel.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Core\MeshBlockGenerator.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphic\Render\DinamicModel.cpp">
-      <Filter>Graphic\Render</Filter>
     </ClCompile>
     <ClCompile Include="Core\Agent.cpp">
       <Filter>Core\Agents</Filter>
@@ -124,71 +79,65 @@
     <ClCompile Include="tools\Bresenham3D.cpp">
       <Filter>tools</Filter>
     </ClCompile>
-    <ClCompile Include="Graphic\Render\OpenGLCall.cpp">
-      <Filter>Graphic\Render</Filter>
-    </ClCompile>
     <ClCompile Include="Core\MapGen\LevelWorker.cpp">
       <Filter>Core\MapGen</Filter>
     </ClCompile>
     <ClCompile Include="Core\DB.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Render\Atlas.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Bitmap.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Camera.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Color.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\DinamicModel.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\OpenGLCall.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Render.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\RenderMeshGL1.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Shader.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\StaticModel.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Texture.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\TextureManager.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Keyboard.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Mouse.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Window.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="lodepng\lodepng.cpp">
+      <Filter>lodepng</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graphic\Window\Keyboard.h">
-      <Filter>Graphic\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Window\Mouse.h">
-      <Filter>Graphic\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Window\Window.h">
-      <Filter>Graphic\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\Atlas.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\Bitmap.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\Camera.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\Color.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\Render.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\Shader.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\Texture.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\TextureManager.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="lodepng\lodepng.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\Vertex.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\VertexTools.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
     <ClInclude Include="Log.h" />
-    <ClInclude Include="Graphic\Render\OpenGLCall.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\Mesh.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\RenderMeshGL1.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
     <ClInclude Include="tools\StringIntern.h">
       <Filter>tools</Filter>
     </ClInclude>
@@ -216,20 +165,8 @@
     <ClInclude Include="Core\RenderSector.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Graphic\Render\IRenderMeshStrategy.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\RenderableMesh.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\StaticModel.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
     <ClInclude Include="Core\MeshBlockGenerator.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphic\Render\DinamicModel.h">
-      <Filter>Graphic\Render</Filter>
     </ClInclude>
     <ClInclude Include="Core\Agent.h">
       <Filter>Core\Agents</Filter>
@@ -261,14 +198,74 @@
     <ClInclude Include="Core\Config.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorImage.h">
-      <Filter>Graphic\Render</Filter>
-    </ClInclude>
     <ClInclude Include="Core\MapGen\LevelWorker.h">
       <Filter>Core\MapGen</Filter>
     </ClInclude>
     <ClInclude Include="Core\DB.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Atlas.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Bitmap.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Camera.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Color.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\DinamicModel.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\IRenderMeshStrategy.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Mesh.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\OpenGLCall.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Render.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\RenderableMesh.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\RenderMeshGL1.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Shader.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\StaticModel.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Texture.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\TextureManager.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Vertex.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\VertexTools.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Keyboard.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Mouse.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Window.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="lodepng\lodepng.h">
+      <Filter>lodepng</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

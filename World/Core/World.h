@@ -12,7 +12,7 @@
 #include <list>
 #include "Sector.h"
 #include "Player.h"
-#include "../Graphic/Render/Render.h"
+#include "../Render/Render.h"
 
 class World
 {

@@ -7,8 +7,8 @@
 #define ModelBlockGenerator_h__
 
 #include <array>
-#include "..\Graphic\Render\Mesh.h"
-#include "..\Graphic\Render\Vertex.h"
+#include "..\Render\Mesh.h"
+#include "..\Render\Vertex.h"
 
 
 /// Генератор модели для блока.

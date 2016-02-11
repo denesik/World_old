@@ -7,7 +7,7 @@
 #define BlockStaticRenderAgent_h__
 
 #include "StaticRenderAgent.h"
-#include "..\Graphic\Render\StaticModel.h"
+#include "..\Render\StaticModel.h"
 #include "MeshBlockGenerator.h"
 
 

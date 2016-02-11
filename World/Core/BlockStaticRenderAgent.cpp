@@ -5,7 +5,7 @@
 #include "BlockStaticRenderAgent.h"
 #include "World.h"
 #include "Config.h"
-#include "..\Graphic\Render\TextureManager.h"
+#include "..\Render\TextureManager.h"
 
 
 BlockStaticRenderAgent::BlockStaticRenderAgent(GameObject *parent, const std::string &name)

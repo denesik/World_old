@@ -15,7 +15,7 @@
 #include "FpsCounter.h"
 #include <memory>
 #include "Log.h"
-#include "Graphic/Render/OpenGLCall.h"
+#include "Render/OpenGLCall.h"
 #include <vector>
 #include <thread>
 #include <atomic>
@@ -23,7 +23,7 @@
 #include "tools/Bresenham3D.h"
 #include "tools/CoordSystem.h"
 #include "Core\MapGen\LevelWorker.h"
-#include "Graphic/Render/TextureManager.h"
+#include "Render/TextureManager.h"
 #include "Core/DB.h"
 
 Game::Game()

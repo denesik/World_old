@@ -6,9 +6,9 @@
 #ifndef RenderSector_h__
 #define RenderSector_h__
 
-#include "..\Graphic\Render\DinamicModel.h"
+#include "..\Render\DinamicModel.h"
 #include <atomic>
-#include "..\Graphic\Render\Render.h"
+#include "..\Render\Render.h"
 
 
 /// Рисует сектор.

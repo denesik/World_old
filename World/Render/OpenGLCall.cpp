@@ -1,6 +1,6 @@
 #include "OpenGLCall.h"
 
-#include "../../Log.h"
+#include "../Log.h"
 
 
 void CheckErrorsReal(const char *func, const char *file, long line)
