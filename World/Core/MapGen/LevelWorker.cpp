@@ -28,7 +28,7 @@ std::shared_ptr<Sector> LevelWorker::GetSector(const SPos &v)
 
 static PerlinNoise noise(0);
 
-//TODO: стоит вынести в класс генератор карты, синхронный вызов
+//TODO: Г±ГІГ®ГЁГІ ГўГ»Г­ГҐГ±ГІГЁ Гў ГЄГ«Г Г±Г± ГЈГҐГ­ГҐГ°Г ГІГ®Г° ГЄГ Г°ГІГ», Г±ГЁГ­ГµГ°Г®Г­Г­Г»Г© ГўГ»Г§Г®Гў
 std::shared_ptr<Sector> LevelWorker::Generate(const SPos &spos)
 {
 	auto currentTime = glfwGetTime(); //TODO: totally unnecessary
@@ -80,16 +80,16 @@ void LevelWorker::Process()
   async_process.lock();
 	if (!requested.empty())
 	{
-    SPos f = last;
+    SPos last = mLast;
     auto r = requested.find(last);
     if(r == requested.end())
       r = requested.begin();
-
     async_process.unlock();
 
-    ready[*r] = (Generate(*r));
+    auto gen = Generate(*r);
 
     async_process.lock();
+    ready[*r] = gen;
     requested.erase(r);
     async_process.unlock();
 	}
