@@ -19,12 +19,12 @@
 #include <vector>
 #include <thread>
 #include <atomic>
-#include "Core/BlockStaticRenderAgent.h"
 #include "tools/Bresenham3D.h"
 #include "tools/CoordSystem.h"
 #include "Core\MapGen\LevelWorker.h"
 #include "Render/TextureManager.h"
 #include "Core/DB.h"
+#include "Core/BlockRenderStratery.h"
 
 Game::Game()
 {
@@ -75,24 +75,30 @@ int Game::Run()
   TextureManager::Get().Compile();
 
   {
-    auto block = MakeGameObject<Block>();
-    auto &mg = block->GetFromFullName<BlockStaticRenderAgent>(StringIntern("StaticRenderAgent"))->GetMeshBlockGenerator();
+    auto strategy = MakeRenderStrategy<BlockRenderStratery>();
+    auto &mg = strategy->GetGenerator();
     mg.SetTexture(MeshBlockGenerator::ALL, "Textures/sand.png");
     mg.Generate();
+    auto block = MakeGameObject<Block>();
+    block->GetFromFullName<RenderAgent>(StringIntern("RenderAgent"))->SetStrategy(strategy);
     DB::Get().Registry(StringIntern("BlockSand"), block);
   }
   {
-    auto block = MakeGameObject<Block>();
-    auto &mg = block->GetFromFullName<BlockStaticRenderAgent>(StringIntern("StaticRenderAgent"))->GetMeshBlockGenerator();
+    auto strategy = MakeRenderStrategy<BlockRenderStratery>();
+    auto &mg = strategy->GetGenerator();
     mg.SetTexture(MeshBlockGenerator::ALL, "Textures/stone.png");
     mg.Generate();
+    auto block = MakeGameObject<Block>();
+    block->GetFromFullName<RenderAgent>(StringIntern("RenderAgent"))->SetStrategy(strategy);
     DB::Get().Registry(StringIntern("BlockStone"), block);
   }
   {
-    auto block = MakeGameObject<Block>();
-    auto &mg = block->GetFromFullName<BlockStaticRenderAgent>(StringIntern("StaticRenderAgent"))->GetMeshBlockGenerator();
+    auto strategy = MakeRenderStrategy<BlockRenderStratery>();
+    auto &mg = strategy->GetGenerator();
     mg.SetTexture(MeshBlockGenerator::ALL, "Textures/brick.png");
     mg.Generate();
+    auto block = MakeGameObject<Block>();
+    block->GetFromFullName<RenderAgent>(StringIntern("RenderAgent"))->SetStrategy(strategy);
     DB::Get().Registry(StringIntern("BlockBrick"), block);
   }
 

@@ -1,12 +1,12 @@
 #include "Block.h"
 #include <memory>
-#include "BlockStaticRenderAgent.h"
+#include "RenderAgent.h"
 
-const StringIntern Block::mRenderAgentName = StringIntern("StaticRenderAgent");
+const StringIntern Block::mRenderAgentName = StringIntern("RenderAgent");
 
 Block::Block()
 {
-  auto renderAgent = std::make_unique<BlockStaticRenderAgent>(this);
+  auto renderAgent = std::make_unique<RenderAgent>(this);
   mAgents[renderAgent->GetFullName()] = std::move(renderAgent);
 }
  

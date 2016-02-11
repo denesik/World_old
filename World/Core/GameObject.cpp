@@ -3,7 +3,6 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "GameObject.h"
-#include "BlockStaticRenderAgent.h"
 
 
 

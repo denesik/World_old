@@ -7,7 +7,7 @@
 #define Block_h__
 
 #include "GameObject.h"
-#include "StaticRenderAgent.h"
+#include "RenderAgent.h"
 
 typedef std::shared_ptr<class Block> PBlock;
 

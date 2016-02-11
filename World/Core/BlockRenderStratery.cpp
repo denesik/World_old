@@ -1,43 +1,33 @@
 // ============================================================================
-// ==                   Copyright (c) 2015, Smirnov Denis                    ==
+// ==         Copyright (c) 2016, Samsonov Andrey and Smirnov Denis          ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#include "BlockStaticRenderAgent.h"
-#include "World.h"
-#include "Config.h"
+#include "BlockRenderStratery.h"
 #include "..\Render\TextureManager.h"
+#include "Config.h"
+#include "Sector.h"
+#include "World.h"
+#include "..\tools\CoordSystem.h"
 
 
-BlockStaticRenderAgent::BlockStaticRenderAgent(GameObject *parent, const std::string &name)
-  : StaticRenderAgent(parent, name)
+BlockRenderStratery::BlockRenderStratery()
 {
   mModel.SetTexture(std::get<0>(TextureManager::Get().GetTexture("Textures/stone.png")));
 }
 
 
-BlockStaticRenderAgent::BlockStaticRenderAgent(const BlockStaticRenderAgent &object, GameObject *parent, const std::string &name)
-  : StaticRenderAgent(parent, name)
-{
-
-}
-
-BlockStaticRenderAgent::~BlockStaticRenderAgent()
+BlockRenderStratery::~BlockRenderStratery()
 {
 }
 
-PAgent BlockStaticRenderAgent::Clone(GameObject *parent, const std::string &name)
-{
-  return MakeAgent<BlockStaticRenderAgent>(*this, parent, name);
-}
-
-void BlockStaticRenderAgent::Update(const GameObjectParams &params)
+const StaticModel & BlockRenderStratery::Get(const GameObjectParams &params)
 {
   if (params.sector->GetRenderSector().IsNeedBuild())
   {
     const int32_t size = static_cast<int32_t>(SECTOR_SIZE);
 
     size_t sides = MeshBlockGenerator::ALL;
-    auto pos = static_cast<WBPos>(params.pos) - params.sector->GetSectorPosition() * size;
+    auto pos = cs::WBtoSB(params.pos, params.sector->GetSectorPosition());
     if (pos.x < size - 1)
     {
       ++pos.x;
@@ -149,10 +139,8 @@ void BlockStaticRenderAgent::Update(const GameObjectParams &params)
       }
     }
 
-    if (sides)
-    {
-      mModel.GetMesh() = mMeshBlockGenerator.Create(static_cast<MeshBlockGenerator::Side>(sides));
-      params.sector->GetRenderSector().Push(mModel, params.pos);
-    }
+    mModel.GetMesh() = mMeshBlockGenerator.Create(static_cast<MeshBlockGenerator::Side>(sides));
   }
+
+  return mModel;
 }

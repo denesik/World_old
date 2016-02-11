@@ -22,6 +22,9 @@
     <Filter Include="lodepng">
       <UniqueIdentifier>{a032ce15-3102-4c85-951b-897c1582c372}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\RenderStrategy">
+      <UniqueIdentifier>{0f86c132-d989-40c3-9104-21a16b718a4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FpsCounter.cpp" />
@@ -61,14 +64,8 @@
     <ClCompile Include="Core\Creature.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\StaticRenderAgent.cpp">
-      <Filter>Core\Agents</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Block.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\BlockStaticRenderAgent.cpp">
-      <Filter>Core\Agents</Filter>
     </ClCompile>
     <ClCompile Include="Core\PhysicAgent.cpp">
       <Filter>Core\Agents</Filter>
@@ -133,6 +130,12 @@
     <ClCompile Include="Render\RenderMeshDList.cpp">
       <Filter>Render</Filter>
     </ClCompile>
+    <ClCompile Include="Core\RenderAgent.cpp">
+      <Filter>Core\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\BlockRenderStratery.cpp">
+      <Filter>Core\RenderStrategy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FpsCounter.h" />
@@ -177,14 +180,8 @@
     <ClInclude Include="Core\Creature.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\StaticRenderAgent.h">
-      <Filter>Core\Agents</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Block.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\BlockStaticRenderAgent.h">
-      <Filter>Core\Agents</Filter>
     </ClInclude>
     <ClInclude Include="Core\PhysicAgent.h">
       <Filter>Core\Agents</Filter>
@@ -266,6 +263,15 @@
     </ClInclude>
     <ClInclude Include="Render\RenderMeshDList.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\RenderAgent.h">
+      <Filter>Core\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IRenderStrategy.h">
+      <Filter>Core\RenderStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\BlockRenderStratery.h">
+      <Filter>Core\RenderStrategy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
