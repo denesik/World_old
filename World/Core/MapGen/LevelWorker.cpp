@@ -13,15 +13,15 @@ LevelWorker::LevelWorker()
 
 std::shared_ptr<Sector> LevelWorker::GetSector(const SPos &v)
 {
-  std::lock_guard<std::mutex> scope(async_process);
+  std::lock_guard<std::mutex> scope(mQueueMutex);
   last = v;
 
-	auto f = ready.find(v);
-	if (f != ready.end())
+	auto f = mReady.find(v);
+	if (f != mReady.end())
 		return f->second;
 
-	if (requested.find(v) == requested.end())
-	  requested.insert(v);
+	if (mRequested.find(v) == mRequested.end())
+	  mRequested.insert(v);
 
 	return nullptr;
 }
@@ -77,22 +77,22 @@ std::shared_ptr<Sector> LevelWorker::Generate(const SPos &spos)
 
 void LevelWorker::Process()
 {
-  async_process.lock();
-	if (!requested.empty())
+  mQueueMutex.lock();
+	if (!mRequested.empty())
 	{
     SPos last = mLast;
-    auto r = requested.find(last);
-    if(r == requested.end())
-      r = requested.begin();
-    async_process.unlock();
+    auto r = mRequested.find(last);
+    if(r == mRequested.end())
+      r = mRequested.begin();
+    mQueueMutex.unlock();
 
     auto gen = Generate(*r);
 
-    async_process.lock();
-    ready[*r] = gen;
-    requested.erase(r);
-    async_process.unlock();
+    mQueueMutex.lock();
+    mReady[*r] = gen;
+    mRequested.erase(r);
+    mQueueMutex.unlock();
 	}
   else
-    async_process.unlock();
+    mQueueMutex.unlock();
 }
