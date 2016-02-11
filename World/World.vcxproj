@@ -101,12 +101,17 @@
     <ClInclude Include="Render\TextureManager.h" />
     <ClInclude Include="Render\Vertex.h" />
     <ClInclude Include="Render\VertexTools.h" />
+    <ClInclude Include="Serialize.h" />
+    <ClInclude Include="TemplateFactory.h" />
     <ClInclude Include="tools\Bresenham3D.h" />
     <ClInclude Include="tools\CoordSystem.h" />
     <ClInclude Include="tools\StringIntern.h" />
     <ClInclude Include="Window\Keyboard.h" />
     <ClInclude Include="Window\Mouse.h" />
     <ClInclude Include="Window\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="json\core.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7703DB31-99E4-44B1-958A-98F60E8ED672}</ProjectGuid>

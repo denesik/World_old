@@ -9,7 +9,6 @@
 #include "World.h"
 #include "..\tools\CoordSystem.h"
 
-
 BlockRenderStratery::BlockRenderStratery()
 {
   mModel.SetTexture(std::get<0>(TextureManager::Get().GetTexture("Textures/stone.png")));
@@ -143,4 +142,17 @@ const StaticModel & BlockRenderStratery::Get(const GameObjectParams &params)
   }
 
   return mModel;
+}
+
+void BlockRenderStratery::jsonLoad(const rapidjson::Value & val)
+{
+  auto &mg = GetGenerator();
+
+  if (val.HasMember("all"))
+  {
+    mg.SetTexture(MeshBlockGenerator::ALL, val["all"].GetString());
+    
+  }
+
+  mg.Generate();
 }

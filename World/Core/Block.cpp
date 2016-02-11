@@ -6,8 +6,6 @@ const StringIntern Block::mRenderAgentName = StringIntern("RenderAgent");
 
 Block::Block()
 {
-  auto renderAgent = std::make_unique<RenderAgent>(this);
-  mAgents[renderAgent->GetFullName()] = std::move(renderAgent);
 }
  
 

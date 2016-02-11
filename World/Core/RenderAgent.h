@@ -10,8 +10,6 @@
 #include "Agent.h"
 #include "IRenderStrategy.h"
 
-
-
 typedef std::unique_ptr<class RenderAgent> PStaticRenderAgent;
 
 /// Рендер осуществляется с помощью стратегий.
@@ -19,11 +17,14 @@ typedef std::unique_ptr<class RenderAgent> PStaticRenderAgent;
 class RenderAgent final : public Agent
 {
 public:
+  RenderAgent();
   RenderAgent(GameObject *parent, const std::string &name = "");
   RenderAgent(const RenderAgent &object, GameObject *parent, const std::string &name = "");
   ~RenderAgent();
 
   PAgent Clone(GameObject *parent, const std::string &name = "") override;
+
+  void jsonLoad(const rapidjson::Value &val) override;
 
   void Update(const GameObjectParams &params) override;
 
@@ -40,6 +41,6 @@ private:
 
 };
 
-
+REGISTER_AGENT(RenderAgent)
 
 #endif // RenderAgent_h__

@@ -12,6 +12,17 @@
 const StringIntern PhysicAgent::mPositionAgentName = StringIntern("PositionAgent");
 
 
+PhysicAgent::PhysicAgent() 
+  : Agent(nullptr, "PhysicAgent", "")
+{
+  mQuat = glm::quat_cast(glm::lookAt
+    (
+      glm::vec3(0.0f, 0.0f, 0.0f), // eye
+      glm::vec3(0.0f, 1.0f, 0.0f), // center
+      glm::vec3(0.0f, 0.0f, 1.0f)  // up
+      ));
+}
+
 PhysicAgent::PhysicAgent(GameObject *parent, const std::string &name)
   : Agent(parent, "PhysicAgent", name)
 {
@@ -91,6 +102,10 @@ void PhysicAgent::Update(const GameObjectParams &params)
 
   SetPos(newPos);
   mDeltaPos = {};
+}
+
+void PhysicAgent::jsonLoad(const rapidjson::Value & val)
+{
 }
 
 void PhysicAgent::SetPos(const WPos &pos)

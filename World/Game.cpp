@@ -74,33 +74,7 @@ int Game::Run()
   TextureManager::Get().LoadTexture({ "Textures/stone.png", "Textures/sand.png", "Textures/brick.png" });
   TextureManager::Get().Compile();
 
-  {
-    auto strategy = MakeRenderStrategy<BlockRenderStratery>();
-    auto &mg = strategy->GetGenerator();
-    mg.SetTexture(MeshBlockGenerator::ALL, "Textures/sand.png");
-    mg.Generate();
-    auto block = MakeGameObject<Block>();
-    block->GetFromFullName<RenderAgent>(StringIntern("RenderAgent"))->SetStrategy(strategy);
-    DB::Get().Registry(StringIntern("BlockSand"), block);
-  }
-  {
-    auto strategy = MakeRenderStrategy<BlockRenderStratery>();
-    auto &mg = strategy->GetGenerator();
-    mg.SetTexture(MeshBlockGenerator::ALL, "Textures/stone.png");
-    mg.Generate();
-    auto block = MakeGameObject<Block>();
-    block->GetFromFullName<RenderAgent>(StringIntern("RenderAgent"))->SetStrategy(strategy);
-    DB::Get().Registry(StringIntern("BlockStone"), block);
-  }
-  {
-    auto strategy = MakeRenderStrategy<BlockRenderStratery>();
-    auto &mg = strategy->GetGenerator();
-    mg.SetTexture(MeshBlockGenerator::ALL, "Textures/brick.png");
-    mg.Generate();
-    auto block = MakeGameObject<Block>();
-    block->GetFromFullName<RenderAgent>(StringIntern("RenderAgent"))->SetStrategy(strategy);
-    DB::Get().Registry(StringIntern("BlockBrick"), block);
-  }
+  DB::Get().ReloadDirectory("json/");
 
   std::atomic<bool> close = false;
 

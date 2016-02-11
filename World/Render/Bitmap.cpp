@@ -6,7 +6,7 @@
 
 #include <map>
 #include "..\lodepng\lodepng.h"
-
+#include <boost\filesystem.hpp>
 
 Bitmap::Bitmap()
 {

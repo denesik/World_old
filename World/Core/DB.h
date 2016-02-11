@@ -9,13 +9,13 @@
 #include "Block.h"
 #include <unordered_map>
 
-
 class DB
 {
 public:
   static DB &Get();
 
   void Registry(const StringIntern &name, PBlock block, bool isStatic = true);
+  void ReloadDirectory(const std::string &dir);
 
 
   /// Создать блок.

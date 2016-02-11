@@ -35,6 +35,7 @@ public:
   }
 
 private:
+  friend class DB;
   static const StringIntern mRenderAgentName;
   const bool mIsStatic = true;
 };

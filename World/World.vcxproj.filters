@@ -273,5 +273,16 @@
     <ClInclude Include="Core\MapGen\LevelWorker.h">
       <Filter>Core\MapGen</Filter>
     </ClInclude>
+    <ClInclude Include="TemplateFactory.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialize.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="json\core.json">
+      <Filter>Core</Filter>
+    </None>
   </ItemGroup>
 </Project>

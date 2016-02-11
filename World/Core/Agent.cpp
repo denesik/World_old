@@ -16,6 +16,13 @@ Agent::~Agent()
 {
 }
 
+void Agent::jsonLoad(const rapidjson::Value & val)
+{
+  if (val.HasMember("name"))
+    mAgentName = StringIntern(val["name"].GetString());
+  mFullName = StringIntern(mTypeName + mAgentName);
+}
+
 const StringIntern &Agent::GetTypeName()
 {
   return mTypeName;

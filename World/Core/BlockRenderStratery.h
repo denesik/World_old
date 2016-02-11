@@ -18,6 +18,7 @@ public:
   ~BlockRenderStratery();
 
   const StaticModel &Get(const GameObjectParams &params);
+  void jsonLoad(const rapidjson::Value &val) override;
 
   MeshBlockGenerator &GetGenerator()
   {
@@ -30,6 +31,6 @@ private:
 
 };
 
-
+REGISTER_RENDER_STRATEGY(BlockRenderStratery)
 
 #endif // BlockRenderStratery_h__
