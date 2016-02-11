@@ -1,5 +1,5 @@
 // ============================================================================
-// ==         Copyright (c) 2015, Samsonov Andrey and Smirnov Denis          ==
+// ==         Copyright (c) 2016, Samsonov Andrey and Smirnov Denis          ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
@@ -11,7 +11,6 @@
 #include <memory>
 #include <glm/glm.hpp>
 #include "tools\CoordSystem.h"
-#include "Core\RenderSector.h"
 #include <mutex>
 
 class Sector;

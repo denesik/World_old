@@ -4,14 +4,14 @@
 // ============================================================================
 #include "BlockStaticRenderAgent.h"
 #include "World.h"
-#include "..\Graphic\RegistryGraphic.h"
 #include "Config.h"
+#include "..\Graphic\Render\TextureManager.h"
 
 
 BlockStaticRenderAgent::BlockStaticRenderAgent(GameObject *parent, const std::string &name)
   : StaticRenderAgent(parent, name)
 {
-  mModel.SetTexture(std::get<0>(REGISTRY_GRAPHIC.GetTextureManager().GetTexture("Textures/stone.png")));
+  mModel.SetTexture(std::get<0>(TextureManager::Get().GetTexture("Textures/stone.png")));
 }
 
 

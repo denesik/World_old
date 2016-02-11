@@ -24,9 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Graphic\RegistryGraphic.cpp">
-      <Filter>Graphic</Filter>
-    </ClCompile>
     <ClCompile Include="Graphic\Render\Atlas.cpp">
       <Filter>Graphic\Render</Filter>
     </ClCompile>
@@ -74,12 +71,6 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\Sector.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\BlocksLibrary.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\RegistryCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\World.cpp">
@@ -139,11 +130,11 @@
     <ClCompile Include="Core\MapGen\LevelWorker.cpp">
       <Filter>Core\MapGen</Filter>
     </ClCompile>
+    <ClCompile Include="Core\DB.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graphic\RegistryGraphic.h">
-      <Filter>Graphic</Filter>
-    </ClInclude>
     <ClInclude Include="Graphic\Window\Keyboard.h">
       <Filter>Graphic\Window</Filter>
     </ClInclude>
@@ -205,12 +196,6 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Sector.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\BlocksLibrary.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\RegistryCore.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\World.h">
@@ -281,6 +266,9 @@
     </ClInclude>
     <ClInclude Include="Core\MapGen\LevelWorker.h">
       <Filter>Core\MapGen</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DB.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

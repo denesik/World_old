@@ -1,11 +1,16 @@
+// ============================================================================
+// ==         Copyright (c) 2016, Samsonov Andrey and Smirnov Denis          ==
+// ==                  See license.txt for more information                  ==
+// ============================================================================
 #include <GLFW\glfw3.h>
 #include "LevelWorker.h"
 #include <thread>
 #include "tools\CoordSystem.h"
 #include "Log.h"
-#include "Core\RegistryCore.h"
 #include "Core\Sector.h"
 #include "Core\MapGen\PerlinNoise.h"
+#include "Core\RenderSector.h"
+#include "..\DB.h"
 
 LevelWorker::LevelWorker()
 {
@@ -14,7 +19,7 @@ LevelWorker::LevelWorker()
 std::shared_ptr<Sector> LevelWorker::GetSector(const SPos &v)
 {
   std::lock_guard<std::mutex> scope(async_process);
-  last = v;
+  mLast = v;
 
 	auto f = ready.find(v);
 	if (f != ready.end())
@@ -61,7 +66,7 @@ std::shared_ptr<Sector> LevelWorker::Generate(const SPos &spos)
 		int32_t zh = static_cast<int32_t>(glm::round(h * (SECTOR_SIZE - 1)));
 		if (pos.z <= zh)
 		{
-			s.mBlocks[i] = REGISTRY_CORE.GetBlocksLibrary().Create(StringIntern(pos.x % 2 ? "BlockSand" : "BlockStone"));
+			s.mBlocks[i] = DB::Get().Create(StringIntern(pos.x % 2 ? "BlockSand" : "BlockStone"));
 			++blocksCount;
 		}
 		else

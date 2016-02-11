@@ -2,25 +2,22 @@
 // ==                   Copyright (c) 2015, Smirnov Denis                    ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#include "BlocksLibrary.h"
+#include "DB.h"
 
 
 
-BlocksLibrary::BlocksLibrary()
+DB &DB::Get()
 {
+  static DB obj;
+  return obj;
 }
 
-
-BlocksLibrary::~BlocksLibrary()
-{
-}
-
-void BlocksLibrary::Registry(const StringIntern &name, PBlock block, bool isStatic)
+void DB::Registry(const StringIntern &name, PBlock block, bool isStatic)
 {
   mBlocks[name] = block;
 }
 
-PBlock BlocksLibrary::Create(const StringIntern &name)
+PBlock DB::Create(const StringIntern &name)
 {
   return mBlocks[name];
 }

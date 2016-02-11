@@ -17,8 +17,7 @@
 class TextureManager
 {
 public:
-  TextureManager(void);
-  ~TextureManager(void);
+  static TextureManager &Get();
 
   /// Загрузить указанную текстуру.
   void LoadTexture(const std::string &name);
@@ -56,6 +55,10 @@ private:
   std::unordered_map<std::string, AtlasChunk> mTextures;
 
 private:
+  TextureManager() {};
+  ~TextureManager() {};
+  TextureManager(const TextureManager &) = delete;
+  TextureManager& operator=(const TextureManager &) = delete;
 
   bool LoadToAtlas(size_t atlas, const std::initializer_list<std::string> &names);
 

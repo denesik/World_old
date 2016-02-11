@@ -7,7 +7,6 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <stdint.h>
-#include "RegistryCore.h"
 #include "../Log.h"
 
 Sector::Sector(const SPos &position)

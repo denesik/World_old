@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Core\Agent.cpp" />
     <ClCompile Include="Core\Block.cpp" />
-    <ClCompile Include="Core\BlocksLibrary.cpp" />
+    <ClCompile Include="Core\DB.cpp" />
     <ClCompile Include="Core\BlockStaticRenderAgent.cpp" />
     <ClCompile Include="Core\Creature.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
@@ -31,7 +31,6 @@
     <ClCompile Include="Core\PhysicAgent.cpp" />
     <ClCompile Include="Core\Player.cpp" />
     <ClCompile Include="Core\PositionAgent.cpp" />
-    <ClCompile Include="Core\RegistryCore.cpp" />
     <ClCompile Include="Core\StaticRenderAgent.cpp" />
     <ClCompile Include="Core\RenderSector.cpp" />
     <ClCompile Include="Core\Sector.cpp" />
@@ -39,7 +38,6 @@
     <ClCompile Include="Core\World.cpp" />
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Graphic\RegistryGraphic.cpp" />
     <ClCompile Include="Graphic\Render\Atlas.cpp" />
     <ClCompile Include="Graphic\Render\Bitmap.cpp" />
     <ClCompile Include="Graphic\Render\Camera.cpp" />
@@ -64,7 +62,7 @@
   <ItemGroup>
     <ClInclude Include="Core\Agent.h" />
     <ClInclude Include="Core\Block.h" />
-    <ClInclude Include="Core\BlocksLibrary.h" />
+    <ClInclude Include="Core\DB.h" />
     <ClInclude Include="Core\BlockStaticRenderAgent.h" />
     <ClInclude Include="Core\Config.h" />
     <ClInclude Include="Core\Creature.h" />
@@ -76,7 +74,6 @@
     <ClInclude Include="Core\PhysicAgent.h" />
     <ClInclude Include="Core\Player.h" />
     <ClInclude Include="Core\PositionAgent.h" />
-    <ClInclude Include="Core\RegistryCore.h" />
     <ClInclude Include="Core\StaticRenderAgent.h" />
     <ClInclude Include="Core\RenderSector.h" />
     <ClInclude Include="Core\Sector.h" />
@@ -85,7 +82,6 @@
     <ClInclude Include="ErrorImage.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Graphic\RegistryGraphic.h" />
     <ClInclude Include="Graphic\Render\Atlas.h" />
     <ClInclude Include="Graphic\Render\Bitmap.h" />
     <ClInclude Include="Graphic\Render\Camera.h" />

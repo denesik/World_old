@@ -9,7 +9,6 @@
 #include <sstream>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "Graphic/RegistryGraphic.h"
 #include <boost/thread/thread.hpp>
 
 #include <fstream>
@@ -18,13 +17,14 @@
 #include "Log.h"
 #include "Graphic/Render/OpenGLCall.h"
 #include <vector>
-#include "Core/RegistryCore.h"
 #include <thread>
 #include <atomic>
 #include "Core/BlockStaticRenderAgent.h"
 #include "tools/Bresenham3D.h"
 #include "tools/CoordSystem.h"
 #include "Core\MapGen\LevelWorker.h"
+#include "Graphic/Render/TextureManager.h"
+#include "Core/DB.h"
 
 Game::Game()
 {
@@ -40,7 +40,6 @@ Game::Game()
 
     LOG(info) << "Render created. Version: " << mRender->GetVersion().major << "." << mRender->GetVersion().minor;
 
-    REGISTRY_GRAPHIC;
     Initialized = true;
   }
   catch (const char *e)
@@ -72,29 +71,29 @@ int Game::Run()
 
   mCamera.Resize(mWindow->GetSize());
 
-  REGISTRY_GRAPHIC.GetTextureManager().LoadTexture({ "Textures/stone.png", "Textures/sand.png", "Textures/brick.png" });
-  REGISTRY_GRAPHIC.GetTextureManager().Compile();
+  TextureManager::Get().LoadTexture({ "Textures/stone.png", "Textures/sand.png", "Textures/brick.png" });
+  TextureManager::Get().Compile();
 
   {
     auto block = MakeGameObject<Block>();
     auto &mg = block->GetFromFullName<BlockStaticRenderAgent>(StringIntern("StaticRenderAgent"))->GetMeshBlockGenerator();
     mg.SetTexture(MeshBlockGenerator::ALL, "Textures/sand.png");
     mg.Generate();
-    REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockSand"), block);
+    DB::Get().Registry(StringIntern("BlockSand"), block);
   }
   {
     auto block = MakeGameObject<Block>();
     auto &mg = block->GetFromFullName<BlockStaticRenderAgent>(StringIntern("StaticRenderAgent"))->GetMeshBlockGenerator();
     mg.SetTexture(MeshBlockGenerator::ALL, "Textures/stone.png");
     mg.Generate();
-    REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockStone"), block);
+    DB::Get().Registry(StringIntern("BlockStone"), block);
   }
   {
     auto block = MakeGameObject<Block>();
     auto &mg = block->GetFromFullName<BlockStaticRenderAgent>(StringIntern("StaticRenderAgent"))->GetMeshBlockGenerator();
     mg.SetTexture(MeshBlockGenerator::ALL, "Textures/brick.png");
     mg.Generate();
-    REGISTRY_CORE.GetBlocksLibrary().Registry(StringIntern("BlockBrick"), block);
+    DB::Get().Registry(StringIntern("BlockBrick"), block);
   }
 
   std::atomic<bool> close = false;

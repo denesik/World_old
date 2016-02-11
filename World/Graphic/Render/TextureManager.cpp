@@ -6,13 +6,10 @@
 
 #include <iostream>
 
-TextureManager::TextureManager(void)
+TextureManager &TextureManager::Get()
 {
-}
-
-
-TextureManager::~TextureManager(void)
-{
+  static TextureManager obj;
+  return obj;
 }
 
 void TextureManager::LoadTexture(const std::string &name)

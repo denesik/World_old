@@ -10,11 +10,10 @@
 #include <unordered_map>
 
 
-class BlocksLibrary
+class DB
 {
 public:
-  BlocksLibrary();
-  ~BlocksLibrary();
+  static DB &Get();
 
   void Registry(const StringIntern &name, PBlock block, bool isStatic = true);
 
@@ -27,6 +26,12 @@ public:
 
 private:
   std::unordered_map<StringIntern, PBlock> mBlocks;
+
+private:
+  DB() {};
+  ~DB() {};
+  DB(const DB &) = delete;
+  DB& operator=(const DB &) = delete;
 
 };
 

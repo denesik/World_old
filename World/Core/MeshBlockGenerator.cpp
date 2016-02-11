@@ -3,8 +3,8 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "MeshBlockGenerator.h"
-#include "..\Graphic\RegistryGraphic.h"
 #include <type_traits>
+#include "..\Graphic\Render\TextureManager.h"
 
 // static glm::vec3 vertexCube[] =
 // {
@@ -94,13 +94,13 @@ void MeshBlockGenerator::Create(Mesh<VertexVT> &mesh, Side side)
 
 void MeshBlockGenerator::SetTexture(int side, std::string texture)
 {
-  auto mActiveTexture = std::get<0>(REGISTRY_GRAPHIC.GetTextureManager().GetTexture(texture));
+  auto mActiveTexture = std::get<0>(TextureManager::Get().GetTexture(texture));
 
   for (unsigned int i = 0; i < 6; ++i)
   {
     if (side & (1 << i))
     {
-      const auto &txtPos = std::get<glm::uvec4>(REGISTRY_GRAPHIC.GetTextureManager().GetTexture(texture));
+      const auto &txtPos = std::get<glm::uvec4>(TextureManager::Get().GetTexture(texture));
 
       glm::vec2 txtCoord[] =
       {
