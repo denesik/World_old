@@ -25,28 +25,24 @@ inline std::shared_ptr<T> MakeRenderStrategy(Args&&... args)
 class IRenderStrategy
 {
 public:
-  IRenderStrategy() {};
+  IRenderStrategy() = default;
   virtual ~IRenderStrategy() {};
-  virtual void jsonLoad(const rapidjson::Value &val) {};
 
-  virtual const Model &Get(const GameObjectParams &params) = 0;
+  virtual void Load(const rapidjson::Value &val) = 0;
+
+  virtual const Model &GetModel(const GameObjectParams &params) = 0;
 };
 
 #define REGISTER_RENDER_STRATEGY(ctype)                                                                 \
 namespace                                                                                               \
 {                                                                                                       \
-RegisterElement<ctype> RegisterElement##ctype(RenderStrategyFactory::instance(), StringIntern(#ctype)); \
+RegisterElement<ctype> RegisterElement##ctype(RenderStrategyFactory::Get(), StringIntern(#ctype)); \
 }
 
 struct RenderStrategyFactory : public boost::noncopyable
 {
-  static TemplateFactory<StringIntern, IRenderStrategy> &instance()
-  {
-    typedef TemplateFactory<StringIntern, IRenderStrategy> OfType;
-    static auto af = std::unique_ptr<OfType>(new OfType());
-
-    return *af;
-  }
+  using FactoryType = TemplateFactory<StringIntern, IRenderStrategy>;
+  static FactoryType &Get();
 };
 
 #endif // IRenderStrategy_h__

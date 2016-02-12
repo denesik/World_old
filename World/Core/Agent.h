@@ -41,7 +41,7 @@ public:
 
   virtual void Update(const GameObjectParams &params) = 0;
 
-  virtual void jsonLoad(const rapidjson::Value &val);
+  virtual void Load(const rapidjson::Value &val);
 
   /// Вурнуть имя типа агента.
   const StringIntern &GetTypeName();
@@ -58,24 +58,18 @@ protected:
   const StringIntern mTypeName;
   StringIntern mAgentName;
   StringIntern mFullName;
-
 };
 
 #define REGISTER_AGENT(ctype)                                                                  \
 namespace                                                                                      \
 {                                                                                              \
-RegisterElement<ctype> RegisterElement##ctype(AgentFactory::instance(), StringIntern(#ctype)); \
+  RegisterElement<ctype> RegisterElement##ctype(AgentFactory::Get(), StringIntern(#ctype)); \
 }
 
 struct AgentFactory : public boost::noncopyable
 {
-  static TemplateFactory<StringIntern, Agent> &instance()
-  {
-    typedef TemplateFactory<StringIntern, Agent> OfType;
-    static auto af = std::unique_ptr<OfType>(new OfType());
-
-    return *af;
-  }
+  using FactoryType = TemplateFactory<StringIntern, Agent>;
+  static FactoryType &Get();
 };
 
 #endif // Agent_h__

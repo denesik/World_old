@@ -32,7 +32,7 @@ PAgent PositionAgent::Clone(GameObject *parent, const std::string &name)
   return MakeAgent<PositionAgent>(*this, parent, name);
 }
 
-void PositionAgent::jsonLoad(const rapidjson::Value & val)
+void PositionAgent::Load(const rapidjson::Value & val)
 {
 }
 

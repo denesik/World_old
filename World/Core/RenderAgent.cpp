@@ -35,7 +35,7 @@ PAgent RenderAgent::Clone(GameObject *parent, const std::string &name)
   return MakeAgent<RenderAgent>(*this, parent, name);
 }
 
-void RenderAgent::jsonLoad(const rapidjson::Value & val)
+void RenderAgent::Load(const rapidjson::Value & val)
 {
   if (val.HasMember("strategy"))
   {
@@ -43,8 +43,8 @@ void RenderAgent::jsonLoad(const rapidjson::Value & val)
     if(stratVal.HasMember("type"))
     {
       std::string type = stratVal["type"].GetString();
-      std::shared_ptr<IRenderStrategy> irs = RenderStrategyFactory::instance().Create(StringIntern(type));
-      irs->jsonLoad(stratVal);
+      std::shared_ptr<IRenderStrategy> irs = RenderStrategyFactory::Get().Create(StringIntern(type));
+      irs->Load(stratVal);
       SetStrategy(irs);
     }
     else
@@ -56,7 +56,7 @@ void RenderAgent::jsonLoad(const rapidjson::Value & val)
 
 void RenderAgent::Update(const GameObjectParams &params)
 {
-  params.sector->GetRenderSector().Push(mRenderStrategy->Get(params), params.pos);
+  params.sector->GetRenderSector().Push(mRenderStrategy->GetModel(params), params.pos);
 }
 
 void RenderAgent::SetStrategy(const PRenderStrategy &strategy)

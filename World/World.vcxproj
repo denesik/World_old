@@ -25,6 +25,7 @@
     <ClCompile Include="Core\DB.cpp" />
     <ClCompile Include="Core\Creature.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
+    <ClCompile Include="Core\IRenderStrategy.cpp" />
     <ClCompile Include="Core\MapGen\PerlinNoise.cpp" />
     <ClCompile Include="Core\MapGen\WorldWorker.cpp" />
     <ClCompile Include="Core\MeshBlockGenerator.cpp" />

@@ -17,8 +17,8 @@ public:
   BlockRenderStratery();
   ~BlockRenderStratery();
 
-  const Model &Get(const GameObjectParams &params);
-  void jsonLoad(const rapidjson::Value &val) override;
+  const Model &GetModel(const GameObjectParams &params);
+  void Load(const rapidjson::Value &val) override;
 
   MeshBlockGenerator &GetGenerator()
   {

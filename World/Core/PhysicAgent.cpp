@@ -104,7 +104,7 @@ void PhysicAgent::Update(const GameObjectParams &params)
   mDeltaPos = {};
 }
 
-void PhysicAgent::jsonLoad(const rapidjson::Value & val)
+void PhysicAgent::Load(const rapidjson::Value & val)
 {
 }
 

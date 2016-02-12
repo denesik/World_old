@@ -135,6 +135,7 @@
     <ClCompile Include="tools\Log.cpp">
       <Filter>tools</Filter>
     </ClCompile>
+    <ClCompile Include="Core\IRenderStrategy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FpsCounter.h" />

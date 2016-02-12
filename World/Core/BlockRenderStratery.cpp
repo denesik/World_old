@@ -19,7 +19,7 @@ BlockRenderStratery::~BlockRenderStratery()
 {
 }
 
-const Model & BlockRenderStratery::Get(const GameObjectParams &params)
+const Model & BlockRenderStratery::GetModel(const GameObjectParams &params)
 {
   if (params.sector->GetRenderSector().IsNeedBuild())
   {
@@ -144,7 +144,7 @@ const Model & BlockRenderStratery::Get(const GameObjectParams &params)
   return mModel;
 }
 
-void BlockRenderStratery::jsonLoad(const rapidjson::Value & val)
+void BlockRenderStratery::Load(const rapidjson::Value & val)
 {
   auto &mg = GetGenerator();
 

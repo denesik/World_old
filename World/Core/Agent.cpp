@@ -16,7 +16,7 @@ Agent::~Agent()
 {
 }
 
-void Agent::jsonLoad(const rapidjson::Value & val)
+void Agent::Load(const rapidjson::Value & val)
 {
   if (val.HasMember("name"))
     mAgentName = StringIntern(val["name"].GetString());
@@ -36,4 +36,10 @@ const StringIntern &Agent::GetName()
 const StringIntern &Agent::GetFullName()
 {
   return mFullName;
+}
+
+AgentFactory::FactoryType &AgentFactory::Get()
+{
+  static FactoryType object;
+  return object;
 }

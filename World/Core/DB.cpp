@@ -87,14 +87,14 @@ void DB::ReloadDirectory(const std::string & dir)
                 rapidjson::Value &part = arr[a];
                 if (part.HasMember("type")) {
                   std::string agenttype = part["type"].GetString();
-                  auto c = AgentFactory::instance().Create(StringIntern(agenttype));
+                  auto c = AgentFactory::Get().Create(StringIntern(agenttype));
                   if (!c)
                   {
                     LOG(error) << "record \"" << id << "\" agent #" << a + 1 << " has unknown type = " << agenttype;
                     continue;
                   }
                   try {
-                    c->jsonLoad(part);
+                    c->Load(part);
                   }
                   catch ( ... ) {
                     LOG(error) << boost::current_exception_diagnostic_information(true);

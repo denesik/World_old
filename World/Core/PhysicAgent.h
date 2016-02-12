@@ -27,7 +27,7 @@ public:
 
   void Update(const GameObjectParams &params) override;
 
-  void jsonLoad(const rapidjson::Value &val) override;
+  void Load(const rapidjson::Value &val) override;
 
   inline const glm::mat3 &GetDirection() const noexcept
   {
