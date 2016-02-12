@@ -8,7 +8,7 @@
 
 #include "Camera.h"
 #include "Shader.h"
-#include "DinamicModel.h"
+#include "Model.h"
 
 
 
@@ -32,9 +32,7 @@ public:
 
   /// Нарисовать модель.
   /// Устанавливает параметры для рисования и рисует модель.
-  void Draw(const StaticModel &model);
-
-  void Draw(const DinamicModel &model);
+  void Draw(const Model &model);
 
 private:
 

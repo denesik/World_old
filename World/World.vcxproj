@@ -45,12 +45,11 @@
     <ClCompile Include="Render\Bitmap.cpp" />
     <ClCompile Include="Render\Camera.cpp" />
     <ClCompile Include="Render\Color.cpp" />
-    <ClCompile Include="Render\DinamicModel.cpp" />
     <ClCompile Include="Render\OpenGLCall.cpp" />
     <ClCompile Include="Render\Render.cpp" />
     <ClCompile Include="Render\RenderMeshDList.cpp" />
     <ClCompile Include="Render\Shader.cpp" />
-    <ClCompile Include="Render\StaticModel.cpp" />
+    <ClCompile Include="Render\Model.cpp" />
     <ClCompile Include="Render\Texture.cpp" />
     <ClCompile Include="Render\TextureManager.cpp" />
     <ClCompile Include="tools\Bresenham3D.cpp" />
@@ -88,15 +87,13 @@
     <ClInclude Include="Render\Bitmap.h" />
     <ClInclude Include="Render\Camera.h" />
     <ClInclude Include="Render\Color.h" />
-    <ClInclude Include="Render\DinamicModel.h" />
     <ClInclude Include="Render\IRenderMeshStrategy.h" />
     <ClInclude Include="Render\Mesh.h" />
     <ClInclude Include="Render\OpenGLCall.h" />
     <ClInclude Include="Render\Render.h" />
-    <ClInclude Include="Render\RenderableMesh.h" />
     <ClInclude Include="Render\RenderMeshDList.h" />
     <ClInclude Include="Render\Shader.h" />
-    <ClInclude Include="Render\StaticModel.h" />
+    <ClInclude Include="Render\Model.h" />
     <ClInclude Include="Render\Texture.h" />
     <ClInclude Include="Render\TextureManager.h" />
     <ClInclude Include="Render\Vertex.h" />
@@ -218,8 +215,6 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
-      <AdditionalOptions>/NODEFAULTLIB:library
- %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>No</GenerateDebugInformation>

@@ -65,13 +65,7 @@ const Render::Version &Render::GetVersion() const
   return mVersion;
 }
 
-void Render::Draw(const StaticModel &model)
-{
-  model.GetTexture()->Set(TEXTURE_SLOT_0);
-  //model.GetMesh().Draw();
-}
-
-void Render::Draw(const DinamicModel &model)
+void Render::Draw(const Model &model)
 {
   if (model.GetTexture())
   {

@@ -56,7 +56,7 @@ void Sector::Update(class World *world)
       if (mBlocks[i])
       {
         params.pos = mPos * static_cast<int32_t>(SECTOR_SIZE) + mBlocksPos[i];
-        mBlocks[i]->UpdateGraphic(params);
+        mBlocks[i]->Draw(params);
       }
     }
     LOG(trace) << "SectorBuild: " << glfwGetTime() - currentTime;

@@ -6,12 +6,14 @@
 #include "..\Log.h"
 #include "Sector.h"
 #include <GLFW\glfw3.h>
+#include <type_traits>
 
 
 
 RenderSector::RenderSector()
 {
-  mModel.GetMesh() = std::make_shared<std::remove_reference_t<decltype(mModel.GetMesh())>::element_type>();
+  using MeshType = std::remove_reference_t<decltype(mModel.GetMesh())>::element_type;
+  mModel.GetMesh() = std::make_shared<MeshType>();
   mModel.GetMesh()->Reserve(24 * SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE, 
                            36 * SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE);
 }
@@ -31,26 +33,30 @@ bool RenderSector::IsNeedBuild() const
   return mIsNeedBuild;
 }
 
-void RenderSector::Push(const StaticModel &model, const glm::vec3 &pos)
+void RenderSector::Push(const Model &model, const glm::vec3 &pos)
 {
-  auto &dst = mModel.GetMesh();
-  const auto &src = model.GetMesh();
-  if (dst->Empty())
+  // Если сектор надо перестроить и модель статическая - перестраиваем сектор.
+  if (mIsNeedBuild && model.GetType() == Model::Static)
   {
-    mModel.SetTexture(model.GetTexture());
-  }
-  if (mModel.GetTexture() == model.GetTexture())
-  {
-    size_t size = dst->SizeVertex();
-    dst->Push(*src);
-    for (size_t i = size; i < dst->SizeVertex(); ++i)
+    auto &dst = mModel.GetMesh();
+    const auto &src = model.GetMesh();
+    if (dst->Empty())
     {
-      dst->Vertex(i).vertex += pos;
+      mModel.SetTexture(model.GetTexture());
     }
-  }
-  else
-  {
-    LOG(warning) << "Батчинг меша в секторе пропущен. Текстуры не совпадают.";
+    if (mModel.GetTexture() == model.GetTexture())
+    {
+      size_t size = dst->SizeVertex();
+      dst->Push(*src);
+      for (size_t i = size; i < dst->SizeVertex(); ++i)
+      {
+        dst->Vertex(i).vertex += pos;
+      }
+    }
+    else
+    {
+      LOG(warning) << "Батчинг меша в секторе пропущен. Текстуры не совпадают.";
+    }
   }
 }
 

@@ -1,12 +1,11 @@
 // ============================================================================
-// ==                   Copyright (c) 2015, Smirnov Denis                    ==
+// ==         Copyright (c) 2016, Samsonov Andrey and Smirnov Denis          ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
 #ifndef RenderSector_h__
 #define RenderSector_h__
 
-#include "..\Render\DinamicModel.h"
 #include <atomic>
 #include "..\Render\Render.h"
 
@@ -27,14 +26,14 @@ public:
   /// Нужно ли перестроить геометрию?
   bool IsNeedBuild() const;
 
-  void Push(const StaticModel &model, const glm::vec3 &pos);
+  void Push(const Model &model, const glm::vec3 &pos);
 
   void Update();
 
   void Draw(Render &render);
 
 private:
-  DinamicModel mModel;
+  Model mModel;
 
   bool mIsChanged = true;
   bool mIsNeedBuild = false;

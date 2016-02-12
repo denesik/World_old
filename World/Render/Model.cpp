@@ -2,5 +2,5 @@
 // ==                   Copyright (c) 2015, Smirnov Denis                    ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
-#include "StaticModel.h"
+#include "Model.h"
 

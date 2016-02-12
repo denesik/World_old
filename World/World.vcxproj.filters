@@ -91,9 +91,6 @@
     <ClCompile Include="Render\Color.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="Render\DinamicModel.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
     <ClCompile Include="Render\OpenGLCall.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -101,9 +98,6 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="Render\Shader.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Render\StaticModel.cpp">
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="Render\Texture.cpp">
@@ -135,6 +129,9 @@
     </ClCompile>
     <ClCompile Include="Core\MapGen\WorldWorker.cpp">
       <Filter>Core\MapGen</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Model.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,9 +207,6 @@
     <ClInclude Include="Render\Color.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="Render\DinamicModel.h">
-      <Filter>Render</Filter>
-    </ClInclude>
     <ClInclude Include="Render\IRenderMeshStrategy.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -225,13 +219,7 @@
     <ClInclude Include="Render\Render.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="Render\RenderableMesh.h">
-      <Filter>Render</Filter>
-    </ClInclude>
     <ClInclude Include="Render\Shader.h">
-      <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Render\StaticModel.h">
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="Render\Texture.h">
@@ -278,6 +266,9 @@
     </ClInclude>
     <ClInclude Include="Core\MapGen\WorldWorker.h">
       <Filter>Core\MapGen</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Model.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

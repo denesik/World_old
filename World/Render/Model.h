@@ -3,23 +3,34 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#ifndef MultiModel_h__
-#define MultiModel_h__
+#ifndef Model_h__
+#define Model_h__
 
-#include "StaticModel.h"
-#include "RenderableMesh.h"
+#include "Texture.h"
+#include "Mesh.h"
+#include "Vertex.h"
 
 
-
-class DinamicModel
+/// Модель. Имеет всю информацию для рисования.
+class Model
 {
 public:
-  inline const PRenderableMesh<VertexVT> &GetMesh() const noexcept
+  enum Type
+  {
+    Static,
+  };
+
+  inline void SetTexture(PTexture texture)
+  {
+    mTexture = texture;
+  }
+
+  inline PMesh<VertexVT> &GetMesh() noexcept
   {
     return mMesh;
   }
 
-  inline PRenderableMesh<VertexVT> &GetMesh() noexcept
+  inline const PMesh<VertexVT> &GetMesh() const noexcept
   {
     return mMesh;
   }
@@ -29,16 +40,17 @@ public:
     return mTexture;
   }
 
-  inline void SetTexture(const PTexture &texture) noexcept
+  inline Type GetType() const noexcept
   {
-    mTexture = texture;
+    return mType;
   }
 
 private:
-  PRenderableMesh<VertexVT> mMesh;
+  PMesh<VertexVT> mMesh;
   PTexture mTexture;
+
+  Type mType = Static;
 };
 
+#endif // Model_h__
 
-
-#endif // MultiModel_h__

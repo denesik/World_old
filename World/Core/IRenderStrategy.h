@@ -8,7 +8,7 @@
 
 #include <boost\noncopyable.hpp>
 #include "GameObjectParams.h"
-#include "..\Render\StaticModel.h"
+#include "..\Render\Model.h"
 #include <memory>
 #include <rapidjson\document.h>
 #include "..\TemplateFactory.h"
@@ -29,7 +29,7 @@ public:
   virtual ~IRenderStrategy() {};
   virtual void jsonLoad(const rapidjson::Value &val) {};
 
-  virtual const StaticModel &Get(const GameObjectParams &params) = 0;
+  virtual const Model &Get(const GameObjectParams &params) = 0;
 };
 
 #define REGISTER_RENDER_STRATEGY(ctype)                                                                 \

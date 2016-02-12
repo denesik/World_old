@@ -29,7 +29,7 @@ void Block::Update(GameObjectParams &params)
   }
 }
 
-void Block::UpdateGraphic(GameObjectParams &params)
+void Block::Draw(GameObjectParams &params)
 {
   for (auto &agent : mAgents)
   {

@@ -1,5 +1,5 @@
 // ============================================================================
-// ==                   Copyright (c) 2015, Smirnov Denis                    ==
+// ==         Copyright (c) 2016, Samsonov Andrey and Smirnov Denis          ==
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
@@ -8,6 +8,7 @@
 
 #include <memory>
 #include <vector>
+#include "RenderMeshDList.h"
 
 template<class V>
 class Mesh;
@@ -19,6 +20,11 @@ template<class V>
 class Mesh
 {
 public:
+  inline Mesh()
+  {
+    mStrategy = std::make_unique<RenderMeshDList>();
+  }
+
   inline V &Vertex(size_t i)
   {
     return mVertex[i];
@@ -84,9 +90,31 @@ public:
     mVertex.insert(mVertex.end(), mesh.mVertex.begin(), mesh.mVertex.end());
   }
 
-protected:
+  /// Создать сетку в видеопамяти.
+  /// @param vertex указатель на начало буфера вершин.
+  /// @param vertexSize количество элементов в буфере вершин.
+  /// @param index указатель на начало буфера индексов.
+  /// @param indexSize количество элементов в буфере индексов.
+  inline void Compile()
+  {
+    mStrategy->SetAttribute(ATTRIBUTE_VERTEX, { true, sizeof(VertexVT{}.vertex), offsetof(VertexVT, vertex) });
+    mStrategy->SetAttribute(ATTRIBUTE_TEXTURE, { true, sizeof(VertexVT{}.texture), offsetof(VertexVT, texture) });
+    mStrategy->Compile(reinterpret_cast<float *>(mVertex.data()), mVertex.size(), sizeof(V),
+      reinterpret_cast<size_t *>(mIndex.data()), mIndex.size());
+  }
+
+  /// Нарисовать сетку.
+  inline void Draw()
+  {
+    mStrategy->Draw();
+  }
+
+
+private:
   std::vector<V> mVertex;
   std::vector<size_t> mIndex;
+
+  std::unique_ptr<IRenderMeshStrategy> mStrategy;
 };
 
 

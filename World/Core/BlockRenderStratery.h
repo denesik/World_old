@@ -8,7 +8,7 @@
 
 #include "IRenderStrategy.h"
 #include "MeshBlockGenerator.h"
-#include "..\Render\StaticModel.h"
+#include "..\Render\Model.h"
 
 
 class BlockRenderStratery : public IRenderStrategy
@@ -17,7 +17,7 @@ public:
   BlockRenderStratery();
   ~BlockRenderStratery();
 
-  const StaticModel &Get(const GameObjectParams &params);
+  const Model &Get(const GameObjectParams &params);
   void jsonLoad(const rapidjson::Value &val) override;
 
   MeshBlockGenerator &GetGenerator()
@@ -26,7 +26,7 @@ public:
   }
 
 private:
-  StaticModel mModel;
+  Model mModel;
   MeshBlockGenerator mMeshBlockGenerator;
 
 };

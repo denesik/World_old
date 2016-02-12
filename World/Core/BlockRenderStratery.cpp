@@ -19,7 +19,7 @@ BlockRenderStratery::~BlockRenderStratery()
 {
 }
 
-const StaticModel & BlockRenderStratery::Get(const GameObjectParams &params)
+const Model & BlockRenderStratery::Get(const GameObjectParams &params)
 {
   if (params.sector->GetRenderSector().IsNeedBuild())
   {
