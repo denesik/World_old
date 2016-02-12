@@ -60,11 +60,8 @@ protected:
   StringIntern mFullName;
 };
 
-#define REGISTER_AGENT(ctype)                                                                  \
-namespace                                                                                      \
-{                                                                                              \
-  RegisterElement<ctype> RegisterElement##ctype(AgentFactory::Get(), StringIntern(#ctype)); \
-}
+
+#define REGISTER_AGENT(type) REGISTER_ELEMENT(type, AgentFactory::Get(), StringIntern(#type))
 
 struct AgentFactory : public boost::noncopyable
 {

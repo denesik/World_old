@@ -33,11 +33,7 @@ public:
   virtual const Model &GetModel(const GameObjectParams &params) = 0;
 };
 
-#define REGISTER_RENDER_STRATEGY(ctype)                                                                 \
-namespace                                                                                               \
-{                                                                                                       \
-RegisterElement<ctype> RegisterElement##ctype(RenderStrategyFactory::Get(), StringIntern(#ctype)); \
-}
+#define REGISTER_RENDER_STRATEGY(type) REGISTER_ELEMENT(type, RenderStrategyFactory::Get(), StringIntern(#type))
 
 struct RenderStrategyFactory : public boost::noncopyable
 {

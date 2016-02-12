@@ -72,4 +72,16 @@ private:
 
 template<class T> int RegisterElement<T>::class_registered_ = 0;
 
+
+#define REGISTER_ELEMENT(type, factory, id) \
+namespace                                           \
+{                                                   \
+RegisterElement<type> RegisterElement##type(factory, id);  \
+}
+
+
+
+
+
+
 #endif // AGENTFACTORY_H

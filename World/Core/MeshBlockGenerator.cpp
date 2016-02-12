@@ -39,6 +39,8 @@ static glm::vec2 textureCube[] =
 
 MeshBlockGenerator::MeshBlockGenerator()
 {
+  mTextures.resize(6);
+  mMeshArray.resize(64);
   for (auto &i : mMeshArray)
   {
     i = std::make_shared<std::remove_reference_t<decltype(i)>::element_type>();

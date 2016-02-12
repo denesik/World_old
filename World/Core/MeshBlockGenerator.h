@@ -6,7 +6,7 @@
 #ifndef ModelBlockGenerator_h__
 #define ModelBlockGenerator_h__
 
-#include <array>
+#include <vector>
 #include "..\Render\Mesh.h"
 #include "..\Render\Vertex.h"
 
@@ -50,9 +50,9 @@ public:
 
 private:
   /// —писок координат текстур дл€ сторон куба в атласе.
-  std::array<glm::vec4, 6> mTextures;
+  std::vector<glm::vec4> mTextures;
 
-  std::array<PMesh<VertexVT>, 64> mMeshArray;
+  std::vector<PMesh<VertexVT>> mMeshArray;
 };
 
 
