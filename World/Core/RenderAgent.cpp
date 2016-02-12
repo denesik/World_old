@@ -52,6 +52,8 @@ void RenderAgent::Load(const rapidjson::Value & val)
       LOG(error) << "render strategy has no type";
     }
   }
+
+  Agent::jsonLoad(val);
 }
 
 void RenderAgent::Update(const GameObjectParams &params)

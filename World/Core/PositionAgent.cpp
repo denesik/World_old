@@ -34,6 +34,7 @@ PAgent PositionAgent::Clone(GameObject *parent, const std::string &name)
 
 void PositionAgent::Load(const rapidjson::Value & val)
 {
+  Agent::jsonLoad(val);
 }
 
 void PositionAgent::Update(const GameObjectParams &params)
