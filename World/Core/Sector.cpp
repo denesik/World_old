@@ -51,11 +51,12 @@ void Sector::Update(class World *world)
 
   if (mRenderSector.IsNeedBuild())
   {
+    const size_t size = static_cast<size_t>(SECTOR_SIZE);
     for (size_t i = 0; i < mBlocks.size(); ++i)
     {
       if (mBlocks[i])
       {
-        params.pos = mPos * static_cast<int32_t>(SECTOR_SIZE) + mBlocksPos[i];
+        params.pos = cs::SBtoWB({ i % size, (i / size) % size, i / (size * size) }, mPos);
         mBlocks[i]->Draw(params);
       }
     }

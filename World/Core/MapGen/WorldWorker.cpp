@@ -39,26 +39,12 @@ std::shared_ptr<Sector> WorldWorker::Generate(const SPos &spos)
 	std::shared_ptr<Sector> psec = std::make_shared<Sector>(spos);
 	Sector &s = *psec;
 
-	{
-		SBPos pos;
-		size_t index = 0;
-		for (pos.z = 0; pos.z < SECTOR_SIZE; ++pos.z)
-		{
-			for (pos.y = 0; pos.y < SECTOR_SIZE; ++pos.y)
-			{
-				for (pos.x = 0; pos.x < SECTOR_SIZE; ++pos.x)
-				{
-					s.mBlocksPos[index++] = pos;
-				}
-			}
-		}
-	}
-
 	size_t blocksCount = 0;
 
+  const size_t size = static_cast<size_t>(SECTOR_SIZE);
 	for (size_t i = 0; i < s.mBlocks.size(); ++i)
 	{
-		const auto &pos = s.mBlocksPos[i];
+		auto pos = SBPos{ i % size, (i / size) % size, i / (size * size) };
 		float tx = static_cast<float>(pos.x);
 		float ty = static_cast<float>(pos.y);
 		float h = (noise.Noise2(tx / 10.0f, ty / 10.0f) + 1.0f) / 2.0f;

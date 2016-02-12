@@ -98,6 +98,15 @@ namespace cs
 
     return pos - spos * size;
   }
+
+  /// Координаты блока в секторе в координаты блока в мире.
+  inline WBPos SBtoWB(const SBPos &pos, const SPos &spos)
+  {
+    typedef WBPos::value_type vtype;
+    const vtype size = static_cast<vtype>(SECTOR_SIZE);
+
+    return spos * size + pos;
+  }
 }
 
 namespace std
