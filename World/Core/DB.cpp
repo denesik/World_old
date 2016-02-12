@@ -4,7 +4,7 @@
 // ============================================================================
 #include "DB.h"
 #include <boost\filesystem.hpp>
-#include "..\..\rapidjson\document.h"
+#include "..\rapidjson\document.h"
 #include "..\Log.h"
 #include <boost\exception\diagnostic_information.hpp>
 

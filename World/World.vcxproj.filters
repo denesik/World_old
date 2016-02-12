@@ -133,7 +133,7 @@
     <ClCompile Include="Core\BlockRenderStratery.cpp">
       <Filter>Core\RenderStrategy</Filter>
     </ClCompile>
-    <ClCompile Include="Core\MapGen\LevelWorker.cpp">
+    <ClCompile Include="Core\MapGen\WorldWorker.cpp">
       <Filter>Core\MapGen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -270,14 +270,14 @@
     <ClInclude Include="Core\BlockRenderStratery.h">
       <Filter>Core\RenderStrategy</Filter>
     </ClInclude>
-    <ClInclude Include="Core\MapGen\LevelWorker.h">
-      <Filter>Core\MapGen</Filter>
-    </ClInclude>
     <ClInclude Include="TemplateFactory.h">
       <Filter>tools</Filter>
     </ClInclude>
     <ClInclude Include="Serialize.h">
       <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\MapGen\WorldWorker.h">
+      <Filter>Core\MapGen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

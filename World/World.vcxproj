@@ -25,8 +25,8 @@
     <ClCompile Include="Core\DB.cpp" />
     <ClCompile Include="Core\Creature.cpp" />
     <ClCompile Include="Core\GameObject.cpp" />
-    <ClCompile Include="Core\MapGen\LevelWorker.cpp" />
     <ClCompile Include="Core\MapGen\PerlinNoise.cpp" />
+    <ClCompile Include="Core\MapGen\WorldWorker.cpp" />
     <ClCompile Include="Core\MeshBlockGenerator.cpp" />
     <ClCompile Include="Core\PhysicAgent.cpp" />
     <ClCompile Include="Core\Player.cpp" />
@@ -69,8 +69,8 @@
     <ClInclude Include="Core\GameObject.h" />
     <ClInclude Include="Core\GameObjectParams.h" />
     <ClInclude Include="Core\IRenderStrategy.h" />
-    <ClInclude Include="Core\MapGen\LevelWorker.h" />
     <ClInclude Include="Core\MapGen\PerlinNoise.h" />
+    <ClInclude Include="Core\MapGen\WorldWorker.h" />
     <ClInclude Include="Core\MeshBlockGenerator.h" />
     <ClInclude Include="Core\PhysicAgent.h" />
     <ClInclude Include="Core\Player.h" />

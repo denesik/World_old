@@ -21,7 +21,7 @@
 #include <atomic>
 #include "tools/Bresenham3D.h"
 #include "tools/CoordSystem.h"
-#include "Core\MapGen\LevelWorker.h"
+#include "Core\MapGen\WorldWorker.h"
 #include "Render/TextureManager.h"
 #include "Core/DB.h"
 #include "Core/BlockRenderStratery.h"
@@ -83,7 +83,7 @@ int Game::Run()
   boost::thread th([&close]() {
     while (!close)
     {
-      LevelWorker::instance().Process();
+      WorldWorker::instance().Process();
       std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
   });

@@ -9,7 +9,7 @@
 #include <GLFW\glfw3.h>
 #include "..\tools\CoordSystem.h"
 #include "RenderSector.h"
-#include "MapGen\LevelWorker.h"
+#include "MapGen\WorldWorker.h"
 
 
 World::World()
@@ -45,7 +45,7 @@ void World::GetSector(const SPos &position)
   auto it = mSectors.find(position);
   if (it == mSectors.end())
   {
-    if (auto psec = LevelWorker::instance().GetSector(position))
+    if (auto psec = WorldWorker::instance().GetSector(position))
     {
       mSectors[position] = psec;
     }

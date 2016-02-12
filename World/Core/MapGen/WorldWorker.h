@@ -3,8 +3,8 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #pragma once
-#ifndef LevelWorker_h_
-#define LevelWorker_h_
+#ifndef WorldWorker_h_
+#define WorldWorker_h_
 #include <boost\noncopyable.hpp>
 #include <unordered_set>
 #include <unordered_map>
@@ -37,4 +37,4 @@ private:
 	std::unordered_map<SPos, std::shared_ptr<Sector>> mReady;
 	std::unordered_set<SPos> mRequested;
 };
-#endif //LevelWorker_h_
+#endif //WorldWorker_h_

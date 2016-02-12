@@ -35,7 +35,7 @@ public:
 
 private:
 
-  friend class LevelWorker;
+  friend class WorldWorker;
   std::array<PBlock, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocks;
   std::array<SBPos, SECTOR_SIZE * SECTOR_SIZE * SECTOR_SIZE> mBlocksPos;
 
