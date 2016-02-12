@@ -53,7 +53,7 @@ void RenderAgent::Load(const rapidjson::Value & val)
     }
   }
 
-  Agent::jsonLoad(val);
+  Agent::Load(val);
 }
 
 void RenderAgent::Update(const GameObjectParams &params)
