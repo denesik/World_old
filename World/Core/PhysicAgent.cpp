@@ -106,6 +106,7 @@ void PhysicAgent::Update(const GameObjectParams &params)
 
 void PhysicAgent::jsonLoad(const rapidjson::Value & val)
 {
+  Agent::jsonLoad(val);
 }
 
 void PhysicAgent::SetPos(const WPos &pos)
