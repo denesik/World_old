@@ -3,10 +3,10 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "RenderSector.h"
-#include "..\Log.h"
 #include "Sector.h"
 #include <GLFW\glfw3.h>
 #include <type_traits>
+#include "..\tools\Log.h"
 
 
 

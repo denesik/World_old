@@ -3,7 +3,6 @@
 // ==                  See license.txt for more information                  ==
 // ============================================================================
 #include "World.h"
-#include "..\Log.h"
 #include <tuple>
 #include <utility>
 #include <GLFW\glfw3.h>

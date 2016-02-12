@@ -11,11 +11,13 @@ See "LICENSE.txt"
 #include <map>
 #include <memory>
 #include <functional>
-#include <boost\noncopyable.hpp>
-#include "..\Log.h"
+#include <boost/noncopyable.hpp>
+#include "../tools/Log.h"
+
+class GameObject;
 
 template <class IdType, class Base>
-class ObjectFactory : boost::noncopyable
+class TemplateFactory : boost::noncopyable
 {
 public:
   typedef IdType IdTypeUsing;
@@ -60,10 +62,11 @@ public:
   RegisterElement(Factory & factory, const typename Factory::IdTypeUsing & id)
   {
     if (class_registered_++ == 0)
-      factory.Add(id, &CreateElmImpl);
+      factory.Add(id, []() -> TPtr {
+      return TPtr(new T());
+    });
   }
 private:
-  static TPtr CreateElmImpl() { return TPtr(new T()); }
   static int class_registered_;
 };
 

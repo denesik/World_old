@@ -14,7 +14,6 @@
 #include <fstream>
 #include "FpsCounter.h"
 #include <memory>
-#include "Log.h"
 #include "Render/OpenGLCall.h"
 #include <vector>
 #include <thread>
@@ -25,6 +24,7 @@
 #include "Render/TextureManager.h"
 #include "Core/DB.h"
 #include "Core/BlockRenderStratery.h"
+#include "tools/Log.h"
 
 Game::Game()
 {

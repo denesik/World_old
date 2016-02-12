@@ -11,7 +11,7 @@
 #include "..\Render\Model.h"
 #include <memory>
 #include <rapidjson\document.h>
-#include "..\TemplateFactory.h"
+#include "TemplateFactory.h"
 #include "..\tools\StringIntern.h"
 
 using PRenderStrategy = std::shared_ptr<class IRenderStrategy>;

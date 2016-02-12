@@ -5,8 +5,7 @@
 #include "Game.h"
 #include <stdlib.h>
 #include <time.h>
-#include "Log.h"
-#include <boost/log/sources/severity_logger.hpp>
+#include "tools/Log.h"
 
 int main()
 {

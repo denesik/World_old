@@ -39,7 +39,6 @@
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="lodepng\lodepng.cpp" />
-    <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Render\Atlas.cpp" />
     <ClCompile Include="Render\Bitmap.cpp" />
@@ -53,6 +52,7 @@
     <ClCompile Include="Render\Texture.cpp" />
     <ClCompile Include="Render\TextureManager.cpp" />
     <ClCompile Include="tools\Bresenham3D.cpp" />
+    <ClCompile Include="tools\Log.cpp" />
     <ClCompile Include="tools\StringIntern.cpp" />
     <ClCompile Include="Window\Keyboard.cpp" />
     <ClCompile Include="Window\Mouse.cpp" />
@@ -78,11 +78,11 @@
     <ClInclude Include="Core\RenderSector.h" />
     <ClInclude Include="Core\Sector.h" />
     <ClInclude Include="Core\SectorLoader.h" />
+    <ClInclude Include="Core\TemplateFactory.h" />
     <ClInclude Include="Core\World.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="lodepng\lodepng.h" />
-    <ClInclude Include="Log.h" />
     <ClInclude Include="Render\Atlas.h" />
     <ClInclude Include="Render\Bitmap.h" />
     <ClInclude Include="Render\Camera.h" />
@@ -102,6 +102,7 @@
     <ClInclude Include="TemplateFactory.h" />
     <ClInclude Include="tools\Bresenham3D.h" />
     <ClInclude Include="tools\CoordSystem.h" />
+    <ClInclude Include="tools\Log.h" />
     <ClInclude Include="tools\StringIntern.h" />
     <ClInclude Include="Window\Keyboard.h" />
     <ClInclude Include="Window\Mouse.h" />

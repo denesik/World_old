@@ -7,7 +7,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <stdint.h>
-#include "../Log.h"
+#include "../tools/Log.h"
 
 Sector::Sector(const SPos &position)
   : mPos(position)
