@@ -130,7 +130,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -218,6 +218,8 @@
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
+      <AdditionalOptions>/NODEFAULTLIB:library
+ %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>No</GenerateDebugInformation>

@@ -32,7 +32,7 @@ class Texture
 {
 public:
   /// Создать текстуру на основе битмапы.
-  Texture(const Bitmap &bitmap);
+  Texture(const Bitmap &bitmap, bool mip = false);
 
   /// Разрушить текстуру.
   ~Texture();
@@ -43,12 +43,15 @@ public:
     return mSize;
   }
 
+  void GenMipmap();
+
   /// Установить текстуру на заданный текстурный слот.
   void Set(TextureSlot slot);
 
 private:
   // id текстуры. 0 - не существующая текстура.
   unsigned int mTextureId;
+  bool mMip;
 
   // Размер текстуры в текстелях.
   glm::uvec2 mSize;

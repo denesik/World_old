@@ -77,6 +77,8 @@ void Window::WindowSystemInitialize()
   {
     throw "GLFW not initialized.";
   }
+
+  glfwWindowHint(GLFW_SAMPLES, 4);
 }
 
 void Window::WindowSystemFinally()
